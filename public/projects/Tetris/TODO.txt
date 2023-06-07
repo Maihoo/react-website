@@ -1,0 +1,1 @@
+Check if function check is working correctly (should be) ¯\_(ツ)_/¯

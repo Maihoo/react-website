@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chess (white side)</title>
+    <style>
+      #body { margin: 0; padding-bottom: 3rem; font-family: Impact,-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
+      #form { background: rgba(255, 255, 255, 0.15); padding: 0.0rem; position: fixed; top: 1080px; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
+      #input { padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; background: #a76b66; font-size: 30px;}
+      #input:focus { outline: none; }
+      #form > button { background: #511f1b; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; z-index: 10; outline: none; color: rgb(255, 255, 255); }
+
+      messages { list-style-type: none; margin: 0; padding: 0; }
+      messages > li { padding: 0.5rem 1rem; }
+      messages > li:nth-child(odd) { background: #511f1b; }
+    </style>
+  <title>Schach weiß</title>
+
+</head>
+<body id="body" style="width: 1460; height:1060;">
+  <script>
+    var clockTicking = false;
+    var running = true;
+
+    var delta = 0;
+    var msPerTick = 1000;
+    var amountBTNS = 64;
+
+    var row = [];
+    var buttonarray = [];
+
+    function createButton(i, j, cN, stil, position, marLeft, marTop) {
+      var button = document.createElement('button');
+      button.id = ('' + i + '-' + j);
+      button.className = cN;
+      button.ison = "0";
+      button.style = stil;
+      button.style.position = position;
+      button.style.marginLeft = '' + marLeft + 'px';
+      button.style.marginTop  = '' + marTop  + 'px';
+
+      /*
+      var buttonText = document.createElement('h2');
+      buttonText.id = ('text' + i + '-' + j);
+      buttonText.className = 'h2';
+      buttonText.textContent = '0';
+      buttonText.style = 'border-color: white; position:absolute; margin-left: -10px;  margin-top: -20px;';
+      buttonText.style.position = position;
+      buttonText.style.marginLeft = '' + 10 + 'px';
+      buttonText.style.marginTop  = '' + -25 + 'px';
+
+      button.appendChild(buttonText);*/
+
+      document.getElementById("body").appendChild(button);
+
+      return button;
+    }
+
+    function generateButtons() {
+      for(var i = 0; i < buttonarray.length; i++) {
+        for(var j = 0; j < buttonarray[i].length; j++) {
+          document.body.removeChild(buttonarray[i][j]);
+        }
+      }
+      var list = document.getElementById("body");
+      for(var i = 0; i < list.children.length-5; i++) {
+        list.removeChild(list.childNodes[i]);
+      }
+
+      buttonarray = [];
+      for(var i = 0; i < amountBTNS; i++) {
+        var row = [];
+        for(var j = 0; j < amountBTNS; j++) {
+          var marLeft = j*(1920/amountBTNS);
+          var marTop  = i*(1920/amountBTNS);
+
+          var button = createButton(i, j, 'btn btn-fld', 'height: ' + (1920/amountBTNS-1) + 'px; text-align: center; width: ' + (1920/amountBTNS-1) + 'px; z-index: 10; border: 2px; border-color: white; position:absolute; margin-left: 0px;  margin-top: 0px;', 'absolute', marLeft, marTop);
+
+          button.addEventListener ('click', function(button) {
+            var b = this;
+            if(b.ison.charAt(0) == "0") {
+              b.ison = ("1");
+              b.className = 'btn btn-mine';
+            } else {
+              b.ison = ("0");
+              b.className = 'btn btn-fld';
+            }
+          });
+
+          row.push(button);
+        }
+        buttonarray.push(row);
+      }
+    }
+
+  function render(timestamp, previousTimestamp) {
+    if(!running) { return; }
+
+    console.log(document.body.children.length);
+
+    delta = delta + (timestamp - previousTimestamp);
+    if(delta > msPerTick) {
+      //console.log("delta: " + (timestamp - previousTimestamp));
+      delta = 0;
+
+      if(clockTicking) {
+
+        var backup = [];
+        var neu = [];
+        for(var i = 0; i < buttonarray.length; i++) {
+          var backupRow = [];
+          var neuRow = [];
+          var buttonarrayRow = buttonarray[i];
+          for(var j = 0; j < buttonarrayRow.length; j++) {
+            if(buttonarrayRow[j].ison == "1") { backupRow.push(true) ; neuRow.push(true) ; }
+            else                              { backupRow.push(false); neuRow.push(false); }
+          }
+          backup.push(backupRow);
+          neu.push(neuRow);
+        }
+
+        var amount = 0;
+
+        for(var i = 0; i < 10; i++) {
+          r = backup[i];
+          //console.log(r[1] + ' ' + r[2] + ' ' + r[3] + ' ' + r[4] + ' ' + r[5] + ' ' + r[6] + ' ' + r[7] + ' ' + r[8] + ' ' + r[9] + ' ' + r[10]);
+        }
+
+        for(var i = 0; i < backup.length-1; i++) {
+          var row = buttonarray[i];
+          var backupRow = backup[i];
+          for(var j = 0; j < backupRow.length; j++) {
+            var amount = 0;
+            var o = i; var u = j;
+
+            o = i-1; u = j-1;
+            backupRow = backup[o];
+            if(o >= 0 && o < backup.length && u >= 0 && u < backupRow.length && backup[o][u]) { amount = amount + 1; }
+            //if(backup[i][j] && o >= 0 && o < backup.length && u >= 0 && u < backupRow.length) { buttonarray[o][u].className = 'btn btn-act';}
+            o = i-1; u = j  ;
+            backupRow = backup[o];
+            if(o >= 0 && o < backup.length && u >= 0 && u < backupRow.length && backup[o][u]) { amount = amount + 1; }
+            //if(backup[i][j] && o >= 0 && o < backup.length && u >= 0 && u < backupRow.length) { buttonarray[o][u].className = 'btn btn-act';}
+            o = i-1; u = j+1;
+            backupRow = backup[o];
+            if(o >= 0 && o < backup.length && u >= 0 && u < backupRow.length && backup[o][u]) { amount = amount + 1; }
+            //if(backup[i][j] && o >= 0 && o < backup.length && u >= 0 && u < backupRow.length) { buttonarray[o][u].className = 'btn btn-act';}
+            o = i  ; u = j-1;
+            backupRow = backup[o];
+            if(o >= 0 && o < backup.length && u >= 0 && u < backupRow.length && backup[o][u]) { amount = amount + 1; }
+            //if(backup[i][j] && o >= 0 && o < backup.length && u >= 0 && u < backupRow.length) { buttonarray[o][u].className = 'btn btn-act';}
+
+
+
+            o = i  ; u = j+1;
+            backupRow = backup[o];
+            if(o >= 0 && o < backup.length && u >= 0 && u < backupRow.length && backup[o][u]) { amount = amount + 1; }
+            //if(backup[i][j] && o >= 0 && o < backup.length && u >= 0 && u < backupRow.length) { buttonarray[o][u].className = 'btn btn-act';}
+            o = i+1; u = j-1;
+            backupRow = backup[o];
+            if(o >= 0 && o < backup.length && u >= 0 && u < backupRow.length && backup[o][u]) { amount = amount + 1; }
+            //if(backup[i][j] && o >= 0 && o < backup.length && u >= 0 && u < backupRow.length) { buttonarray[o][u].className = 'btn btn-act';}
+            o = i+1; u = j  ;
+            backupRow = backup[o];
+            if(o >= 0 && o < backup.length && u >= 0 && u < backupRow.length && backup[o][u]) { amount = amount + 1; }
+            //if(backup[i][j] && o >= 0 && o < backup.length && u >= 0 && u < backupRow.length) { buttonarray[o][u].className = 'btn btn-act';}
+            o = i+1; u = j+1;
+            backupRow = backup[o];
+            if(o >= 0 && o < backup.length && u >= 0 && u < backupRow.length && backup[o][u]) { amount = amount + 1; }
+            //if(backup[i][j] && o >= 0 && o < backup.length && u >= 0 && u < backupRow.length) { buttonarray[o][u].className = 'btn btn-act';}
+
+            //if(backup[i][j]) { buttonarray[i][j].className = 'btn btn-act'; }
+            //if(backup[i][j]) { console.log('o: ' + o + ' u: ' + u + ' ' + (o >= 0) + ' ' + (o < backup.length) + ' ' + (u >= 0) + ' ' + (u < backupRow.length) + ' ' + (backupRow[u]) ); }
+            //if(amount > 1) { console.log('amount: ' + amount + ' in cell ' + i + '-' + j); }
+
+            if(amount == 3) {
+              neu[i][j] = true;
+            }
+            if(amount < 2) {
+              var neuRow = neu[i];
+              neuRow[j] = false;
+            }
+            if(amount > 3) {
+              var neuRow = neu[i];
+              neuRow[j] = false;
+            }
+            //document.getElementById('text' + i + '-' + j).textContent = amount;
+          }
+        }
+
+        for(var i = 0; i < buttonarray.length; i++) {
+          for(var j = 0; j < buttonarray.length; j++) {
+            var neuRow = neu[i];
+
+            if(neuRow[j]) {
+              document.getElementById('' + i + '-' + j).ison = "1";
+              document.getElementById('' + i + '-' + j).className = 'btn btn-mine';
+
+            } else {
+              document.getElementById('' + i + '-' + j).ison = "0";
+              document.getElementById('' + i + '-' + j).className = 'btn btn-fld';
+            }
+          }
+        }
+      }
+    }
+
+    window.requestAnimFrame(function (time) {
+      render(time, timestamp);
+    });
+  }
+
+  function setClock() {
+    if(!clockTicking) {
+      document.getElementById('starttext').textContent = "STOP";
+    } else {
+      document.getElementById('starttext').textContent = "START";
+    }
+    clockTicking = !clockTicking;
+  }
+
+
+  function reset() {
+    console.log("reset");
+    document.getElementById('starttext').textContent = "START";
+    amountBTNS =
+    generateButtons();
+  }
+
+  window.requestAnimFrame = (function() {
+    return window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.oRequestAnimationFrame ||
+      window.msRequestAnimationFrame ||
+      function(callback, element) {
+        window.setTimeout(callback, 1000/60);
+      };
+    })();
+
+    window.onload = function init() {
+
+  generateButtons();
+  render(0,0);
+  document.getElementById('speed').addEventListener ('click', function() {
+    msPerTick = document.getElementById('speed').value;
+  });
+  document.getElementById('size').addEventListener ('click', function() {
+    amountBTNS = document.getElementById('size').value;
+  });
+}
+  </script>
+
+  <div style="position:absolute; background-color: rgba(0, 0, 0, 0);" >
+
+    <link rel="stylesheet" href="style.css">
+
+    <div id ="buttonframe" style="float: top; z-index: -10; margin-top: -1065px; position:absolute; ">
+
+    </div>
+  </div>
+
+
+  <div id="bgDIV" background="#111111;" height="1060px" width="1860px" position="absolute" style="margin-left:50px; margin-top:50px;">
+  </div>
+    <iframe id="frame" src="" marginTop="-200px" width="1920px" height="2000px" style="display: none; z-index:100; position:absolute;"> </iframe>
+  </div>
+
+  <div style="z-index: 1000000000; width: 100%">
+    <button onclick="setClock()" id="start" class="btn btn-back" style="position: absolute; width: 15em; height: 7em; margin-left: 0px;                     margin-top: -4em; content: START; z-index: 10000; background-color: white;">
+      <h1 id="starttext" style="font-weight: bolder; pointer-events: none;">START</h1>
+    </button>
+    <button onclick="reset()"    id="reset" class="btn btn-back" style="position: absolute; width: 15em; height: 7em; margin-left: 129em; margin-right: -10em; margin-top: -4em; content: RESET; z-index: 12000; background-color: white;">
+      <h1 id="starttext" style="font-weight: bolder; pointer-events: none;">RESET</h1>
+    </button>
+    <label for="speed" style="position:absolute; margin-left: 4em;                       margin-top: -0.55em; width: 10em; font-size: 320%; opacity: 1; z-index: inherit; color: rgb(255, 255, 255);">
+      ms per tick:
+      <input type="range" class="menu" name="speed" id="speed" min="1" max="5000" value="1000" step="1" oninput="this.nextElementSibling.value = this.value" style="margin-top: -2em; margin-left: -19em; height: 3em; width: 100%; position: absolute; z-index: 10000;">
+      <output>1000</output>
+    </label>
+    <label for="size"  style="position:absolute; pointer-events: none; margin-left: 30.5em; margin-right: 20%; margin-top: -0.55em; width: 10em; font-size: 320%; opacity: 1; z-index: inherit; color: rgb(255, 255, 255);">
+      size:
+      <input type="range" class="menu" name="size" id="size" min="1" max="100"    value="64"   step="1" oninput="this.nextElementSibling.value = this.value" style="pointer-events: all;  margin-top: -2em; margin-left: -34.5em; height: 3em; width: 100%; position: absolute; z-index: 12000;">
+      <output>64</output>
+    </label>
+  </div>
+
+</body>
+</html>

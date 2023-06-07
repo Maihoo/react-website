@@ -1,0 +1,13 @@
+          if(counter > 1) {
+            var tdist  = calcDist(tracker, sphere);
+            if( tdist < 250 ) { tdist = 250; tspeedX = 0; tspeedY = 0; tspeedZ = 0;} //can't deal with unrealistically low distances
+            var tforce = ((50*1500)/(Math.pow(tdist,2)));
+            var ttemp  = calcVect(tracker, sphere);
+            tspeedX += (ttemp[0]/tdist) * tforce * hardMultiplier;
+            tspeedY += (ttemp[1]/tdist) * tforce * hardMultiplier;
+            tspeedZ += (ttemp[2]/tdist) * tforce * hardMultiplier;
+            tracker.position.x += tspeedX * hardMultiplier;
+	          tracker.position.y += tspeedY * hardMultiplier;
+            tracker.position.z += tspeedZ * hardMultiplier;
+            if(counter % 1 == 0) { path.push(new THREE.Vector3( tracker.position.x, tracker.position.y, tracker.position.z )); if(path.length > 3) {createPath(); }}
+          }

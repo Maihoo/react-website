@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>TowerDefense</title>
+  <style>
+    body {
+      overflow: hidden;
+      margin: 0;
+      background-color: black;
+      position: relative;
+      margin-top: 0px;
+      /*height:max-content; 
+            width:min-content;*/
+      display: block;
+    }
+  </style>
+
+</head>
+
+<body style="overflow:hidden; height: 937px; width: 1920px;">
+
+  <div style="position:absolute; ">
+    <picture id="field">
+      <img id="background" height="937px" width="1920px" src="res/UI/background.jpg" alt="TD" style="z-index:-1;">
+    </picture>
+
+    <h1 id="money" style="margin-top: -917px; margin-left: 165px;">$1000</h1>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <div id="buttonframe" style="float: top; margin-top: -1065px; position:absolute; "> </div>
+    <div id="circle" class="circle" style="position:absolute; pointer-events: none;"></div>
+
+    <canvas id="canvas"      width="2000px" height="1000px" style="position: absolute; margin-top: -100px; z-index: 100000010; pointer-events: none; opacity: 1.0;"></canvas>
+    <canvas id="lasercanvas" width="2000px" height="1000px" style="position: absolute;  z-index: 100000010; pointer-events: none; opacity: 1.0;"></canvas>
+  </div>
+
+  <div id='search' style="background-image: url('res/UI/rightside.jpg'); background-color: rgb(78, 81, 29); position:absolute; margin-top: 0px; margin-left: 1560px; height: 937px; width: 360px; z-index: 100000000;">
+
+  </div>
+
+	<script type="text/javascript" src="rule.js"></script>
+
+</body>
+
+</html>

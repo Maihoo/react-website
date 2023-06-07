@@ -1,0 +1,1056 @@
+<<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Gravity</title>
+      <style>
+          body {
+            overflow: hidden;
+            margin: 0;
+            background-color: black;
+            position:relative;
+            margin-top:0px;
+            /*height:max-content;
+            width:min-content;*/
+            display: block; }
+    </style>
+    <style type="text/css">
+      .nocursor { cursor:none; }
+      .yescursor { cursor:default; }
+
+  </style>
+  </head>
+  <body style="width:100%; height: 100%; display: inline-flex;">
+    <link rel="stylesheet" href="Common/styles.css">
+    <div style="display: inline-flex; align-items: stretch;"></div>
+      <div id="container" style="max-height: 933px; max-width: 1700px; display: inline-flex; overflow: hidden; align-items: stretch;">
+    </div>
+
+    <div style="max-width: 170px; min-height:933px; background-color: black; color: white; border-radius:0px; display: inline-box; padding-left: 10px; height: 100%; align-items: center; overflow:visible">
+      <div style="position: absolute; margin-top: 1rem; margin-left: -4rem; ">
+        <label>Speed</label>
+        <div style="height: 10rem; width: 2rem; margin-top: 0.5rem; background-color: red; border: 1px solid white; z-index: 20000; display: flex; flex-direction: column; align-items: flex-end;">
+          <div id="speedGauge" style="height: 10rem; width: 2rem; background-color: black;"></div>
+        </div>
+      </div>
+     
+      <div style="font-weight: bold; color: white; font-size: larger; padding-bottom: 25px; padding-top: 15px;">Initial Speed</div>
+      <label for="speed-x">Initial Speed X-Axis <input type="range" class="menu" name="speed-x" id="speed-x" min="-7" max="7" value="5" step="0.001"></label>
+      <label for="speed-y">Initial Speed Y-Axis <input type="range" class="menu" name="speed-y" id="speed-y" min="-7" max="7" value="0" step="0.001"></label>
+      <label for="speed-z">Initial Speed Z-Axis <input type="range" class="menu" name="speed-z" id="speed-z" min="-7" max="7" value="0" step="0.001"></label>
+
+      <div style="font-weight: bold; color: white; font-size: larger; padding-bottom: 25px; padding-top: 15px;">Initial Position</div>
+      <label for="pos-x">Initial Position X-Axis<input type="range" class="menu" name="pos-x" id="pos-x" min="-5000" max="5000" value="0" step="1"></label>
+      <label for="pos-y">Initial Position Y-Axis<input type="range" class="menu" name="pos-y" id="pos-y" min="-5000" max="5000" value="0" step="1"></label>
+      <label for="pos-z">Initial Position Z-Axis<input type="range" class="menu" name="pos-z" id="pos-z" min="-5000" max="5000" value="0" step="1"></label>
+
+      <div style="font-weight: bold; color: white; font-size: larger; padding-bottom: 25px; padding-top: 15px;">Menu Settings</div>
+      <label for="met-speed">Meteor speed<input type="range" class="menu" name="met-speed" id="met-speed" min="0" max="20" value="0" step="0.01"></label>
+
+      <div>
+        <input type="checkbox" id="ctrlsBTN" checked>
+        <label>show controls</label>
+      </div>
+      <div>
+        <input type="checkbox" id="moonBTN" checked>
+        <label>toggle Moon</label>
+      </div>
+      <div>
+        <input type="checkbox" id="gridBTN">
+        <label>show orientation</label>
+      </div>
+      <div>
+        <input type="checkbox" id="freeBTN" checked>
+        <label>activate Free Mode</label>
+      </div>
+      <div>
+        <input type="checkbox" id="trackerBTN" checked>
+        <label>show Tracker</label>
+      </div>
+      <div>
+        <input type="checkbox" id="starBTN">
+        <label>show Stars</label>
+      </div>
+      <div>
+        <input type="checkbox" id="meteorBTN">
+        <label>show Mateors</label>
+      </div>
+
+      <div>
+        <image id="ctrls" src="res/keys.png" style="width: 160px; z-index: 10;"></image>
+      </div>
+    </div>
+    
+    <script src="js/three.js"></script>
+    <script type="text/javascript" src="Common/MV.js"></script>
+
+    <script>
+
+      var SCREEN_WIDTH  = 1200;
+      var SCREEN_HEIGHT = 800;
+
+      var camera, scene, canvasRenderer, webglRenderer, container, mesh, geometry, plane;
+
+      var windowHalfX = window.innerWidth  / 2;
+      var windowHalfY = window.innerHeight / 2;
+
+      var turnUp      = false;
+      var turnDown    = false;
+      var turnLeft    = false;
+      var turnRight   = false;
+      var moveFor     = false;
+      var moveBack    = false;
+      var moveLeft    = false;
+      var moveRight   = false;
+      var moveUp      = false; 
+      var moveDown    = false;
+      var moving      = false;
+      var engaged     = false;
+      var freeMode    = true;
+      var moonToggle  = false;
+      var showTrack   = true;
+      var showStars   = false;
+      var showMeteors = false;
+      var track       = true;
+      var fast = 1;
+      var path = [];
+      var timepoint = 0;
+
+      var moveMultiplier = 10;
+      var turnMultiplier = 0.6;
+      var timeMultiplier = 1;
+      var hardMultiplier = 10;
+
+      var tracker;
+      var sphere;
+      var ship;
+
+      var objectToMove;
+      var add = 1.0;
+
+      var line;
+      var coords;
+
+      var xPlus, xPlus2, xMinu, yPlus, yPlus2, yMinu, zPlus, zPlus2, zMinu;
+      var bools       = [];
+      var meteors     = [];
+      var speeds      = [];
+      var stars       = [];
+      var starSpeedX  = [];
+      var starSpeedY  = [];
+      var starSpeedZ  = [];
+      var starAccX  = [];
+      var starAccY  = [];
+      var starAccZ  = [];
+
+      const pointer = new THREE.Vector2();
+      var raycaster;
+      var parentTransform;
+
+      init();
+      animate(0,0);
+      onWindowResize();
+      initArrays();
+
+      function init() {
+        container = document.getElementById("container")
+
+        camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 100000);
+        camera.position.x = 0;
+        camera.position.y = 2000;
+        camera.position.z = 3000;
+        camera.lookAt({
+          x: 0,
+          y: 0,
+          z: 0
+        });
+
+        scene = new THREE.Scene();
+
+        raycaster = new THREE.Raycaster();
+        raycaster.params.Line.threshold = 3;
+
+        var ctrls = document.getElementById('ctrlsBTN');
+        ctrls.addEventListener('change', () => {
+          if (ctrls.checked) { document.getElementById('ctrls').style.visibility = "visible"; }
+          else              { document.getElementById('ctrls').style.visibility = "hidden";  }
+        });
+
+        var moonBTN = document.getElementById('moonBTN');
+        moonBTN.addEventListener('change', () => {
+          if (moonBTN.checked) { moonToggle = true; animate(); }
+          else                { moonToggle = false; animate(); }
+        });
+
+        var freeBTN = document.getElementById('freeBTN');
+        freeBTN.addEventListener('change', () => {
+          if (freeBTN.checked) { freeMode = true; }
+          else                { freeMode = false; }
+        });
+
+        var trackerBTN = document.getElementById('trackerBTN');
+        trackerBTN.addEventListener('change', () => {
+          if (trackerBTN.checked) { showTrack = true; }
+          else                   { showTrack = false;
+                                   if (scene.children.includes(line)) {scene.remove(line);} }
+        });
+
+        var starBTN = document.getElementById('starBTN');
+        starBTN.addEventListener('change', () => {
+          if (starBTN.checked) { showStars = true; generateStars1(); }
+          else                { showStars = false;
+                                   if (scene.children.includes(line)) {scene.remove(line);} }
+        });
+
+        var meteorBTN = document.getElementById('meteorBTN');
+        meteorBTN.addEventListener('change', () => {
+          if (meteorBTN.checked) { showMeteors = true; generateStars2(); }
+          else                  { showMeteors = false;
+                                   if (scene.children.includes(line)) {scene.remove(line);} }
+        });
+
+        var groundMaterial = new THREE.MeshPhongMaterial({ color: 0x6C6C6C });
+        plane = new THREE.Mesh(new THREE.PlaneGeometry(500, 500), groundMaterial);
+        plane.rotation.x = -Math.PI / 2;
+        plane.receiveShadow = true;
+
+        //COORDINATES
+
+        const arrowheadGeo  = new THREE.ConeGeometry( 50, 100, 10 );
+        const arrowbaseGeo = new THREE.CylinderGeometry( 15, 15, 600, 32 );
+
+        const xmaterial  = new THREE.MeshLambertMaterial({ color: 0xAA0000 });
+        xPlus  = new THREE.Mesh(arrowheadGeo , xmaterial);
+        xPlus2 = new THREE.Mesh(arrowbaseGeo, xmaterial);
+        xPlus.castShadow  = true;
+        xPlus2.castShadow = true;
+        xPlus.position.y  = 0;
+        xPlus2.position.y = 0;
+        xPlus.rotation.z  = toRadians(-90);
+        xPlus2.rotation.z = toRadians(-90);
+        xPlus.position.x  = 300;
+        xPlus2.position.x = 0;
+
+        xMinu  = new THREE.Mesh(arrowheadGeo , xmaterial);
+        xMinu.castShadow  = true;
+        xMinu.position.y  = 0;
+        xMinu.rotation.z  = toRadians(90);
+        xMinu.position.x  = -300;
+
+        const ymaterial  = new THREE.MeshLambertMaterial({ color: 0x00AA00 });
+        yPlus  = new THREE.Mesh(arrowheadGeo , ymaterial);
+        yPlus2 = new THREE.Mesh(arrowbaseGeo, ymaterial);
+        yPlus.castShadow  = true;
+        yPlus2.castShadow = true;
+        yPlus.position.y  = 0;
+        yPlus2.position.y = 0;
+        yPlus.rotation.y  = toRadians(-90);
+        yPlus2.rotation.y = toRadians(-90);
+        yPlus.position.y  = 300;
+        yPlus2.position.y = 0;
+
+        yMinu  = new THREE.Mesh(arrowheadGeo , ymaterial);
+        yMinu.castShadow  = true;
+        yMinu.position.y  = 0;
+        yMinu.rotation.z  = toRadians(180);
+        yMinu.position.y  = -300;
+
+        const zmaterial  = new THREE.MeshLambertMaterial({ color: 0x0000AA });
+        zPlus  = new THREE.Mesh(arrowheadGeo , zmaterial);
+        zPlus2 = new THREE.Mesh(arrowbaseGeo, zmaterial);
+        zPlus.castShadow  = true;
+        zPlus2.castShadow = true;
+        zPlus.position.z  = 0;
+        zPlus2.position.z = 0;
+        zPlus.rotation.x  = toRadians(90);
+        zPlus2.rotation.x = toRadians(90);
+        zPlus.position.z  = 300;
+        zPlus2.position.z = 0;
+
+        zMinu  = new THREE.Mesh(arrowheadGeo , zmaterial);
+        zMinu.castShadow  = true;
+        zMinu.position.z  = 0;
+        zMinu.rotation.x  = toRadians(-90);
+        zMinu.position.z  = -300;
+
+        // ORIENTATION
+
+        var pts = [];
+        pts.push( new THREE.Vector3(0    , 0   , -3000));
+        pts.push( new THREE.Vector3(-1000, 0   , -3000));
+        pts.push( new THREE.Vector3(-1000, 1000, -3000));
+        pts.push( new THREE.Vector3(-1000, 0   , -3000));
+        pts.push( new THREE.Vector3(-1000, 0   , -2000));
+
+        var coordsgeometry = new THREE.BufferGeometry().setFromPoints( pts );
+        const coordsmaterial = new THREE.LineBasicMaterial({ color: 0xAAAAAA });
+        coords = new THREE.Line( coordsgeometry, coordsmaterial );
+
+        var coordBTN = document.getElementById('gridBTN');
+        coordBTN.addEventListener('change', () => {
+          if (coordBTN.checked) {
+            if (!scene.children.includes(coords)) { scene.add(coords);    }
+          } else {
+            if ( scene.children.includes(coords)) { scene.remove(coords); }
+          }
+        });
+
+        // LIGHTS
+        scene.add(new THREE.AmbientLight(0x666666));
+
+        var light;
+        light = new THREE.DirectionalLight(0xdfebff, 1.75);
+        light.position.set(300, 400, 50);
+        light.position.multiplyScalar(1.3);
+
+        light.castShadow = true;
+        //light.shadowCameraVisible = true;
+
+        light.shadow.camera.width = 512;
+        light.shadow.camera.height = 512;
+
+        var d = 200;
+
+        light.shadow.camera.left = -d;
+        light.shadow.camera.right = d;
+        light.shadow.camera.top = d;
+        light.shadow.camera.bottom = -d;
+
+        light.shadow.camera.far = 1000;
+
+        scene.add(light);
+
+        //SPHERE1
+
+        var spheregeometry = new THREE.SphereGeometry(250, 50);
+        var spherematerial = new THREE.MeshLambertMaterial({ color: 0x0000FF });
+        sphere = new THREE.Mesh(spheregeometry, spherematerial);
+        sphere.castShadow = true;
+        sphere.position.x = -1.0;
+        sphere.position.y = -1.0;
+        sphere.position.z = -4000.0;
+
+        var loader = new THREE.TextureLoader();
+        loader.load( 'res/earth.jpg', function ( texture ) {
+          var spheregeometry          = new THREE.SphereGeometry(250, 50);
+          var spherematerial          = new THREE.MeshBasicMaterial( { map: texture} );
+          spherematerial.specularMap  = new THREE.TextureLoader('res/specular.jpg');
+          spherematerial.specular     = new THREE.Color('grey');
+          spherematerial.bumpMap      = new THREE.TextureLoader('res/bumpmap.jpg');
+          spherematerial.bumpScale    = 0.05;
+
+          sphere = new THREE.Mesh(spheregeometry, spherematerial);
+          sphere.castShadow = true;
+          sphere.position.x = -1.0;
+          sphere.position.y = -1.0;
+          sphere.position.z = -4000.0;
+
+          scene.add(sphere);
+        } );
+
+        //SPHERE2
+        var sphere2geometry = new THREE.SphereGeometry(150, 40);
+        var sphere2material = new THREE.MeshLambertMaterial({ color: 0x444444 });
+        sphere2 = new THREE.Mesh(sphere2geometry, sphere2material);
+        sphere2.castShadow = true;
+        sphere2.position.x = -2500.0;
+        sphere2.position.y = -1.0;
+        sphere2.position.z = -4000.0;
+        if (moonToggle) {
+          scene.add(sphere2);
+        }
+
+        //SHIP
+        var shipgeometry = new THREE.BoxGeometry(50, 10, 200);
+        var shipmaterial = new THREE.MeshLambertMaterial({ color: 0x333333 });
+        ship = new THREE.Mesh(shipgeometry, shipmaterial);
+        ship.castShadow = true;
+        ship.position.x = 5.0;
+        ship.position.y = 5.0;
+        ship.position.z = 5.0;
+
+        scene.add(ship);
+
+        update();
+
+        //CUBE
+        var cubegeometry = new THREE.BoxGeometry(10000, 5000, 10000);
+        var cubematerial = new THREE.MeshLambertMaterial({ color: 0x333333, wireframe: true });
+        cube = new THREE.Mesh(cubegeometry, cubematerial);
+        cube.geometry.parameters.width = 0;
+        cube.geometry.parameters.widthSegments = 25;
+        cube.geometry.parameters.hightSegments = 20;
+        cube.castShadow = false;
+        cube.position.x = 0.0;
+        cube.position.y = 0.0;
+        cube.position.z = 0.0;
+
+        const edges = new THREE.EdgesGeometry( cubegeometry );
+
+        //scene.add(cube);
+
+        // RENDERER
+        webglRenderer = new THREE.WebGLRenderer( { antialias: true } );
+        webglRenderer.setPixelRatio( window.devicePixelRatio );
+        webglRenderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        webglRenderer.domElement.style.position = "relative";
+        webglRenderer.shadowMap.enabled = true;
+        webglRenderer.shadowMapSoft = true;
+
+        container.appendChild(webglRenderer.domElement);
+        window.addEventListener( 'resize', onWindowResize, true );
+
+        document.addEventListener("keydown", (event) => {
+          if (event.keyCode === 87) { moveFor   = true;  }
+          if (event.keyCode === 83) { moveBack  = true;  }
+          if (event.keyCode === 65) { moveLeft  = true;  }
+          if (event.keyCode === 68) { moveRight = true;  }
+          if (event.keyCode === 73) { turnUp    = true;  }
+          if (event.keyCode === 75) { turnDown  = true;  }
+          if (event.keyCode === 74) { turnLeft  = true;  }
+          if (event.keyCode === 76) { turnRight = true;  }
+          if (event.keyCode === 32) { moveUp    = true;  }
+          if (event.keyCode === 18) { moveDown  = true;  }
+          if (event.keyCode === 16) { fast      = 3;     }
+          if (event.keyCode === 13) { moving = !moving;  }
+          if (event.keyCode === 80) { shootMeteor();     }
+        });
+
+        document.onkeydown = function (e) {
+          return false;
+        }
+
+        document.addEventListener("keyup", (event) => {
+          if (event.keyCode === 87) { moveFor   = false; }
+          if (event.keyCode === 83) { moveBack  = false; }
+          if (event.keyCode === 65) { moveLeft  = false; }
+          if (event.keyCode === 68) { moveRight = false; }
+          if (event.keyCode === 73) { turnUp    = false; }
+          if (event.keyCode === 75) { turnDown  = false; }
+          if (event.keyCode === 74) { turnLeft  = false; }
+          if (event.keyCode === 76) { turnRight = false; }
+          if (event.keyCode === 32) { moveUp    = false; }
+          if (event.keyCode === 18) { moveDown  = false; }
+          if (event.keyCode === 16) { fast      = 1;     }
+        });
+
+        var havePointerLock = 'pointerLockElement'       in document
+                           || 'mozPointerLockElement'    in document
+                           || 'webkitPointerLockElement' in document;
+
+        document.getElementById('container').onmousedown = function(event) {
+
+          if ((checkClicked(xPlus, event) || checkClicked(xPlus2, event) || checkClicked(xMinu, event)) && scene.children.includes(xPlus)  ) {
+            var cont = document.getElementById('container');
+            cont.addEventListener('mousemove', equalDistX);
+            cont.addEventListener('mouseup', removeFkt);
+            return;
+          }
+          if ((checkClicked(yPlus, event) || checkClicked(yPlus2, event) || checkClicked(yMinu, event)) && scene.children.includes(yPlus)  ) {
+            var cont = document.getElementById('container');
+            cont.addEventListener('mousemove', equalDistY);
+            cont.addEventListener('mouseup', removeFkt);
+            return;
+          }
+          if ((checkClicked(zPlus, event) || checkClicked(zPlus2, event) || checkClicked(zMinu, event)) && scene.children.includes(zPlus)  ) {
+            var cont = document.getElementById('container');
+            cont.addEventListener('mousemove', equalDistZ);
+            cont.addEventListener('mouseup', removeFkt);
+            return;
+          }
+
+          if (checkClicked(ship, event)) {
+            objectToMove = ship;
+            add = 1.0;
+            initArrowMove();
+            return;
+          }
+          if (checkClicked(sphere, event) && freeMode) {
+            objectToMove = sphere;
+            add = 1.5;
+            initArrowMove();
+            return;
+          }
+          if (checkClicked(sphere2, event) && freeMode) {
+            objectToMove = sphere2;
+            add = 1.25;
+            initArrowMove();
+            return;
+          }
+
+          if (scene.children.includes(xPlus )) { scene.remove(xPlus ) ; }
+          if (scene.children.includes(xPlus2)) { scene.remove(xPlus2) ; }
+          if (scene.children.includes(xMinu )) { scene.remove(xMinu ) ; }
+          if (scene.children.includes(yPlus )) { scene.remove(yPlus ) ; }
+          if (scene.children.includes(yPlus2)) { scene.remove(yPlus2) ; }
+          if (scene.children.includes(yMinu )) { scene.remove(yMinu ) ; }
+          if (scene.children.includes(zPlus )) { scene.remove(zPlus ) ; }
+          if (scene.children.includes(zPlus2)) { scene.remove(zPlus2) ; }
+          if (scene.children.includes(zMinu )) { scene.remove(zMinu ) ; }
+
+          if (event.which == 1) {
+            var element = document.getElementById('container');
+            element.requestPointerLock = element.requestPointerLock
+                                      || element.mozRequestPointerLock
+                                      || element.webkitRequestPointerLock;
+            element.requestPointerLock();
+          }
+        }
+
+        document.onmouseup = function(event) {
+          if (event.which == 1) {
+            document.exitPointerLock = document.exitPointerLock ||
+            document.mozExitPointerLock ||
+            document.webkitExitPointerLock;
+            document.exitPointerLock();
+          }
+        }
+        document.addEventListener('pointerlockchange'       , changeCallback, false);
+        document.addEventListener('mozpointerlockchange'    , changeCallback, false);
+        document.addEventListener('webkitpointerlockchange' , changeCallback, false);
+      }
+
+      function setPostition(target, xPosition, yPosition, zPosition) {
+        target.position.x  = xPosition;
+        target.position.y  = yPosition;
+        target.position.z  = zPosition;
+      }
+
+      function initArrowMove() {
+        if (!scene.children.includes(xPlus )) { scene.add(xPlus ) ; }
+        if (!scene.children.includes(xPlus2)) { scene.add(xPlus2) ; }
+        if (!scene.children.includes(xMinu )) { scene.add(xMinu ) ; }
+        if (!scene.children.includes(yPlus )) { scene.add(yPlus ) ; }
+        if (!scene.children.includes(yPlus2)) { scene.add(yPlus2) ; }
+        if (!scene.children.includes(yMinu )) { scene.add(yMinu ) ; }
+        if (!scene.children.includes(zPlus )) { scene.add(zPlus ) ; }
+        if (!scene.children.includes(zPlus2)) { scene.add(zPlus2) ; }
+        if (!scene.children.includes(zMinu )) { scene.add(zMinu ) ; }
+
+        setPostition(xPlus , objectToMove.position.x + 300*add, objectToMove.position.y           , objectToMove.position.z           );
+        setPostition(xMinu , objectToMove.position.x - 300*add, objectToMove.position.y           , objectToMove.position.z           );
+        setPostition(xPlus2, objectToMove.position.x          , objectToMove.position.y           , objectToMove.position.z           );
+        setPostition(yPlus , objectToMove.position.x          , objectToMove.position.y + 300*add , objectToMove.position.z           );
+        setPostition(yMinu , objectToMove.position.x          , objectToMove.position.y - 300*add , objectToMove.position.z           );
+        setPostition(yPlus2, objectToMove.position.x          , objectToMove.position.y           , objectToMove.position.z           );
+        setPostition(zPlus , objectToMove.position.x          , objectToMove.position.y           , objectToMove.position.z + 300*add );
+        setPostition(zMinu , objectToMove.position.x          , objectToMove.position.y           , objectToMove.position.z - 300*add );
+        setPostition(zPlus2, objectToMove.position.x          , objectToMove.position.y           , objectToMove.position.z           );
+
+        xPlus2.scale.y = add;
+        yPlus2.scale.y = add;
+        zPlus2.scale.y = add;
+      }
+
+      function generateStars1() {
+        const stargeometry = new THREE.BufferGeometry();
+        const vertices = [];
+
+        stars = [];
+        starSpeedX = [];
+        starSpeedY = [];
+        starSpeedZ = [];
+        starAccX  = [];
+        starAccY  = [];
+        starAccZ  = [];
+
+        for ( let i = 0; i < 1000; i ++ ) {
+          vertices.push( THREE.MathUtils.randFloatSpread( 80000 ) ); // x
+          vertices.push( THREE.MathUtils.randFloatSpread( 80000 ) ); // y
+          vertices.push( THREE.MathUtils.randFloatSpread( 80000 ) ); // z
+        }
+
+        stargeometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
+
+        const particles = new THREE.Points( stargeometry, new THREE.PointsMaterial( { color: 0x888888 } ) );
+        scene.add( particles );
+      }
+
+      function generateStars2() {
+        stars = [];
+        starSpeedX = [];
+        starSpeedY = [];
+        starSpeedZ = [];
+        starAccX  = [];
+        starAccY  = [];
+        starAccZ  = [];
+
+        for ( let i = 0; i < 100; i ++ ) {
+          var spheregeometry = new THREE.SphereGeometry(25, 5);
+          var spherematerial = new THREE.MeshLambertMaterial({ color: 0x444444 });
+          sphere = new THREE.Mesh(spheregeometry, spherematerial);
+          sphere.castShadow = false;
+          sphere.position.x = THREE.MathUtils.randFloatSpread( 8000 );
+          sphere.position.y = THREE.MathUtils.randFloatSpread( 8000 );
+          sphere.position.z = THREE.MathUtils.randFloatSpread( 8000 );
+
+          starSpeedX.push(THREE.MathUtils.randFloatSpread( 10 ));
+          starSpeedY.push(THREE.MathUtils.randFloatSpread( 10 ));
+          starSpeedZ.push(THREE.MathUtils.randFloatSpread( 10 ));
+          starAccX.push(0);
+          starAccY.push(0);
+          starAccZ.push(0);
+
+          scene.add(sphere);
+          stars.push(sphere);
+        }
+      }
+
+      function removeFkt() {
+        restartTracker();
+        path = [];
+        tspeedX  = parseFloat(document.getElementById("speed-x").value);
+        tspeedY  = parseFloat(document.getElementById("speed-y").value);
+        tspeedZ  = parseFloat(document.getElementById("speed-z").value);
+        if (scene.children.includes(line)) { scene.remove(line); }
+        var cont = document.getElementById('container');
+        cont.removeEventListener('mousemove', equalDistX);
+        cont.removeEventListener('mousemove', equalDistY);
+        cont.removeEventListener('mousemove', equalDistZ);
+        cont.removeEventListener('mouseup'  , removeFkt);
+      }
+
+      function equalDistX() {
+        pointer.x = event.clientX;
+        var ve = xPlus2.position.clone()
+        ve.project(camera);
+        ve.x = ((ve.x + 1) * window.innerWidth / 2);
+        if (pointer.x - ve.x > 0)  { moveArrows( 3, 'x'); }
+        else                      { moveArrows(-3, 'x'); }
+        if (Math.abs(pointer.x  - ve.x) < 5) { return; }
+        equalDistX();
+      }
+
+      function equalDistY() {
+        pointer.y = event.clientY;
+        var ve = yPlus2.position.clone()
+        ve.project(camera);
+        ve.y = (ve.y + 1) * window.innerHeight / 2;
+        if (pointer.y - (window.innerHeight - ve.y) < 0) { moveArrows( 3, 'y'); }
+        else                                            { moveArrows(-3, 'y'); }
+        if (Math.abs(pointer.y - (window.innerHeight - ve.y)) < 5) { return; }
+        equalDistY();
+      }
+
+      function equalDistZ() {
+        pointer.x = event.clientX;
+        var ve = xPlus2.position.clone()
+        ve.project(camera);
+        ve.x = ((ve.x + 1) * window.innerWidth / 2);
+        var speed = 3;
+        if(camera.position.x - xPlus2.position.x < 0) {
+          moveArrows(pointer.x - ve.x, 'z')
+        } else {
+          moveArrows(- (pointer.x - ve.x), 'z')
+        }
+      }
+
+      function moveArrows(howMuch, dir) {
+        switch (dir) {
+          case 'x':
+            xPlus2.position.x += howMuch;
+            xPlus.position.x  = xPlus2.position.x + 300*add;
+            xMinu.position.x  = xPlus2.position.x - 300*add;
+            yPlus.position.x  = xPlus2.position.x;
+            yPlus2.position.x = xPlus2.position.x;
+            yMinu.position.x  = xPlus2.position.x;
+            zPlus.position.x  = xPlus2.position.x;
+            zPlus2.position.x = xPlus2.position.x;
+            zMinu.position.x  = xPlus2.position.x;
+            objectToMove.position.x   = xPlus2.position.x;
+            break;
+
+          case 'y':
+            yPlus2.position.y+= howMuch;
+            yPlus.position.y  = yPlus2.position.y + 300*add;
+            yMinu.position.y  = yPlus2.position.y - 300*add;
+            xPlus.position.y  = yPlus2.position.y;
+            xPlus2.position.y = yPlus2.position.y;
+            xMinu.position.y  = yPlus2.position.y;
+            zPlus.position.y  = yPlus2.position.y;
+            zPlus2.position.y = yPlus2.position.y;
+            zMinu.position.y  = yPlus2.position.y;
+            objectToMove.position.y   = yPlus2.position.y;
+            break;
+
+          case 'z':
+            zPlus2.position.z+= howMuch;
+            zPlus.position.z  = zPlus2.position.z + 300*add;
+            zMinu.position.z  = zPlus2.position.z - 300*add;
+            xPlus.position.z  = zPlus2.position.z;
+            xPlus2.position.z = zPlus2.position.z;
+            xMinu.position.z  = zPlus2.position.z;
+            yPlus.position.z  = zPlus2.position.z;
+            yPlus2.position.z = zPlus2.position.z;
+            yMinu.position.z  = zPlus2.position.z;
+            objectToMove.position.z   = zPlus2.position.z;
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      function checkClicked(obj, event) {
+        pointer.x =   ( event.clientX / window.innerWidth  ) * 2 - 1;
+        pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+        raycaster.setFromCamera( pointer, camera );
+        const intersects = raycaster.intersectObject( obj, true );
+
+        if ( intersects.length > 0 ) {
+          return true;
+        }
+        return false;
+      }
+
+      function changeCallback() {
+        requestedElement = document.getElementById('container');
+        if (document.pointerLockElement       === requestedElement ||
+            document.mozPointerLockElement    === requestedElement ||
+            document.webkitPointerLockElement === requestedElement) {
+          document.addEventListener("mousemove", moveCallback, false);
+        } else {
+          document.removeEventListener("mousemove", moveCallback, false);
+        }
+      }
+
+      function moveCallback(e) {
+        var movementX = e.movementX || e.mozMovementX || e.webkitMovementX || 0;
+        var movementY = e.movementY || e.mozMovementY || e.webkitMovementY || 0;
+        camRotX -= parseFloat(movementX)/10;
+        camRotY -= parseFloat(movementY)/10;
+      }
+
+      function shootMeteor() {
+        var vector = new THREE.Vector3(0,0,-1).applyQuaternion( camera.quaternion );
+        if (!engaged) {
+          var engagergeometry = new THREE.SphereGeometry(40, 10);
+          var engagermaterial = new THREE.MeshLambertMaterial({ color: 0x444444 });
+          var engager = new THREE.Mesh(engagergeometry, engagermaterial);
+          engager.castShadow = true;
+          engager.position.x =camera.position.x + 1000*vector.x;
+          engager.position.y =camera.position.y + 1000*vector.y;
+          engager.position.z =camera.position.z + 1000*vector.z;
+          scene.add(engager);
+          meteors.push(engager);
+
+          engaged = true;
+        } else {
+          for (var i = 0; i < bools.length; i++){
+            if (!bools[i]) {
+              bools[i] = true;
+              var temp = vector;
+              var metSpeed = document.getElementById("met-speed").value;
+              temp.x = parseFloat(vector.x * metSpeed);
+              temp.y = parseFloat(vector.y * metSpeed);
+              temp.z = parseFloat(vector.z * metSpeed);
+              speeds.push(temp);
+              break;
+            }
+          }
+          engaged = false;
+        }
+      }
+
+      function moveMeteors() {
+        for (var i = 0; i < meteors.length; i++) {
+          if (bools[i]) {
+            var temp1 = calcSpeed(meteors[i], sphere, 1500, 'meteor', timeMultiplier);
+            var temp2;
+            if (moonToggle) {
+              temp2 = calcSpeed(meteors[i], sphere2, 900, 'meteor', timeMultiplier);
+            } else {
+              temp2 = new THREE.Vector3(0, 0, 0);
+            }
+
+            speeds[i].x += temp1.x + temp2.x;
+            speeds[i].y += temp1.y + temp2.y;
+            speeds[i].z += temp1.z + temp2.z;
+            meteors[i].position.x += speeds[i].x * timeMultiplier;
+            meteors[i].position.y += speeds[i].y * timeMultiplier;
+            meteors[i].position.z += speeds[i].z * timeMultiplier;
+          }
+        }
+      }
+
+      function update() {
+        restartTracker();
+        path = [];
+        if (scene.children.includes(line)) { scene.remove(line); }
+
+        speedX = parseFloat(document.getElementById("speed-x").value);
+        speedY = parseFloat(document.getElementById("speed-y").value);
+        speedZ = parseFloat(document.getElementById("speed-z").value);
+       tspeedX = parseFloat(document.getElementById("speed-x").value);
+       tspeedY = parseFloat(document.getElementById("speed-y").value);
+       tspeedZ = parseFloat(document.getElementById("speed-z").value);
+
+        ship.position.x = parseFloat(document.getElementById("pos-x").value);
+        ship.position.y = parseFloat(document.getElementById("pos-y").value);
+        ship.position.z = parseFloat(document.getElementById("pos-z").value);
+        tracker.position.x = parseFloat(document.getElementById("pos-x").value);
+        tracker.position.y = parseFloat(document.getElementById("pos-y").value);
+        tracker.position.z = parseFloat(document.getElementById("pos-z").value);
+      }
+
+      function restartTracker() {
+        timepoint = 0;
+        track = true;
+        var trackergeometry = new THREE.BoxGeometry(200, 200, 200);
+        var trackermaterial = new THREE.MeshLambertMaterial({ color: 0x333333 });
+        tracker = new THREE.Mesh(trackergeometry, trackermaterial);
+        tracker.castShadow = true;
+        tracker.position.x = ship.position.x;
+        tracker.position.y = ship.position.y;
+        tracker.position.z = ship.position.z;
+      }
+
+      function onWindowResize() {
+        windowHalfX = window.innerWidth / 2;
+        windowHalfY = window.innerHeight / 2;
+
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+
+        webglRenderer.setSize(window.innerWidth, window.innerHeight);
+      }
+
+      var camRotX = -180.0;
+      var camRotY = -30.0;
+      var camRotZ =  0.0;
+
+      function calcDist(obj1, obj2) {
+        return Math.sqrt(
+          Math.pow( obj1.position.x - obj2.position.x , 2 ) +
+          Math.pow( obj1.position.y - obj2.position.y , 2 ) +
+          Math.pow( obj1.position.z - obj2.position.z , 2 )
+        );
+      }
+
+      function calcVect(obj1, obj2) {
+        var temp = [];
+        temp.push(obj2.position.x - obj1.position.x);
+        temp.push(obj2.position.y - obj1.position.y);
+        temp.push(obj2.position.z - obj1.position.z);
+        return temp;
+      }
+
+      function createPath() {
+        if (scene.children.includes(line)) { scene.remove(line); }
+
+        const points = [];
+        points.push( new THREE.Vector3( - 5000, 0, 0 ) );
+        points.push( new THREE.Vector3( 0, 5000, 0 ) );
+        points.push( new THREE.Vector3( 5000, 0, 0 ) );
+
+        var geometry = new THREE.BufferGeometry().setFromPoints( path );
+        const material = new THREE.LineBasicMaterial({ color: 0xFF0000 });
+        line = new THREE.Line( geometry, material );
+        if (showTrack) { scene.add(line); }
+      }
+
+      var counter = 0;
+
+      var speedX = 3;
+      var speedY = 0;
+      var speedZ = 0;
+      var tspeedX = speedX;
+      var tspeedY = speedY;
+      var tspeedZ = speedZ;
+
+      function calcSpeed(obj1, obj2, mass, cls, multiplier) {
+        var dist = calcDist(obj1, obj2);
+
+        if (dist < obj2.geometry.parameters.radius) {
+          if (cls.charAt(0) == 's') {  dist = obj2.geometry.parameters.radius;  speedX = 0;  speedY = 0;  speedZ = 0; track = false; } //can't deal with unrealistically low distances}
+          if (cls.charAt(0) == 'p') { tdist = obj2.geometry.parameters.radius; tspeedX = 0; tspeedY = 0; tspeedZ = 0; track = false; }
+          return  new THREE.Vector3( 0, 0, 0);
+        }
+
+        var force = ((50*mass)/(Math.pow(dist,2)));
+        var temp  = calcVect(obj1, obj2);
+
+        return new THREE.Vector3( parseFloat((temp[0]/dist) * force * multiplier),
+                                  parseFloat((temp[1]/dist) * force * multiplier),
+                                  parseFloat((temp[2]/dist) * force * multiplier));
+      }
+
+      function animate(timestamp, previousTimestamp) {
+        var timeDiff = timestamp-previousTimestamp;
+        var buffer = 0.001;
+        counter++;
+        sphere.rotation.y += 1 / 5000 * timeDiff;
+
+        if (moving) {
+          for (var i = 0; i < stars.length; i++) {
+            var star = stars[i];
+            for (var j = 0; j < stars.length; j++) {
+              if (i != j) {
+                var temp1 = calcSpeed(star, stars[j], 10, 'meteor', 1);
+                starAccX[i] += temp1.x;
+                starAccY[i] += temp1.y;
+                starAccZ[i] += temp1.z;
+              }
+            }
+
+            var temp2 = calcSpeed(star, sphere, 1500, 'meteor', timeMultiplier);
+            var temp3;
+            if (moonToggle) {
+              temp3 = calcSpeed(star, sphere2, 900, 'meteor', timeMultiplier);
+            } else {
+              temp3 = new THREE.Vector3(0, 0, 0);
+            }
+
+            starAccX[i] += temp2.x + temp3.x;
+            starAccY[i] += temp2.y + temp3.y;
+            starAccZ[i] += temp2.z + temp3.y;
+
+            starSpeedX[i] += starAccX[i];
+            starSpeedY[i] += starAccY[i];
+            starSpeedZ[i] += starAccZ[i];
+
+            star.position.x += starSpeedX[i];
+            star.position.y += starSpeedY[i];
+            star.position.z += starSpeedZ[i];
+
+            starAccX[i] = 0;
+            starAccY[i] = 0;
+            starAccZ[i] = 0;
+          }
+
+        }
+
+        if (moving) {
+          var temp1 = calcSpeed(ship, sphere, 1500, 'ship', timeMultiplier);
+          var temp2 = calcSpeed(ship, sphere2, 900, 'ship', timeMultiplier);
+
+          if (moonToggle) {
+            temp2 = calcSpeed(ship, sphere2, 900, 'ship', timeMultiplier);
+          } else {
+            temp2 = new THREE.Vector3(0, 0, 0);
+          }
+
+          speedX += temp1.x + temp2.x;
+          speedY += temp1.y + temp2.y;
+          speedZ += temp1.z + temp2.z;
+          ship.position.x += speedX * timeMultiplier;
+          ship.position.y += speedY * timeMultiplier;
+          ship.position.z += speedZ * timeMultiplier;
+
+          var thisTP = parseInt(timepoint/5);
+          var nextTP = parseInt((5+timepoint)/5);
+          try{
+            var diffX = path[nextTP].x - path[thisTP].x;
+            var diffY = path[nextTP].y - path[thisTP].y;
+            var diffZ = path[nextTP].z - path[thisTP].z;
+            ship.position.x = path[thisTP].x + (parseFloat(timepoint % 5)/5.0)*diffX;
+            ship.position.y = path[thisTP].y + (parseFloat(timepoint % 5)/5.0)*diffY;
+            ship.position.z = path[thisTP].z + (parseFloat(timepoint % 5)/5.0)*diffZ;
+          } catch(e) {
+            ship.position.x += speedX * timeMultiplier;
+            ship.position.y += speedY * timeMultiplier;
+            ship.position.z += speedZ * timeMultiplier;
+          }
+
+          timepoint++;
+
+          var l = Math.sqrt(diffX*diffX + diffY*diffY + diffZ*diffZ);
+          document.getElementById('speedGauge').style.height = ((10*16) - l) + 'px';
+          ship.rotation.y = toRadians(90 * -diffX / l);
+          ship.rotation.x = toRadians(90 * -diffY / l);
+        }
+        if (counter > 1) {
+          var temp1 = calcSpeed(tracker, sphere, 1500, 'path', hardMultiplier);
+          var temp2;
+          if (moonToggle) {
+            temp2 = calcSpeed(tracker, sphere2, 900, 'path', hardMultiplier);
+          } else {
+            temp2 = new THREE.Vector3(0, 0, 0);
+          }
+
+          tspeedX += temp1.x + temp2.x;
+          tspeedY += temp1.y + temp2.y;
+          tspeedZ += temp1.z + temp2.z;
+
+          tracker.position.x += tspeedX * hardMultiplier;
+          tracker.position.y += tspeedY * hardMultiplier;
+          tracker.position.z += tspeedZ * hardMultiplier;
+
+          if (track) {
+            path.push(new THREE.Vector3( tracker.position.x, tracker.position.y, tracker.position.z ));
+            if (path.length > 3) { createPath(); }
+          }
+        }
+
+        moveMeteors();
+
+        if (turnUp   )  { camRotY += turnMultiplier; }
+        if (turnDown )  { camRotY -= turnMultiplier; }
+        if (turnLeft ) { camRotX += turnMultiplier; }
+        if (turnRight) { camRotX -= turnMultiplier; }
+
+        if (moveFor)    { camera.position.x += moveMultiplier * Math.sin(toRadians(camRotX)) * fast;
+                        camera.position.z += moveMultiplier * Math.cos(toRadians(camRotX)) * fast;  }
+        if (moveBack)   { camera.position.x -= moveMultiplier * Math.sin(toRadians(camRotX)) * fast;
+                        camera.position.z -= moveMultiplier * Math.cos(toRadians(camRotX)) * fast;  }
+        if (moveLeft)   { camera.position.x += moveMultiplier * Math.cos(toRadians(camRotX)) * fast;
+                        camera.position.z -= moveMultiplier * Math.sin(toRadians(camRotX)) * fast;  }
+        if (moveRight)  { camera.position.x -= moveMultiplier * Math.cos(toRadians(camRotX)) * fast;
+                        camera.position.z += moveMultiplier * Math.sin(toRadians(camRotX)) * fast;  }
+
+        if (moveUp)    { camera.position.y += 15 * fast; }
+        if (moveDown) { camera.position.y -= 15 * fast; }
+
+        if (camRotY >  88 ) { camRotY =  88; }
+        if (camRotY < -88 ) { camRotY = -88; }
+
+        camera.lookAt(
+          camera.position.x + Math.sin(toRadians(camRotX)) * Math.cos(toRadians(camRotY)),
+          camera.position.y + Math.sin(toRadians(camRotY)) ,
+          camera.position.z + Math.cos(toRadians(camRotX)) * Math.cos(toRadians(camRotY))
+        );
+
+        render();
+        window.requestAnimationFrame(function (time) {
+        animate(time, timestamp);
+      });
+      }
+
+      function initArrays() {
+        for (var i = 0; i < 20; i++) {
+          bools.push(false);
+        }
+      }
+
+      function toRadians(degrees) {
+        var pi = Math.PI;
+        return degrees * (pi/180);
+      }
+
+      function toDegree(radians) {
+        var pi = Math.PI;
+        return radians / (pi/180);
+      }
+
+      function render() {
+        webglRenderer.render(scene, camera);
+      }
+
+      var keep = true;
+
+      var xSliderSpeed = document.getElementById("speed-x");
+      var zSliderSpeed = document.getElementById("speed-z");
+      var ySliderSpeed = document.getElementById("speed-y");
+      var xSliderPos = document.getElementById("pos-x");
+      var zSliderPos = document.getElementById("pos-z");
+      var ySliderPos = document.getElementById("pos-y");
+      xSliderSpeed.addEventListener("input", update);
+      ySliderSpeed.addEventListener("input", update);
+      zSliderSpeed.addEventListener("input", update);
+      xSliderPos.addEventListener("input", update);
+      ySliderPos.addEventListener("input", update);
+      zSliderPos.addEventListener("input", update);
+    </script>
+  </body>
+</html>>

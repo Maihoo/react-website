@@ -1,0 +1,262 @@
+html,
+body {
+  font-family: 'Open Sans Condensed', sans-serif;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 1;
+}
+
+.noPadding {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.inlineDiv {
+  display: flex;
+  overflow: hidden;
+}
+
+.hidden {
+  scale: 1;
+}
+
+.hiddenTop {
+  opacity: 0;
+  margin-top: -30vw;
+  margin-bottom: 30vw;
+}
+.hiddenLef {
+  opacity: 0;
+  margin-left: -30vw;
+}
+.hiddenMid {
+  opacity: 0;
+  scale: 0;
+}
+.hiddenRig {
+  opacity: 0;
+  margin-left: 30vw;
+}
+.hiddenBot {
+  opacity: 0;
+  margin-top: 30vw;
+  margin-bottom: -30vw;
+}
+
+.hiddenLef2 {
+  opacity: 0;
+  margin-left: -50vw;
+}
+
+#root {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+br {
+  display: block;
+  margin: 20px 20px;
+}
+
+.Row {
+  display: flex;
+  flex-direction: center;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-right: 0.8rem;
+  margin-left: 0.8rem;
+}
+
+.seventyfive {
+  width: 65%;
+}
+
+.Row:first-child {
+  margin-right: 0.8rem;
+  margin-left: 0.8rem;
+}
+
+header {
+  height: 100%;
+  margin: 0;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
+.headerFrame {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*button*/
+.dropdown-toggle{
+  background-color: rgba(0, 0, 0, 0);
+  opacity: 0.3;
+  color: #fff;
+}
+
+/*hover*/
+.dropdown-toggle:hover {
+  opacity: 1.0;
+}
+
+.dropdown-menu-dark{
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  padding: 0 1rem 0.5rem 0 !important;
+  border-radius: 1vw;
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
+  z-index: 20000;
+}
+
+.menu-vertical {
+  margin-top: 0.5rem !important;
+}
+
+/*all*/
+.dropdown-menu {
+  opacity: 0;
+}
+
+/*all*/
+.show {
+  opacity: 1;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  scale: 1;
+  transition: 0.5s;
+}
+
+h1 {
+  line-height: 20px;
+  font-size: 30px;
+  color: white;
+  z-index: 1;
+}
+
+h2 {
+  line-height: 3vw;
+  font-size: 3vw;
+  color: white;
+  z-index: 1;
+}
+
+h3 {
+  text-align: left;
+  line-height: 20px;
+  font-size: 70px;
+  color: white;
+  z-index: 1;
+}
+
+s1 {
+  line-height: -20px;
+  height: 80px;
+  padding-top: -200px;
+  margin-top: -200px;
+  width: 1920px;
+}
+
+.menubtn {
+  font-size: '1rem';
+  margin-top: '0vw';
+  margin-left: '0vw';
+  height: '1rem';
+  margin-left: 1rem;
+  position: relative;
+  float: left;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.linkIcon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 150px;
+}
+
+.intro {
+  opacity: 1;
+}
+
+.intro-hidden {
+  margin-top: -57%;
+  transition: all 500ms ease-in 0.5s;
+}
+
+.nextTo {
+  white-space: nowrap;
+  align-items: center;
+  line-height: 1.5vw;
+  font-size: 1.0vw;
+  color: white;
+  opacity: 0.3;
+  padding-left: 1.0vw;
+  transition: all 0.5s;
+}
+
+.nextTo:hover {opacity: 1.0;}
+
+a {
+    cursor: pointer;
+}
+
+.title {
+  background-color: black;
+  color: pink;
+}
+
+.btnText {
+  font-size: 22px;
+  font-style: normal;
+  font-weight: normal;
+  border: none;
+  cursor: pointer;
+  color: white;
+  text-align: center;
+  transition: 0.3s;
+  opacity: 0.6;
+}
+
+.btnText:hover {opacity: 1.0;}
+
+img {
+    overflow: hidden;
+}
+
+iframe {
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+#outPopUp {
+    position: absolute;
+    z-index: 15;
+    left: 50%;
+    margin: 100px 0 0 -150px;
+    background: black;
+  }
+
+#backgroundmain {
+  background-image: url(res/icons/starsky.png);
+  background-position: top center;
+  background-attachment:scroll;
+  background-size: 100%;
+  background-repeat: repeat-y;
+  padding: 0 0 5vh 0;
+}
+#placeholdersoyoucanscroll{
+    height:100vh
+}

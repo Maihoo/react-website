@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Online Guitar Tuner</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styleTuner.css" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="mic.js"></script>
+</head>
+
+<body class="tuner">
+  <div class="right">
+    <div class="content" style="display: flex;">
+      <div class="block">
+        <h1>Online Guitar Tuner</h1>
+        <div id="tunerframe">
+          <div id="tunerback"><img id="preloader" alt="Laden..." src="images/anim.gif"
+              style="display: block;margin-left: auto;margin-right: auto;">
+            <canvas id="tunercanvas"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="block">
+        <h1>Online Guitar Tuner</h1>
+        <div style="margin-left: 15%; width: 430px; height: 580px; overflow: hidden; margin-bottom: 10%;">
+          <div style="margin-left: -250px; overflow: hidden;">
+            <iframe id="frame" title='chess' src="https://tuner-online.com/"
+              style="width: 1000px; height: 1000px; margin-top: -470px; "></iframe>
+          </div>
+        </div>
+      </div>-->
+
+      <div class="block">
+        <h1 id="sounds">Guitar String Sounds</h1>
+        <ul class="player" style="opacity: 0.7;">
+          <li><audio id="sound1" loop>
+              <source src="audio/e4.mp3" type="audio/mpeg">
+            </audio><span id="play1" class="playbutton"></span><span id="pause1" class="pausebutton"></span><span
+              class="soundlitext">1. String - <b>E</b><sub>4</sub> (thinnest)</span></li>
+          <li><audio id="sound2" loop>
+              <source src="audio/b3.mp3" type="audio/mpeg">
+            </audio><span id="play2" class="playbutton"></span><span id="pause2" class="pausebutton"></span><span
+              class="soundlitext">2. String - <b>B</b><sub>3</sub></span>
+          </li>
+          <li><audio id="sound3" loop>
+              <source src="audio/g3.mp3" type="audio/mpeg">
+            </audio><span id="play3" class="playbutton"></span><span id="pause3" class="pausebutton"></span><span
+              class="soundlitext">3. String - <b>G</b><sub>3</sub></span>
+          </li>
+          <li><audio id="sound4" loop>
+              <source src="audio/d3.mp3" type="audio/mpeg">
+            </audio><span id="play4" class="playbutton"></span><span id="pause4" class="pausebutton"></span><span
+              class="soundlitext">4. String - <b>D</b><sub>3</sub></span>
+          </li>
+          <li><audio id="sound5" loop>
+              <source src="audio/a2.mp3" type="audio/mpeg">
+            </audio><span id="play5" class="playbutton"></span><span id="pause5" class="pausebutton"></span><span
+              class="soundlitext">5. String - <b>A</b><sub>2</sub></span>
+          </li>
+          <li><audio id="sound6" loop>
+              <source src="audio/e2.mp3" type="audio/mpeg">
+            </audio><span id="play6" class="playbutton"></span><span id="pause6" class="pausebutton"></span><span
+              class="soundlitext">6. String - <b>E</b><sub>2</sub></span>
+          </li>
+        </ul>
+
+        <p>This page includes elements from another Website. All credit goes to
+          <a href="https://tuner-online.com/">
+            tuner-online.com
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="logo" style="background-color: black;"> </div>
+
+  <script>
+    function getLocalStream() {
+      navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
+        window.localStream = stream;
+        window.localAudio.srcObject = stream;
+        window.localAudio.autoplay = true;
+      }).catch((err) => {
+        console.error(`you got an error: ${err}`)
+      });
+    }
+
+    getLocalStream();
+  </script>
+
+  <script>
+    (function (d, e) {
+      var t = d.createElement("script");
+      t.type = "text/javascript", t.async = !0, t.src = e;
+      var n = d.getElementsByTagName("script")[0];
+      n.parentNode.insertBefore(t, n)
+    })(document, 'tuner-online.com_core.js');
+  </script>
+
+  <script>
+    var mdash = !1;
+    $('span.menu-heading').click(function () {
+      if (mdash || /dashed/i.test($("span.menu-heading").css("border-bottom"))) {
+        mdash = !0;
+        $("ul.menu").toggle()
+      }
+    });
+
+    function newplaysound(id, p) {
+      if (p) {
+        document.getElementById('sound' + id).play();
+        $("#" + "pause" + id).parent().addClass("playing");
+        (dataLayer = window.dataLayer || []).push({
+          'eCategory': 'sound',
+          'eAction': 'play',
+          'eLabel': id,
+          'eValue': '',
+          'cd': ['', ''],
+          'eNI': false,
+          'event': 'UAEvent'
+        });
+      } else {
+        document.getElementById('sound' + id).pause();
+        document.getElementById('sound' + id).currentTime = 0;
+        $("#" + "pause" + id).parent().removeClass("playing");
+        (dataLayer = window.dataLayer || []).push({
+          'eCategory': 'sound',
+          'eAction': 'pause',
+          'eLabel': id,
+          'eValue': '',
+          'cd': ['', ''],
+          'eNI': false,
+          'event': 'UAEvent'
+        });
+      }
+    }
+    $(".playbutton").click(function () {
+      try {
+        $("li.playing .pausebutton").each(function (i) {
+          newplaysound($(this).attr('id').replace('pause', ''), false);
+        });
+      } catch (e) { }
+      newplaysound($(this).attr('id').replace('play', ''), true);
+    });
+    $(".pausebutton").click(function () {
+      newplaysound($(this).attr('id').replace('pause', ''), false);
+    });
+    (dataLayer = window.dataLayer || []).push({
+      'canonical': 'https://tuner-online.com/'
+    });
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WRFKBPG');
+    $("#tunerframe").css({
+      "min-height": $("#tunerframe").width() + 78,
+      "margin-bottom": .1 * $("#tunerframe").width()
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,684 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300';
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /*font-family: 'Open Sans Condensed', sans-serif;*/
+  background-color: #111111;
+}
+
+.item{
+  width:200px;
+  text-align:center;
+  display:block;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin-right: 10px;
+  margin-bottom: 1px;
+  float:left;
+}
+
+#inner {
+  width: 50%;
+  margin: 0 auto;
+}
+
+
+div[class*=box] {
+  height: 220px;
+  width: 580px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-1 { background-color: #29a851; }
+
+.btn {
+  border: 0px;
+  line-height: 50px;
+  width: 75px;
+  height: 75px;
+  border-radius: 15px;
+  text-align: center;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.0)
+}
+
+.menubtn {
+  border: 0px;
+  line-height: 50px;
+  height: 100px;
+  text-align: center;
+  width: 100px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.0)
+}
+
+/* 
+========================
+      BUTTON SHOP
+========================
+*/
+.btn-shop {
+  transition: all 0.3s;
+  position: relative;
+}
+.btn-shop span {
+  transition: all 0.3s;
+}
+.btn-shop::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0.5;
+  opacity: 0;
+  transition: all 0.3s;
+  background-color: rgba(255,255,255,0.25);
+  transform: scale(1, 1);
+  border-radius: 15px;
+}
+.btn-shop:hover::before {
+  border-radius: 15px;
+  opacity: 1; 
+}
+.btn-shop::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  z-index: 0.5;
+  transition: all 0.3s;
+  background-color: rgba(255,255,255,0.0);
+}
+.btn-shop:hover::after {
+  opacity: 0; 
+}
+
+/* 
+========================
+      BUTTON SELECTED
+========================
+*/
+.btn-selected {
+  transition: all 0.3s;
+  position: relative;
+}
+.btn-selected span {
+  transition: all 0.3s;
+}
+.btn-selected::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0.5;
+  opacity: 0;
+  transition: all 0.3s;
+  background-color: rgba(0,255,0,0.25);
+  transform: scale(1, 1);
+  border-radius: 15px;
+}
+.btn-selected:hover::before {
+  border-radius: 15px;
+  opacity: 1; 
+}
+.btn-selected::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  z-index: 0.5;
+  transition: all 0.3s;
+  background-color: rgb(255, 255, 0, 0.5);
+}
+.btn-selected:hover::after {
+  opacity: 0; 
+}
+
+/* 
+========================
+      BUTTON START
+========================
+*/
+.btn-start {
+  transition: all 0.3s;
+  position:absolute; 
+  height: 104px;
+  width: 303px;
+  margin-top:  805px;
+  margin-left: 28px;
+  font-size: 100px;
+  position: relative;
+}
+.btn-start span {
+  transition: all 0.3s;
+}
+.btn-start::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0.5;
+  opacity: 0;
+  transition: all 0.3s;
+  background-color: rgba(255,255,255,0.25);
+  transform: scale(1, 1);
+
+}
+.btn-start:hover::before {
+
+  opacity: 1; 
+}
+.btn-start::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  z-index: 0.5;
+  transition: all 0.3s;
+  background-color: rgba(255, 255, 255, 0);
+}
+.btn-start:hover::after {
+  opacity: 0; 
+}
+
+/******/
+
+/* 
+========================
+      BUTTON MENU
+========================
+*/
+.btn-menu {
+  transition: all 0.3s;
+  position:absolute; 
+  height: 82px;
+  width: 82px;
+  margin-top:  185px;
+  margin-left: 1575px;
+  font-size: 100px;
+  position: relative;
+}
+.btn-menu span {
+  transition: all 0.3s;
+}
+.btn-menu::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0.5;
+  opacity: 0;
+  transition: all 0.3s;
+  background-color: rgba(255,255,255,0.25);
+  transform: scale(1, 1);
+
+}
+.btn-menu:hover::before {
+
+  opacity: 1; 
+}
+.btn-menu::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  z-index: 0.5;
+  transition: all 0.3s;
+  background-color: rgba(255, 255, 255, 0.0);
+}
+.btn-menu:hover::after {
+  opacity: 0; 
+}
+
+
+/***********************************************************************************************************************************************************************************/
+
+.nocursor {
+  cursor: none;
+}
+.yescursor {
+  cursor: default;
+}
+
+.largeimageholder {
+  position: absolute;
+  padding-left: -64px;
+  margin-left: -16px;
+  margin-top: -20px;
+}
+
+.smallimageholder {
+  position: absolute;
+}
+
+.roadimageholder {
+  position: absolute;
+  overflow: visible;
+  height: 400px;
+  width: 400px;
+}
+
+.circle {
+  width: 300px;
+  height: 300px;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.0;
+  -webkit-border-radius: 500px;
+  -moz-border-radius: 500px;
+  border-radius: 500px;
+  background: red;
+}
+
+.amountText {
+  color         : rgb(242, 255, 124);
+  position      : absolute;
+  font-size     : 37px;
+  text-transform: none;
+  align-content : center;
+  width         : 400px;
+  margin-top    : 520px;
+  margin-left   : 250px;
+  z-index       : 200;
+}
+
+.img {
+  width: 128px;
+  height: 128px;
+  margin-top: -32px;
+  pointer-events: none;
+}
+
+.img-trans { opacity: 0.5; }
+
+.img-void {
+  background-image: 'none';
+}
+
+.img-laser      { background-image: url('res/Buildings/Towers/laser/laser.png')      !important; }
+.img-laser_fire { background-image: url('res/Buildings/Towers/laser/laser_fire.png') !important; }
+
+.img-stone1 { background-image: url('res/Buildings/stone1.png') !important; }
+.img-stone2 { background-image: url('res/Buildings/stone2.png') !important; }
+.img-stone3 { background-image: url('res/Buildings/stone3.png') !important; }
+.img-stone4 { background-image: url('res/Buildings/stone4.png') !important; }
+.img-stone5 { background-image: url('res/Buildings/stone5.png') !important; }
+.img-stone6 { background-image: url('res/Buildings/stone6.png') !important; }
+
+.img-explosion  { background-image: url('res/Entities/explosion.gif')  !important; }
+
+.img-spikes     { background-image: url('res/Buildings/Towers/spikes/spikes.png')  !important; }
+.img-spikes_fire{ background-image: url('res/Buildings/Towers/spikes/spikes.png')  !important; }
+.img-crate      { background-image: url('res/Buildings/Towers/crate/crate.png')    !important; }
+.img-soundon    { background-image: url('res/UI/soundon.png')                      !important; }
+.img-soundoff   { background-image: url('res/UI/soundoff.png')                     !important; }
+
+.img-normal                 { background-image: url('res/Buildings/Towers/normal/normal_rightdown.png')      !important; }
+.img-normal_up              { background-image: url('res/Buildings/Towers/normal/normal_up.png')             !important; }
+.img-normal_upupright       { background-image: url('res/Buildings/Towers/normal/normal_upupright.png')      !important; }
+.img-normal_upright         { background-image: url('res/Buildings/Towers/normal/normal_upright.png')        !important; }
+.img-normal_uprightright    { background-image: url('res/Buildings/Towers/normal/normal_uprightright.png')   !important; }
+.img-normal_right           { background-image: url('res/Buildings/Towers/normal/normal_right.png')          !important; }
+.img-normal_rightrightdown  { background-image: url('res/Buildings/Towers/normal/normal_rightdown.png')      !important; }
+.img-normal_rightdown       { background-image: url('res/Buildings/Towers/normal/normal_rightdown.png')      !important; }
+.img-normal_rightdowndown   { background-image: url('res/Buildings/Towers/normal/normal_rightdowndown.png')  !important; }
+.img-normal_down            { background-image: url('res/Buildings/Towers/normal/normal_down.png')           !important; }
+.img-normal_downleftleft    { background-image: url('res/Buildings/Towers/normal/normal_downleftleft.png')   !important; }
+.img-normal_downleft        { background-image: url('res/Buildings/Towers/normal/normal_downleft.png')       !important; }
+.img-normal_downdownleft    { background-image: url('res/Buildings/Towers/normal/normal_downdownleft.png')   !important; }
+.img-normal_left            { background-image: url('res/Buildings/Towers/normal/normal_left.png')           !important; }
+.img-normal_leftleftup      { background-image: url('res/Buildings/Towers/normal/normal_leftleftup.png')     !important; }
+.img-normal_leftup          { background-image: url('res/Buildings/Towers/normal/normal_leftup.png')         !important; }
+.img-normal_leftupup        { background-image: url('res/Buildings/Towers/normal/normal_leftupup.png')       !important; }
+.img-normal_fire                 { background-image: url('res/Buildings/Towers/normal/fire/normal_rightdown.png')      !important; }
+.img-normal_up_fire              { background-image: url('res/Buildings/Towers/normal/fire/normal_up.png')             !important; }
+.img-normal_upupright_fire       { background-image: url('res/Buildings/Towers/normal/fire/normal_upupright.png')      !important; }
+.img-normal_upright_fire         { background-image: url('res/Buildings/Towers/normal/fire/normal_upright.png')        !important; }
+.img-normal_uprightright_fire    { background-image: url('res/Buildings/Towers/normal/fire/normal_uprightright.png')   !important; }
+.img-normal_right_fire           { background-image: url('res/Buildings/Towers/normal/fire/normal_right.png')          !important; }
+.img-normal_rightrightdown_fire  { background-image: url('res/Buildings/Towers/normal/fire/normal_rightdown.png')      !important; }
+.img-normal_rightdown_fire       { background-image: url('res/Buildings/Towers/normal/fire/normal_rightdown.png')      !important; }
+.img-normal_rightdowndown_fire   { background-image: url('res/Buildings/Towers/normal/fire/normal_rightdowndown.png')  !important; }
+.img-normal_down_fire            { background-image: url('res/Buildings/Towers/normal/fire/normal_down.png')           !important; }
+.img-normal_downleftleft_fire    { background-image: url('res/Buildings/Towers/normal/fire/normal_downleftleft.png')   !important; }
+.img-normal_downleft_fire        { background-image: url('res/Buildings/Towers/normal/fire/normal_downleft.png')       !important; }
+.img-normal_downdownleft_fire    { background-image: url('res/Buildings/Towers/normal/fire/normal_downdownleft.png')   !important; }
+.img-normal_left_fire            { background-image: url('res/Buildings/Towers/normal/fire/normal_left.png')           !important; }
+.img-normal_leftleftup_fire      { background-image: url('res/Buildings/Towers/normal/fire/normal_leftleftup.png')     !important; }
+.img-normal_leftup_fire          { background-image: url('res/Buildings/Towers/normal/fire/normal_leftup.png')         !important; }
+.img-normal_leftupup_fire        { background-image: url('res/Buildings/Towers/normal/fire/normal_leftupup.png')       !important; }
+
+.img-mortar_up    { background-image: url('res/Buildings/Towers/mortar/mortar_up.png')    !important; }
+.img-mortar_down  { background-image: url('res/Buildings/Towers/mortar/mortar_down.png')  !important; }
+.img-mortar_left  { background-image: url('res/Buildings/Towers/mortar/mortar_left.png')  !important; }
+.img-mortar_right { background-image: url('res/Buildings/Towers/mortar/mortar_right.png') !important; }
+.img-mortar_up_fire    { background-image: url('res/Buildings/Towers/mortar/fire/mortar_up.png')    !important; }
+.img-mortar_down_fire  { background-image: url('res/Buildings/Towers/mortar/fire/mortar_down.png')  !important; }
+.img-mortar_left_fire  { background-image: url('res/Buildings/Towers/mortar/fire/mortar_left.png')  !important; }
+.img-mortar_right_fire { background-image: url('res/Buildings/Towers/mortar/fire/mortar_right.png') !important; }
+
+.img-trash { background-image: 'none' !important; }
+
+.img2 {
+  width: 64px;
+  height: 64px;
+  overflow: visible;
+}
+
+.img2-start  { background-image: url('res/UI/start.png')         !important; }
+.img2-finish { background-image: url('res/UI/finish.png')        !important; }
+.img2-road1  { background-image: url('res/Buildings/road1.png')  !important; }
+.img2-road1  { background-image: url('res/Buildings/road1.png')  !important; }
+.img2-road2  { background-image: url('res/Buildings/road2.png')  !important; }
+.img2-road3  { background-image: url('res/Buildings/road3.png')  !important; }
+
+.img-health_0  { background-image: url('res/UI/health/health_0.png')  !important; }
+.img-health_1  { background-image: url('res/UI/health/health_1.png')  !important; }
+.img-health_2  { background-image: url('res/UI/health/health_2.png')  !important; }
+.img-health_3  { background-image: url('res/UI/health/health_3.png')  !important; }
+.img-health_4  { background-image: url('res/UI/health/health_4.png')  !important; }
+.img-health_5  { background-image: url('res/UI/health/health_5.png')  !important; }
+.img-health_6  { background-image: url('res/UI/health/health_6.png')  !important; }
+.img-health_7  { background-image: url('res/UI/health/health_7.png')  !important; }
+.img-health_8  { background-image: url('res/UI/health/health_8.png')  !important; }
+.img-health_9  { background-image: url('res/UI/health/health_9.png')  !important; }
+.img-health_10 { background-image: url('res/UI/health/health_10.png') !important; }
+.img-health_11 { background-image: url('res/UI/health/health_11.png') !important; }
+.img-health_12 { background-image: url('res/UI/health/health_12.png') !important; }
+.img-health_13 { background-image: url('res/UI/health/health_13.png') !important; }
+.img-health_14 { background-image: url('res/UI/health/health_14.png') !important; }
+.img-health_15 { background-image: url('res/UI/health/health_15.png') !important; }
+.img-health_16 { background-image: url('res/UI/health/health_16.png') !important; }
+.img-health_17 { background-image: url('res/UI/health/health_17.png') !important; }
+.img-health_18 { background-image: url('res/UI/health/health_18.png') !important; }
+.img-health_19 { background-image: url('res/UI/health/health_19.png') !important; }
+.img-health_20 { background-image: url('res/UI/health/health_20.png') !important; }
+.img-health_21 { background-image: url('res/UI/health/health_21.png') !important; }
+.img-health_22 { background-image: url('res/UI/health/health_22.png') !important; }
+.img-health_23 { background-image: url('res/UI/health/health_23.png') !important; }
+.img-health_24 { background-image: url('res/UI/health/health_24.png') !important; }
+.img-health_25 { background-image: url('res/UI/health/health_25.png') !important; }
+.img-health_26 { background-image: url('res/UI/health/health_26.png') !important; }
+.img-health_27 { background-image: url('res/UI/health/health_27.png') !important; }
+.img-health_28 { background-image: url('res/UI/health/health_28.png') !important; }
+.img-health_29 { background-image: url('res/UI/health/health_29.png') !important; }
+.img-health_30 { background-image: url('res/UI/health/health_30.png') !important; }
+.img-health_31 { background-image: url('res/UI/health/health_31.png') !important; }
+.img-health_32 { background-image: url('res/UI/health/health_32.png') !important; }
+.img-health_33 { background-image: url('res/UI/health/health_33.png') !important; }
+.img-health_34 { background-image: url('res/UI/health/health_34.png') !important; }
+.img-health_35 { background-image: url('res/UI/health/health_35.png') !important; }
+.img-health_36 { background-image: url('res/UI/health/health_36.png') !important; }
+.img-health_37 { background-image: url('res/UI/health/health_37.png') !important; }
+.img-health_38 { background-image: url('res/UI/health/health_38.png') !important; }
+.img-health_39 { background-image: url('res/UI/health/health_39.png') !important; }
+.img-health_40 { background-image: url('res/UI/health/health_40.png') !important; }
+.img-health_41 { background-image: url('res/UI/health/health_41.png') !important; }
+.img-health_42 { background-image: url('res/UI/health/health_42.png') !important; }
+
+/* 
+========================
+      BUTTON FIELD
+========================
+*/
+.btn-fld {
+  transition: all 0.3s;
+  position: relative;
+}
+.btn-fld span {
+  transition: all 0.3s;
+}
+.btn-fld::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 64px;
+  height: 64px;
+  z-index: 0.5;
+  opacity: 0;
+  transition: all 0.3s;
+  background-color: rgba(255,255,255,0.25);
+  transform: scale(1, 1);
+
+}
+.btn-fld:hover::before {
+
+  opacity: 1; 
+}
+.btn-fld::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  z-index: 0.5;
+  transition: all 0.3s;
+  background-color: rgba(255,255,255,0.0);
+}
+.btn-fld:hover::after {
+  opacity: 0; 
+}
+
+/* 
+========================
+      BUTTON ACTIVATED
+========================
+*/
+.btn-act {
+  transition: all 0.3s;
+  position: relative;
+}
+.btn-act span {
+  transition: all 0.3s;
+}
+.btn-act::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0.5;
+  opacity: 0;
+  transition: all 0.3s;
+  background-color: rgba(50,255,50,1);
+  transform: scale(1, 1);
+}
+.btn-act:hover::before {
+  opacity: 1; 
+  transform: scale(1, 1); 
+}
+.btn-act::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0.5;
+  transition: all 0.3s;
+  background-color: rgba(50,255,50,0.5);
+}
+.btn-act:hover::after {
+  opacity: 0; 
+}
+
+/* 
+========================
+      BUTTON LAST MOVE
+========================
+*/
+.btn-last {
+  transition: all 0.3s;
+  position: relative;
+}
+.btn-last span {
+  transition: all 0.3s;
+}
+.btn-last::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0.5;
+  opacity: 0;
+  transition: all 0.3s;
+  background-color: rgba(255, 0, 0, 0.75);
+  
+  transform: scale(1, 1);
+}
+.btn-last:hover::before {
+  opacity: 1; 
+  transform: scale(1, 1); 
+}
+.btn-last::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0.5;
+  transition: all 0.3s;
+  background-color: rgba(255, 115, 0, 0.384);
+}
+.btn-mov:hover::after {
+  opacity: 0; 
+}
+
+h1{
+  color: rgb(242, 255, 124);
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+}
+
+.container {
+  color: #333;
+  margin: 0 auto;
+  text-align: center;
+}
+
+li {
+  display: inline-block;
+  font-size: 1.5em;
+  list-style-type: none;
+  padding: 1em;
+  text-transform: uppercase;
+}
+
+li span {
+  display: block;
+  font-size: 4.5rem;
+}
+
+.emoji {
+  display: none;
+  padding: 1rem;
+}
+
+.emoji span {
+  font-size: 4rem;
+  padding: 0 .5rem;
+}
+
+h2 {
+  position: relative;
+  orientation: top;
+  font-size: 1.5rem;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: rgb(35, 5, 5);
+  background-color: #8a8065;
+  border-radius: 8px;
+  margin-left:-28px;
+  margin-top:10px;
+  max-width: 315px;
+  overflow-wrap: break-word;
+}
+
+ul[class*=chat] {
+  width: 328px;
+  height: 1030px;
+  overflow: auto;
+}
+
+.crop {
+  width: 350px;
+  height: 350px;
+  margin-top: 50px;
+  margin-left: 50px;
+  overflow: hidden;
+}
+
+.crop img {
+  width: 614px;
+  height: 350px;
+}
+
+
+@media all and (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  
+
+  .button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  li {
+    font-size: 1.125rem;
+    padding: .75rem;
+  }
+  
+  li span {
+    font-size: 3.375rem;
+  }
+}

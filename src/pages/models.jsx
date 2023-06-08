@@ -34,18 +34,18 @@ import STLCatSkull from '../res/3D/models/STLcatskull.jpg';
 const ModelPage = () => (
   <div>
     <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', height:'40vw', alignItems: 'center', width: '100%', overflow: 'hidden', marginTop: '1vw'}}>
-      <Model name={"Cat Skull"}  model={STLCatSkull} result={CatSkull} download={DLCatSkull} ml1={'0.0vw'}  ml2={'0.0vw'}/>
+      <Model name={"Cat Skull"}             model={STLCatSkull}   result={CatSkull}   download={DLCatSkull}   ml1={'0.0vw'}  ml2={'0.0vw'}/>
       <Model name={"TieFighter for Alexa"}  model={STLTieFighter} result={TieFighter} download={DLTieFighter} ml1={'0.0vw'}  ml2={'0.0vw'}/>
-      <Model name={"Battery Magazine"}  model={STLMagazine} result={Magazine} download={DLMagazine} ml1={'0.0vw'}  ml2={'0.0vw'}/>
-      <Model name={"Figure"}        model={STLFeels}    result={Feels}   download={DLFeels} ml1={'0.0vw'}  ml2={'0.0vw'}/>
-      <Model name={"Loony Plaque"}  model={STLLoony}    result={Loony}   download={DLLoony} ml1={'0.0vw'}  ml2={'0.0vw'}/>
+      <Model name={"Battery Magazine"}      model={STLMagazine}   result={Magazine}   download={DLMagazine}   ml1={'0.0vw'}  ml2={'0.0vw'}/>
+      <Model name={"Figure"}                model={STLFeels}      result={Feels}      download={DLFeels}      ml1={'0.0vw'}  ml2={'0.0vw'}/>
+      <Model name={"Loony Plaque"}          model={STLLoony}      result={Loony}      download={DLLoony}      ml1={'0.0vw'}  ml2={'0.0vw'}/>
     </div>
     <hr size={1} width={'88%'} style={{marginTop: '1vw', marginBottom: '3vw'}}/>
     <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', height:'40vw', alignItems: 'center', width: '100%', overflow: 'hidden', marginTop: '1vw'}}>
-      <Model name={"3D Benchie"}    model={STLBenchie}  result={Benchie} download={DLBenchie} ml1={'0.0vw'}  ml2={'0.0vw'}/>
-      <Model name={"Headset Holder"}  model={STLHeadset}  result={Headset} download={DLHeadset} ml1={'0.0vw'}  ml2={'0.0vw'}/>
-      <Model name={"Stand"}         model={STLStands}   result={Stands}  download={DLStands} ml1={'0.0vw'}  ml2={'0.0vw'}/>
-      <Model name={"Clip"}          model={STLClips}    result={Clips}   download={DLClips} ml1={'0.0vw'}  ml2={'0.0vw'}/>
+      <Model name={"3D Benchie"}            model={STLBenchie}    result={Benchie}    download={DLBenchie}    ml1={'0.0vw'}  ml2={'0.0vw'}/>
+      <Model name={"Headset Holder"}        model={STLHeadset}    result={Headset}    download={DLHeadset}    ml1={'0.0vw'}  ml2={'0.0vw'}/>
+      <Model name={"Stand"}                 model={STLStands}     result={Stands}     download={DLStands}     ml1={'0.0vw'}  ml2={'0.0vw'}/>
+      <Model name={"Clip"}                  model={STLClips}      result={Clips}      download={DLClips}      ml1={'0.0vw'}  ml2={'0.0vw'}/>
     </div>
   </div>
 );

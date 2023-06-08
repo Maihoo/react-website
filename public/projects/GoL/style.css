@@ -31,7 +31,7 @@ body {
 
 div[class*=box] {
   height: 220px;
-  width: 580px; 
+  width: 580px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,8 +50,6 @@ div[class*=box] {
   background-color: rgba(255, 255, 255, 0.0);
 }
 
-
-
 .menubtn {
   border: 0px;
   line-height: 50px;
@@ -62,71 +60,28 @@ div[class*=box] {
   background-color: rgba(255, 255, 255, 0.0)
 }
 
-/* 
-========================
-      BUTTON NULL
-========================
-*/
-.btn-nul {
-  transition: all 0.1s;
-  position: relative;
-}
-.btn-nul span {
-  transition: all 0.1s;
-}
-.btn-nul::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0.5;
-  opacity: 0;
-  transition: all 0.1s;
-  background-color: rgba(255,255,255,0.0);
-  transform: scale(1, 1);
-}
-.btn-nul:hover::before {
-  opacity: 0; 
-}
-.btn-nul::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0.5;
-  transition: all 0.1s;
-  background-color: rgba(255,255,255,0.0);
-}
-.btn-nul:hover::after {
-  opacity: 0; 
-}
-
-/* 
+/*
 ========================
       BUTTON FIELD
 ========================
 */
-.btn-fld {
+.btn-dead {
   transition: all 0.1s;
   position: relative;
 }
-.btn-fld span {
+
+.btn-dead span {
   transition: all 0.1s;
 }
-.btn-fld::before {
+
+.btn-dead::before {
   content: '';
   position: absolute;
   z-index: 0.5;
   transition: all 0.1s;
 }
-.btn-fld:hover::before {
 
-}
-.btn-fld::after {
+.btn-dead::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -137,23 +92,23 @@ div[class*=box] {
   transition: all 0.1s;
   background-color: rgb(0, 0, 0);
 }
-.btn-fld:hover::after {
+.btn-dead:hover::after {
   background-color: rgb(25, 25, 25);
 }
 
-/* 
+/*
 ========================
-      BUTTON MINE
+      BUTTON ALIVE
 ========================
 */
-.btn-mine {
+.btn-alive {
   transition: all 0.1s;
   position: relative;
 }
-.btn-mine span {
+.btn-alive span {
   transition: all 0.1s;
 }
-.btn-mine::before {
+.btn-alive::before {
   content: '';
   position: absolute;
   width: 100%;
@@ -161,10 +116,8 @@ div[class*=box] {
   z-index: 0.5;
   transition: all 0.1s;
 }
-.btn-mine:hover::before {
 
-}
-.btn-mine::after {
+.btn-alive::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -175,541 +128,6 @@ div[class*=box] {
   transition: all 0.1s;
   background-color: rgb(255, 255, 255);
 }
-.btn-mine:hover::after {
+.btn-alive:hover::after {
   background-color: rgb(160, 160, 160);
-}
-
-/* 
-========================
-      BUTTON ACTIVATED
-========================
-*/
-.btn-act {
-  transition: all 0.3s;
-  position: relative;
-}
-.btn-act span {
-  transition: all 0.3s;
-}
-.btn-act::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0.5;
-  opacity: 0;
-  transition: all 0.3s;
-  background-color: rgba(50,255,50,1);
-  transform: scale(1, 1);
-}
-.btn-act:hover::before {
-  opacity: 1; 
-  transform: scale(1, 1); 
-}
-.btn-act::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0.5;
-  transition: all 0.3s;
-  background-color: rgba(50,255,50,0.5);
-}
-.btn-act:hover::after {
-  opacity: 0; 
-}
-
-/* 
-========================
-      BUTTON LAST MOVE
-========================
-*/
-.btn-last {
-  transition: all 0.3s;
-  position: relative;
-}
-.btn-last span {
-  transition: all 0.3s;
-}
-.btn-last::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0.5;
-  opacity: 0;
-  transition: all 0.3s;
-  background-color: rgba(255, 0, 0, 0.75);
-  
-  transform: scale(1, 1);
-}
-.btn-last:hover::before {
-  opacity: 1; 
-  transform: scale(1, 1); 
-}
-.btn-last::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0.5;
-  transition: all 0.3s;
-  background-color: rgba(255, 115, 0, 0.384);
-}
-.btn-mov:hover::after {
-  opacity: 0; 
-}
-
-
-/* 
-========================
-      BUTTON MOVEABLE
-========================
-*/
-.btn-mov {
-  transition: all 0.3s;
-  position: relative;
-}
-.btn-mov span {
-  transition: all 0.3s;
-}
-.btn-mov::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0.5;
-  opacity: 0;
-  transition: all 0.3s;
-  background-color: rgba(255, 255, 0, 0.75);
-  
-  transform: scale(1, 1);
-}
-.btn-mov:hover::before {
-  opacity: 1; 
-  transform: scale(1, 1); 
-}
-.btn-mov::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0.5;
-  transition: all 0.3s;
-  background-color: rgba(50, 150, 50, 0.65);
-}
-.btn-mov:hover::after {
-  opacity: 0; 
-}
-
-/* 
-========================
-      BUTTON MENU BACK
-========================
-*/
-.btn-back {
-  transition: all 0.3s;
-  position: relative;
-}
-.btn-back span {
-  transition: all 0.3s;
-}
-.btn-back::before {
-  position: absolute;
-  z-index: 0.5;
-  opacity: 1;
-  transition: all 0.3s;
-  background-color: rgb(255, 255, 255);
-  
-  transform: scale(0.5, 0.5);
-}
-.btn-back:hover::before {
-  opacity: 0.5; 
-}
-.btn-back::after {
-  text-align: center;
-  font-size: 32px;
-  position: absolute;
-  left: 0;
-  width: 300%;
-  height: 200%;
-  z-index: 10000;
-  opacity: 1;
-  transition: all 0.3s;
-  background-color: rgb(255, 255, 255);
-}
-.btn-back:hover::after {
-  background-color: rgb(190, 190, 190); 
-}
-
-/* 
-========================
-      BUTTON MENU FORFEIT
-========================
-*/
-.btn-ff {
-  transition: all 0.3s;
-  position: relative;
-}
-.btn-ff span {
-  transition: all 0.3s;
-}
-.btn-ff::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0.5;
-  opacity: 0.0;
-  transition: all 0.3s;
-  background-color: rgba(255, 0, 0, 0.5);
-  
-  transform: scale(0.5, 0.5);
-}
-.btn-ff:hover::before {
-  opacity: 0.5; 
-  transform: scale(1, 1); 
-}
-.btn-ff::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  opacity: 0.5;
-  transition: all 0.3s;
-  background-color: rgba(0, 0, 0, 0.0);
-}
-.btn-ff:hover::after {
-  opacity: 0; 
-  transform: scale(0, 0); 
-}
-
-/* 
-========================
-      BUTTON MENU SWITCH
-========================
-*/
-.btn-swt {
-  transition: all 0.3s;
-  position: relative;
-}
-.btn-swt span {
-  transition: all 0.3s;
-}
-.btn-swt::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0.5;
-  opacity: 0.0;
-  transition: all 0.3s;
-  background-color: rgba(155, 255, 0, 0.5);
-  
-  transform: scale(0.5, 0.5);
-}
-.btn-swt:hover::before {
-  opacity: 0.5; 
-  transform: scale(1, 1); 
-}
-.btn-swt::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  opacity: 0.5;
-  transition: all 0.3s;
-  background-color: rgba(0, 0, 0, 0.0);
-}
-.btn-swt:hover::after {
-  opacity: 0; 
-  transform: scale(0, 0); 
-}
-
-/* 
-========================
-      BUTTON MENU HISTORY1
-========================
-*/
-.btn-hst1 {
-  transition: all 0.3s;
-  position: relative;
-}
-.btn-hst1 span {
-  transition: all 0.3s;
-}
-.btn-hst1::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0.5;
-  opacity: 0.0;
-  transition: all 0.3s;
-  background-color: rgba(255, 0, 0, 1);
-  
-  transform: scale(0.5, 0.5);
-}
-.btn-hst1:hover::before {
-  opacity: 0.5; 
-  transform: scale(1, 1); 
-}
-.btn-hst1::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  opacity: 0.5;
-  transition: all 0.3s;
-  background-color: rgba(81, 31, 27, 1);
-}
-.btn-hst1:hover::after {
-  opacity: 0; 
-  transform: scale(0, 0); 
-}
-
-/* 
-========================
-      BUTTON MENU HISTORY2
-========================
-*/
-.btn-hst2 {
-  transition: all 0.3s;
-  position: relative;
-}
-.btn-hst2 span {
-  transition: all 0.3s;
-}
-.btn-hst2::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0.5;
-  opacity: 0.0;
-  transition: all 0.3s;
-  background-color: rgb(39, 145, 35);
-  
-  transform: scale(0.5, 0.5);
-}
-.btn-hst2:hover::before {
-  opacity: 0.5; 
-  transform: scale(1, 1); 
-}
-.btn-hst2::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0.5;
-  opacity: 0.5;
-  transition: all 0.3s;
-  background-color: rgba(81, 31, 27, 0);
-}
-.btn-hst2:hover::after {
-  opacity: 0; 
-  transform: scale(0, 0); 
-}
-
-/* 
-========================
-      TEXTFIELD ROOM
-========================
-*/
-
-.btn-room {
-  border: 10px;
-  text-align: center;
-  font-size: 3.375rem;
-  position: relative;
-  background-color: rgb(97, 23, 23);
-  margin: 10px;
-  width: 350px;
-  height: 250px;
-  
-  z-index: 0.5;
-}
-
-/* 
-========================
-      BUTTON PLAY
-========================
-*/
-.btn-play {
-  transition: all 0.3s;
-  position: relative;
-  background-color: #333;
-  margin: 10px;
-  width: 450px;
-  height: 100px;
-  text-align: center;
-  cursor: pointer;
-  font-size: 3.375rem;
-}
-.btn-play span {
-  transition: all 0.3s;
-}
-.btn-play::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0.5;
-  opacity: 0;
-  transition: all 0.3s;
-  background-color: rgba(255,255,255,0.25);
-  transform: scale(1, 1);
-}
-.btn-play:hover::before {
-  opacity: 1; 
-}
-.btn-play::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0.5;
-  transition: all 0.3s;
-  background-color: rgba(255,255,255,0.0);
-}
-.btn-play:hover::after {
-  opacity: 0; 
-}
-
-h1{
-  color: rgb(80, 80, 80);
-  font-weight: bold;
-  font-size: 50px;
-  margin: 20px 0px 20px;
-}
-
-
-h2{
-  text-align: center;
-  color: rgb(117, 117, 117);
-  margin-top: -25px;
-  z-index: 20;
-  font-size: 25px;
-}
-
-.container {
-  color: #333;
-  margin: 0 auto;
-  text-align: center;
-}
-
-h1 {
-  font-weight: normal;
-  letter-spacing: .125rem;
-  text-transform: uppercase;
-}
-
-li {
-  display: inline-block;
-  font-size: 1.5em;
-  list-style-type: none;
-  padding: 1em;
-  text-transform: uppercase;
-}
-
-li span {
-  display: block;
-  font-size: 4.5rem;
-}
-
-.emoji {
-  display: none;
-  padding: 1rem;
-}
-
-.emoji span {
-  font-size: 4rem;
-  padding: 0 .5rem;
-}
-
-
-
-ul[class*=chat] {
-  width: 328px;
-  height: 1030px;
-  overflow: auto;
-}
-
-.crop {
-  width: 350px;
-  height: 350px;
-  margin-top: 50px;
-  margin-left: 50px;
-  overflow: hidden;
-}
-
-.crop img {
-  width: 614px;
-  height: 350px;
-}
-
-
-@media all and (max-width: 768px) {
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  
-
-  .button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  
-  li {
-    font-size: 1.125rem;
-    padding: .75rem;
-  }
-  
-  li span {
-    font-size: 3.375rem;
-  }
 }

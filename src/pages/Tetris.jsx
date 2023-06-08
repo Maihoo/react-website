@@ -9,6 +9,6 @@ function iframe() {
 export default function Exercises() {
   return (
       <div>
-          <div dangerouslySetInnerHTML={iframe()} />
+          <div dangerouslySetInnerHTML={iframe()}/>
       </div>)
 }

@@ -175,7 +175,7 @@ function App() {
         </div>
       </div>
 
-      // COPY TO GALLERY FROM HERE (remove FS)
+      {/* COPY TO GALLERY FROM HERE (remove FS) */}
 
       <div className={'seventyfive'}>
         <ScrollAnimHolder><h3>Gallery</h3></ScrollAnimHolder>

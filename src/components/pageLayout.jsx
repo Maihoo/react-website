@@ -1,7 +1,7 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-
+import ScrollToTopButton  from "./scrollToTopButton";
 import NavButton  from "./navbtn";
 import Logo       from "../res/selficon.jpg";
 import Youtube    from "../res/icons/youtube.png";
@@ -15,7 +15,6 @@ import Mail       from "../res/icons/mail.png";
 //        <NavButton id={'Tuner'}         class={'menubtn'} to="/Tuner">Tuner</NavButton>
 
 export default function PageLayout ({children}) {
-
   return (
   <>
     <header style={{position: 'relative', backgroundColor: 'black', height: 'auto', zIndex: '1000'}}>
@@ -47,7 +46,6 @@ export default function PageLayout ({children}) {
     <footer>
       <div id="outPopUp" style={{position: 'absolute', justifyContent: "center", alignItems: "center", flexDirection: 'column', marginLeft: '-60vw', marginTop: '-10px', height: '30vh', marginBottom: '-50vw', width: '120%', overflow: 'hidden', backgroundColor: '#1b1b1b', }}>
         <h2 style={{paddingTop: '50px', justifyContent: "center", alignItems: "center", textAlign: 'center', marginTop: '-20px'}} className="widget-title">contact me :)</h2>
-
         <div style={{display: 'flex', justifyContent: "center", alignItems: "center"}}>
           <a className={"nextTo"} href={"https://www.youtube.com/channel/UCcUrHwj2Z1kbJj5rwQ8HXng"} rel={"noreferrer"} target={"_blank"}><img className="linkIcon" src={Youtube}   alt="" /></a>
           <a className={"nextTo"} href={"https://www.instagram.com/finn_maihoo/"}                   rel={"noreferrer"} target={"_blank"}><img className="linkIcon" src={Instagram} alt="" /></a>
@@ -57,6 +55,7 @@ export default function PageLayout ({children}) {
           <a className={"nextTo"} href={"mailto:finn.ole.stadtaus@gmail.com"}                       rel={"noreferrer"} target={"_blank"}><img className="linkIcon" src={Mail}      alt="" /></a>
         </div>
       </div>
+      <ScrollToTopButton class="tessss"/>
     </footer>
   </>
 )}

@@ -21,11 +21,23 @@ body {
   scale: 1;
 }
 
+.fixed-sticker {
+  display: flexbox;
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  font-size: small;
+  left: 1rem;
+  bottom: 1rem;
+  opacity: 50%;
+  color: white;
+}
+
 .scroll-to-top-button {
   display: flex;
   position: fixed;
   bottom: -3rem;
-  right: 45%;
+  right: 48%;
   z-index: 9999;
   padding: 0 1rem 0 1rem;
   margin-top: -1rem;

@@ -18,7 +18,6 @@ class ScrollToTopButton extends React.Component {
   }
 
   handleScroll = () => {
-    console.log(window.pageYOffset)
     if (window.pageYOffset > 200) {
       this.setState({ isVisible: true});
     } else {

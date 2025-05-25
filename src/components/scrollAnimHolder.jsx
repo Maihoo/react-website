@@ -11,7 +11,7 @@ export default function ScrollAnimHolder({maxWidth, maxHeight, children, mL, pad
   return (
     <div style={{marginLeft: mL, width: maxWidth, height: maxHeight, display: 'flex', overflow: 'visible'}}>
       <div ref={hiddenRef2} style={{marginLeft: padding, overflow: 'visible'}}>
-        <div className={orient}> {children} </div>
+        <div className={'show-target ' + orient}>{children}</div>
       </div>
     </div>
   );
@@ -40,15 +40,10 @@ const useElementOnScreen = (options) => {
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    //console.log("observer: " + entry);
     if(entry.isIntersecting) {
-      //entry.target.classList.add('show');
-      entry.target.firstChild.classList.add('show');
-      //console.log('visible');
+      entry.target.classList.add('show');
     } else {
-      //entry.target.classList.remove('show');
-      entry.target.firstChild.classList.remove('show');
-      //console.log('invisible');
+      entry.target.classList.remove('show');
     }
   });
 });

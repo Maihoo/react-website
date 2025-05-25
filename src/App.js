@@ -10,6 +10,7 @@ import Gallery from './res/Gallery.jpg';
 
 import Annika from './res/Annika.jpg';
 import Manni from './res/Manni.jpg';
+import Bored from './res/Bored.png';
 
 import Pinup from './res/pinup.jpg';
 import JTraining from './res/JTraining.jpg';
@@ -63,6 +64,7 @@ import FSGallery from './res/fullsize/Gallery.jpg';
 
 import FSAnnika from './res/fullsize/Annika.png';
 import FSManni from './res/fullsize/Manni.png';
+import FSBored from './res/fullsize/Bored.jpg';
 
 import FSPinup from './res/fullsize/pinup.jpg';
 import FSJTraining from './res/fullsize/JTraining.jpg';
@@ -116,7 +118,7 @@ import ImageHolder from './components/imageHolder';
 import ScrollAnimHolder from './components/scrollAnimHolder';
 
 
-import * as styles from './index.css';
+import './index.less';
 
 function updateBackgroundPosition() {
   var scrolled = window.pageYOffset;
@@ -166,110 +168,122 @@ function App() {
       console.log('Scroll position:', event.target.scrollTop);
     }} style={{position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', zIndex: '1', overflow: 'hidden'}}>
 
-      <div className={'Row'} style={{borderBottom: 'none', width: '100%'}}>
-        <div style={{width: '100vw', height: '100%', overflow: 'hidden'}}>
-          {/*<Expire id={"expire"} delay={3000}>
-            <video id={"video"} src={Intro} width={"100%"} height={"100%"} autoPlay muted style={{zIndex: '1000', display: 'flex', overflow: 'hidden', flexDirection: 'column', justifyContent: 'center', marginTop: '0px'}} />
-          </Expire>*/}
-          <ImageHolder dfu={FSGallery} wdth={'100%'} style={{position: 'absolute', marginTop: '0%'}}>{Gallery}</ImageHolder>
-        </div>
+      <div style={{width: '100vw', height: '100%', overflow: 'hidden'}}>
+        {/*<Expire id={"expire"} delay={3000}>
+          <video id={"video"} src={Intro} width={"100%"} height={"100%"} autoPlay muted style={{zIndex: '1000', display: 'flex', overflow: 'hidden', flexDirection: 'column', justifyContent: 'center', marginTop: '0px'}}/>
+        </Expire>*/}
+        <ImageHolder dfu={FSGallery} wdth={'100%'} style={{position: 'absolute', marginTop: '0%'}}>{Gallery}</ImageHolder>
       </div>
 
       {/* COPY TO GALLERY FROM HERE (remove FS) */}
 
-      <div className={'seventyfive'}>
+      <div className={'limited-width'}>
         <ScrollAnimHolder><h3>Gallery</h3></ScrollAnimHolder>
       </div>
 
-      <div className={'seventyfive'}>
+      <div className={'limited-width'}>
         <ScrollAnimHolder><h2>Oil Paintings</h2></ScrollAnimHolder>
       </div>
 
-      <div className={'Row seventyfive'}>
-        <ImageHolder maxWidth='38%'   maxHeight='30.2vw'  dfu={FSAnnika}      orient='hiddenLef' mL='0.0vw'>{Annika}</ImageHolder>
-        <ImageHolder maxWidth='62%'   maxHeight='30.2vw'  dfu={FSManni}       orient='hiddenRig' mL='0.5vw'>{Manni}</ImageHolder>
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='24.9vw'   orient='hiddenLef' dfu={FSBored}>{Bored}</ImageHolder>
+        <ImageHolder zoom maxHeight='24.9vw'   orient='hiddenMid' dfu={FSHaiopei}>{Haiopei}</ImageHolder>
+        <ImageHolder zoom maxHeight='24.9vw'   orient='hiddenRig' dfu={FSAnnika}>{Annika}</ImageHolder>
       </div>
 
-      <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-        <ImageHolder maxWidth='32%'   maxHeight='19.5vw'  dfu={FSPinup}       orient='hiddenLef' mL='0.0vw'>{Pinup}</ImageHolder>
-        <ImageHolder maxWidth='40%'   maxHeight='19.5vw'  dfu={FSJTraining}   orient='hiddenTop' mL='0.5vw'>{F22}</ImageHolder>
-        <ImageHolder maxWidth='32%'   maxHeight='19.5vw'  dfu={FSHaiopei}     orient='hiddenRig' mL='0.5vw'>{Haiopei}</ImageHolder>
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='25vw'   orient='hiddenLef' dfu={FSJTraining}>{F22}</ImageHolder>
+        <ImageHolder zoom maxHeight='25vw'   orient='hiddenRig' dfu={FSManni}>{Manni}</ImageHolder>
       </div>
 
-      <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-        <ImageHolder maxWidth='58%'   maxHeight='44vw'    dfu={FSBismarck}    orient='hiddenLef' mL='0.0vw'>{Bismarck}</ImageHolder>
-        <ImageHolder maxWidth='55%'   maxHeight='44vw'    dfu={FSJulia}       orient='hiddenRig' mL='0.5vw'>{Julia}</ImageHolder>
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='44vw'   orient='hiddenLef' dfu={FSBismarck}>{Bismarck}</ImageHolder>
+        <ImageHolder zoom maxHeight='44vw'   orient='hiddenRig' dfu={FSJulia}>{Julia}</ImageHolder>
       </div>
 
-      <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-        <ImageHolder maxWidth='64%'   maxHeight='29.2vw'  dfu={FSDust2}       orient='hiddenLef' mL='0.0vw' >{Dust2}</ImageHolder>
-        <ImageHolder maxWidth='37%'   maxHeight='29.2vw'  dfu={FSPinoPrinz}   orient='hiddenRig' mL='0.5vw'>{PinoPrinz}</ImageHolder>
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='29.2vw' orient='hiddenLef' dfu={FSDust2}>{Dust2}</ImageHolder>
+        <ImageHolder zoom maxHeight='29.2vw' orient='hiddenRig' dfu={FSPinoPrinz}>{PinoPrinz}</ImageHolder>
       </div>
 
-      <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-        <ImageHolder maxWidth='40%'   maxHeight='31vw'    dfu={FSMi}          orient='hiddenLef' mL='0.0vw'>{Mi}</ImageHolder>
-        <ImageHolder maxWidth='60%'   maxHeight='31vw'    dfu={FSPaps}        orient='hiddenRig' mL='0.5vw'>{Paps}</ImageHolder>
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='30vw'   orient='hiddenLef' dfu={FSMi}>{Mi}</ImageHolder>
+        <ImageHolder zoom maxHeight='30vw'   orient='hiddenRig' dfu={FSPaps}>{Paps}</ImageHolder>
       </div>
 
-      <div className={'seventyfive'}>
+      <div className={'limited-width'}>
         <ScrollAnimHolder orient='hiddenLef2'> <h2 style={{paddingTop: '55px'}}>Drawings</h2> </ScrollAnimHolder>
       </div>
 
-      <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-        <ImageHolder maxWidth='50%' maxHeight='46vw'      dfu={FSStine}       orient='hiddenLef' mL='0.0vw' >{Stine}</ImageHolder>
-        <ImageHolder maxWidth='50%' maxHeight='46vw'      dfu={FSTimmermann}  orient='hiddenRig' mL='0.5vw'>{Timmermann}</ImageHolder>
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='45.5vw' orient='hiddenLef' dfu={FSStine}>{Stine}</ImageHolder>
+        <ImageHolder zoom maxHeight='45.5vw' orient='hiddenRig' dfu={FSTimmermann}>{Timmermann}</ImageHolder>
       </div>
 
-      <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-        <ImageHolder maxWidth='50%' maxHeight='24vw'      dfu={FSHaiopei2}      orient='hiddenLef' mL='0.0vw'>{Haiopei2}</ImageHolder>
-        <ImageHolder maxWidth='50%' maxHeight='24vw'      dfu={FSAnne} p='-6vw' orient='hiddenRig' mL='0.5vw'>{Anne}</ImageHolder>
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenLef' dfu={FSHaiopei2}>{Haiopei2}</ImageHolder>
+        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenRig' dfu={FSAnne} maxWidth='55%'>{Anne}</ImageHolder>
       </div>
 
-      <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-        <ImageHolder maxWidth='50%' maxHeight='49vw'      dfu={FSBaby}        orient='hiddenLef' mL='0.0vw' >{Baby}</ImageHolder>
-        <ImageHolder maxWidth='50%' maxHeight='49vw'      dfu={FSFresen}      orient='hiddenRig' mL='0.5vw'>{Fresen}</ImageHolder>
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='49.5vw' orient='hiddenLef' dfu={FSBaby}>{Baby}</ImageHolder>
+        <ImageHolder zoom maxHeight='49.5vw' orient='hiddenRig' dfu={FSFresen}>{Fresen}</ImageHolder>
       </div>
 
-      <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-        <ImageHolder maxWidth='49%' maxHeight='24vw'    dfu={FSThore}       orient='hiddenLef' mL='0.0vw'>{Thore}</ImageHolder>
-        <ImageHolder maxWidth='55%' maxHeight='24vw'    dfu={FSAK47}        orient='hiddenRig' mL='0.5vw'>{AK47}</ImageHolder>
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='23.7vw' orient='hiddenLef' dfu={FSThore}>{Thore}</ImageHolder>
+        <ImageHolder zoom maxHeight='23.7vw' orient='hiddenRig' dfu={FSAK47}>{AK47}</ImageHolder>
       </div>
 
-      <div className={'seventyfive'}>
-        <ScrollAnimHolder orient='hiddenLef2'> <h2 style={{paddingTop: '55px'}}>3D-Modelling</h2> </ScrollAnimHolder>
+      <div className={'limited-width'}>
+        <ScrollAnimHolder orient='hiddenLef2'>
+          <h2 style={{paddingTop: '55px'}}>3D-Modelling</h2>
+        </ScrollAnimHolder>
       </div>
 
-      <ScrollAnimHolder orient='hiddenLef2'>  <video src={IntroVideo} width="900" height="600" controls={"controls"} autoPlay loop muted /> </ScrollAnimHolder>
-
-      <div className={'seventyfive'}>
-        <ScrollAnimHolder orient='hiddenLef2'> <h2 style={{paddingTop: '55px'}}>Digital</h2> </ScrollAnimHolder>
+      <div className={'image-row limited-width'}>
+        <ScrollAnimHolder orient='hiddenLef2'>
+          <video src={IntroVideo} width="100% " controls={"controls"} autoPlay loop muted/>
+        </ScrollAnimHolder>
       </div>
 
-      <ScrollAnimHolder orient='hiddenLef2'> <video src={Video} width="900" height="600" controls={"controls"} autoPlay loop /> </ScrollAnimHolder>
-
-      <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-        <ImageHolder maxWidth='30%' maxHeight='24vw'      dfu={FSJLineart}    orient='hiddenLef' mL='0.0vw'>{JLineart}</ImageHolder>
-        <ImageHolder maxWidth='64%' maxHeight='24vw'      dfu={FSLiS}         orient='hiddenTop' mL='0.5vw' p='-3.5vw'>{LiS}</ImageHolder>
-        <ImageHolder maxWidth='26%' maxHeight='24vw'      dfu={FSPraise}      orient='hiddenRig' mL='0.5vw'>{Praise}</ImageHolder>
+      <div className={'limited-width'}>
+        <ScrollAnimHolder orient='hiddenLef2'>
+          <h2 style={{paddingTop: '55px'}}>Digital</h2>
+        </ScrollAnimHolder>
       </div>
 
-      <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-        <ImageHolder maxWidth='23%' maxHeight='25vw'      dfu={FSIQ}          orient='hiddenLef' mL='0.0vw'>{IQ}</ImageHolder>
-        <ImageHolder maxWidth='40%' maxHeight='25vw'      dfu={FSKSP}         orient='hiddenBot' mL='0.5vw'>{KSP}</ImageHolder>
-        <ImageHolder maxWidth='40%' maxHeight='25vw'      dfu={FSNade}        orient='hiddenRig' mL='0.5vw'>{Nade}</ImageHolder>
+      <div className={'image-row limited-width'}>
+        <ScrollAnimHolder orient='hiddenLef2'>
+          <video src={Video} width="100%" controls={"controls"} autoPlay loop/>
+        </ScrollAnimHolder>
       </div>
 
-      <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-        <ImageHolder maxWidth='34%' maxHeight='21.5vw'      dfu={FSYuno}        orient='hiddenLef' mL='0.0vw'>{Yuno}</ImageHolder>
-        <ImageHolder maxWidth='34%' maxHeight='21.5vw'      dfu={FSYuno2}       orient='hiddenBot' mL='0.5vw'>{Yuno2}</ImageHolder>
-        <ImageHolder maxWidth='34%' maxHeight='21.5vw'      dfu={FSYuno3}       orient='hiddenTop' mL='0.5vw'>{Yuno3}</ImageHolder>
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='24vw'   orient='hiddenLef' dfu={FSJLineart}>{JLineart}</ImageHolder>
+        <ImageHolder zoom maxHeight='24vw'   orient='hiddenTop' dfu={FSLiS} maxWidth='52.5%' mL='-10%'>{LiS}</ImageHolder>
+        <ImageHolder zoom maxHeight='24vw'   orient='hiddenRig' dfu={FSPraise}>{Praise}</ImageHolder>
       </div>
 
-      <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-        <ImageHolder maxWidth='32%' maxHeight='23vw'      dfu={FSSoldier}     orient='hiddenLef' mL='0.0vw'>{Soldier}</ImageHolder>
-        <ImageHolder maxWidth='40%' maxHeight='23vw'      dfu={FSSkull}       orient='hiddenBot' mL='0.5vw'>{Skull}</ImageHolder>
-        <ImageHolder maxWidth='40%' maxHeight='23vw'      dfu={FSArtstyle3}   orient='hiddenRig' mL='0.5vw'>{Artstyle3}</ImageHolder>
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='27vw'   orient='hiddenLef' dfu={FSIQ}>{IQ}</ImageHolder>
+        <ImageHolder zoom maxHeight='27vw'   orient='hiddenRig' dfu={FSNade}>{Nade}</ImageHolder>
+        <ImageHolder zoom maxHeight='27vw'   orient='hiddenLef' dfu={FSSoldier}>{Soldier}</ImageHolder>
       </div>
+
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='21.5vw'   orient='hiddenBot' dfu={FSKSP}>{KSP}</ImageHolder>
+        <ImageHolder zoom maxHeight='21.5vw'   orient='hiddenRig' dfu={FSSkull}>{Skull}</ImageHolder>
+        <ImageHolder zoom maxHeight='21.5vw'   orient='hiddenRig' dfu={FSArtstyle3}>{Artstyle3}</ImageHolder>
+      </div>
+
+      {/*
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenLef' dfu={FSYuno}>{Yuno}</ImageHolder>
+        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenBot' dfu={FSYuno2}>{Yuno2}</ImageHolder>
+        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenTop' dfu={FSYuno3}>{Yuno3}</ImageHolder>
+      </div>
+      */}
 
       <div style={{height: '10vh'}}></div>
     </div>

@@ -61,102 +61,116 @@ const GalleryPage = ({children}) => (
     {//PASTE FROM HERE (remove FS)
     }
 
-    <div className={'seventyfive'}>
-      <ScrollAnimHolder orient='hiddenLef2'> <h3>Fullsize Image Gallery</h3> </ScrollAnimHolder> 
+      <div className={'limited-width'}>
+        <ScrollAnimHolder><h3>Gallery</h3></ScrollAnimHolder>
+      </div>
+
+      <div className={'limited-width'}>
+        <ScrollAnimHolder><h2>Oil Paintings</h2></ScrollAnimHolder>
+      </div>
+
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='24.9vw'   orient='hiddenLef' dfu={Bored}>{Bored}</ImageHolder>
+        <ImageHolder zoom maxHeight='24.9vw'   orient='hiddenMid' dfu={Haiopei}>{Haiopei}</ImageHolder>
+        <ImageHolder zoom maxHeight='24.9vw'   orient='hiddenRig' dfu={Annika}>{Annika}</ImageHolder>
+      </div>
+
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='25vw'   orient='hiddenLef' dfu={JTraining}>{F22}</ImageHolder>
+        <ImageHolder zoom maxHeight='25vw'   orient='hiddenRig' dfu={Manni}>{Manni}</ImageHolder>
+      </div>
+
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='44vw'   orient='hiddenLef' dfu={Bismarck}>{Bismarck}</ImageHolder>
+        <ImageHolder zoom maxHeight='44vw'   orient='hiddenRig' dfu={Julia}>{Julia}</ImageHolder>
+      </div>
+
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='29.2vw' orient='hiddenLef' dfu={Dust2}>{Dust2}</ImageHolder>
+        <ImageHolder zoom maxHeight='29.2vw' orient='hiddenRig' dfu={PinoPrinz}>{PinoPrinz}</ImageHolder>
+      </div>
+
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='30vw'   orient='hiddenLef' dfu={Mi}>{Mi}</ImageHolder>
+        <ImageHolder zoom maxHeight='30vw'   orient='hiddenRig' dfu={Paps}>{Paps}</ImageHolder>
+      </div>
+
+      <div className={'limited-width'}>
+        <ScrollAnimHolder orient='hiddenLef2'> <h2 style={{paddingTop: '55px'}}>Drawings</h2> </ScrollAnimHolder>
+      </div>
+
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='45.5vw' orient='hiddenLef' dfu={Stine}>{Stine}</ImageHolder>
+        <ImageHolder zoom maxHeight='45.5vw' orient='hiddenRig' dfu={Timmermann}>{Timmermann}</ImageHolder>
+      </div>
+
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenLef' dfu={Haiopei2}>{Haiopei2}</ImageHolder>
+        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenRig' dfu={Anne} maxWidth='55%'>{Anne}</ImageHolder>
+      </div>
+
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='49.5vw' orient='hiddenLef' dfu={Baby}>{Baby}</ImageHolder>
+        <ImageHolder zoom maxHeight='49.5vw' orient='hiddenRig' dfu={Fresen}>{Fresen}</ImageHolder>
+      </div>
+
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='23.7vw' orient='hiddenLef' dfu={Thore}>{Thore}</ImageHolder>
+        <ImageHolder zoom maxHeight='23.7vw' orient='hiddenRig' dfu={AK47}>{AK47}</ImageHolder>
+      </div>
+
+      <div className={'limited-width'}>
+        <ScrollAnimHolder orient='hiddenLef2'>
+          <h2 style={{paddingTop: '55px'}}>3D-Modelling</h2>
+        </ScrollAnimHolder>
+      </div>
+
+      <div className={'image-row limited-width'}>
+        <ScrollAnimHolder orient='hiddenLef2'>
+          <video src={IntroVideo} width="100% " controls={"controls"} autoPlay loop muted/>
+        </ScrollAnimHolder>
+      </div>
+
+      <div className={'limited-width'}>
+        <ScrollAnimHolder orient='hiddenLef2'>
+          <h2 style={{paddingTop: '55px'}}>Digital</h2>
+        </ScrollAnimHolder>
+      </div>
+
+      <div className={'image-row limited-width'}>
+        <ScrollAnimHolder orient='hiddenLef2'>
+          <video src={Video} width="100%" controls={"controls"} autoPlay loop/>
+        </ScrollAnimHolder>
+      </div>
+
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='24vw'   orient='hiddenLef' dfu={JLineart}>{JLineart}</ImageHolder>
+        <ImageHolder zoom maxHeight='24vw'   orient='hiddenTop' dfu={LiS} maxWidth='52.5%' mL='-10%'>{LiS}</ImageHolder>
+        <ImageHolder zoom maxHeight='24vw'   orient='hiddenRig' dfu={Praise}>{Praise}</ImageHolder>
+      </div>
+
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='27vw'   orient='hiddenLef' dfu={IQ}>{IQ}</ImageHolder>
+        <ImageHolder zoom maxHeight='27vw'   orient='hiddenRig' dfu={Nade}>{Nade}</ImageHolder>
+        <ImageHolder zoom maxHeight='27vw'   orient='hiddenLef' dfu={Soldier}>{Soldier}</ImageHolder>
+      </div>
+
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='21.5vw'   orient='hiddenBot' dfu={KSP}>{KSP}</ImageHolder>
+        <ImageHolder zoom maxHeight='21.5vw'   orient='hiddenRig' dfu={Skull}>{Skull}</ImageHolder>
+        <ImageHolder zoom maxHeight='21.5vw'   orient='hiddenRig' dfu={Artstyle3}>{Artstyle3}</ImageHolder>
+      </div>
+
+      {/*
+      <div className={'image-row limited-width'}>
+        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenLef' dfu={Yuno}>{Yuno}</ImageHolder>
+        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenBot' dfu={Yuno2}>{Yuno2}</ImageHolder>
+        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenTop' dfu={Yuno3}>{Yuno3}</ImageHolder>
+      </div>
+      */}
+
+      <div style={{height: '10vh'}}></div>
     </div>
-
-    <div className={'seventyfive'}>
-      <ScrollAnimHolder orient='hiddenLef2'> <h2>Oil Paintings</h2> </ScrollAnimHolder> 
-    </div>
-
-    <div className={'Row seventyfive'}>
-      <ImageHolder maxWidth='38%'   maxHeight='35vw'    dfu={Annika}      orient='hiddenLef' mL='0.0vw' >{Annika}</ImageHolder>
-      <ImageHolder maxWidth='62%'   maxHeight='35vw'    dfu={Manni}       orient='hiddenRig' mL='0.5vw'>{Manni}</ImageHolder>
-    </div>
-
-    <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-      <ImageHolder maxWidth='30%'   maxHeight='22.2vw'  dfu={Pinup}       orient='hiddenLef' mL='0.0vw'>{Pinup}</ImageHolder>
-      <ImageHolder maxWidth='40%'   maxHeight='22.2vw'  dfu={JTraining}   orient='hiddenTop' mL='0.5vw'>{JTraining}</ImageHolder>
-      <ImageHolder maxWidth='30%'   maxHeight='22.2vw'  dfu={Haiopei}     orient='hiddenRig' mL='0.5vw'>{Haiopei}</ImageHolder>
-    </div>
-
-    <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-      <ImageHolder maxWidth='58%'   maxHeight='51vw'    dfu={Bismarck}    orient='hiddenLef' mL='0.0vw'>{Bismarck}</ImageHolder>
-      <ImageHolder maxWidth='55%'   maxHeight='51vw'    dfu={Julia}       orient='hiddenRig' mL='0.5vw'>{Julia}</ImageHolder>
-    </div>
-
-    <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-      <ImageHolder maxWidth='64%'   maxHeight='34vw'    dfu={Dust2}       orient='hiddenLef' mL='0.0vw' >{Dust2}</ImageHolder>
-      <ImageHolder maxWidth='37%'   maxHeight='34vw'    dfu={PinoPrinz}   orient='hiddenRig' mL='0.5vw'>{PinoPrinz}</ImageHolder>
-    </div>
-
-    <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-      <ImageHolder maxWidth='40%'   maxHeight='35.3vw'  dfu={Mi}          orient='hiddenLef' mL='0.0vw'>{Mi}</ImageHolder>
-      <ImageHolder maxWidth='60%'   maxHeight='35.3vw'  dfu={Paps}        orient='hiddenRig' mL='0.5vw'>{Paps}</ImageHolder>
-    </div>
-
-    <div className={'seventyfive'}>
-      <ScrollAnimHolder orient='hiddenLef2'> <h2 style={{paddingTop: '55px'}}>Drawings</h2> </ScrollAnimHolder> 
-    </div>
-
-    <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-      <ImageHolder maxWidth='50%' maxHeight='53vw'      dfu={Stine}       orient='hiddenLef' mL='0.0vw' >{Stine}</ImageHolder>
-      <ImageHolder maxWidth='50%' maxHeight='53vw'      dfu={Timmermann}  orient='hiddenRig' mL='0.5vw'>{Timmermann}</ImageHolder>
-    </div>
-
-    <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-      <ImageHolder maxWidth='50%' maxHeight='28vw'      dfu={Haiopei2}      orient='hiddenLef' mL='0.0vw'>{Haiopei2}</ImageHolder>
-      <ImageHolder maxWidth='50%' maxHeight='28vw'      dfu={Anne} p='-6vw' orient='hiddenRig' mL='0.5vw'>{Anne}</ImageHolder>
-    </div>
-
-    <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-      <ImageHolder maxWidth='50%' maxHeight='57vw'      dfu={Baby}        orient='hiddenLef' mL='0.0vw' >{Baby}</ImageHolder>
-      <ImageHolder maxWidth='50%' maxHeight='57vw'      dfu={Fresen}      orient='hiddenRig' mL='0.5vw'>{Fresen}</ImageHolder>
-    </div>
-
-    <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-      <ImageHolder maxWidth='49%' maxHeight='27.5vw'    dfu={Thore}       orient='hiddenLef' mL='0.0vw'>{Thore}</ImageHolder>
-      <ImageHolder maxWidth='55%' maxHeight='27.5vw'    dfu={AK47}        orient='hiddenRig' mL='0.5vw'>{AK47}</ImageHolder>
-    </div>
-
-    <div className={'seventyfive'}>
-      <ScrollAnimHolder orient='hiddenLef2'> <h2 style={{paddingTop: '55px'}}>3D-Modelling</h2> </ScrollAnimHolder> 
-    </div>
-
-    <ScrollAnimHolder orient='hiddenLef2'>  <video src={IntroVideo} width="900" height="600" controls={"controls"} autoPlay loop muted /> </ScrollAnimHolder>
-
-    <div className={'seventyfive'}>
-      <ScrollAnimHolder orient='hiddenLef2'> <h2 style={{paddingTop: '55px'}}>Digital</h2> </ScrollAnimHolder> 
-    </div>
-
-    <ScrollAnimHolder orient='hiddenLef2'> <video src={Video} width="900" height="600" controls={"controls"} autoPlay loop /> </ScrollAnimHolder> 
-
-    <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-      <ImageHolder maxWidth='30%' maxHeight='28vw'      dfu={JLineart}    orient='hiddenLef' mL='0.0vw'>{JLineart}</ImageHolder>
-      <ImageHolder maxWidth='64%' maxHeight='28vw'      dfu={LiS}         orient='hiddenTop' mL='0.5vw' p='-3.5vw'>{LiS}</ImageHolder>
-      <ImageHolder maxWidth='26%' maxHeight='28vw'      dfu={Praise}      orient='hiddenRig' mL='0.5vw'>{Praise}</ImageHolder>
-    </div>
-
-    <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-      <ImageHolder maxWidth='25%' maxHeight='31vw'      dfu={IQ}          orient='hiddenLef' mL='0.0vw'>{IQ}</ImageHolder>
-      <ImageHolder maxWidth='40%' maxHeight='31vw'      dfu={KSP}         orient='hiddenBot' mL='0.5vw'>{KSP}</ImageHolder>
-      <ImageHolder maxWidth='40%' maxHeight='31vw'      dfu={Nade}        orient='hiddenRig' mL='0.5vw'>{Nade}</ImageHolder>
-    </div>
-
-    <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-      <ImageHolder maxWidth='34%' maxHeight='25vw'      dfu={Yuno}        orient='hiddenLef' mL='0.0vw'>{Yuno}</ImageHolder>
-      <ImageHolder maxWidth='34%' maxHeight='25vw'      dfu={Yuno2}       orient='hiddenBot' mL='0.5vw'>{Yuno2}</ImageHolder>
-      <ImageHolder maxWidth='34%' maxHeight='25vw'      dfu={Yuno3}       orient='hiddenTop' mL='0.5vw'>{Yuno3}</ImageHolder>
-    </div>
-
-    <div className={'Row seventyfive'} style={{marginTop: '0.5vw'}}>
-      <ImageHolder maxWidth='33%' maxHeight='27vw'      dfu={Soldier}     orient='hiddenLef' mL='0.0vw'>{Soldier}</ImageHolder>
-      <ImageHolder maxWidth='40%' maxHeight='27vw'      dfu={Skull}       orient='hiddenBot' mL='0.5vw'>{Skull}</ImageHolder>
-      <ImageHolder maxWidth='40%' maxHeight='27vw'      dfu={Artstyle3}   orient='hiddenRig' mL='0.5vw'>{Artstyle3}</ImageHolder>
-    </div>
-
-    <div style={{height: '10vh'}}></div>
-  </div>
 )
 
 function myFunction() {  

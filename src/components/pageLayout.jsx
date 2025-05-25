@@ -4,6 +4,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import ScrollToTopButton  from './scrollToTopButton';
 import ImageHolder  from './imageHolder';
 import NavButton  from './navbtn';
+import NavDropdown from './navdropdown';
 import Logo       from '../res/selficon.jpg';
 import Youtube    from '../res/icons/youtube.png';
 import Instagram  from '../res/icons/instagram.png';
@@ -20,7 +21,6 @@ function updateUAClock() {
   setTimeout(() => {
     updateUAClock();
     let total = parseInt(Date.now()) - 1645657200000;
-    console.log(parseInt(Date.now()) - 1645657200000);
     const days = parseInt(total / (1000 * 60 * 60 * 24));
     total -= days * (1000 * 60 * 60 * 24);
     const hours = parseInt(total / (1000 * 60 * 60));
@@ -53,11 +53,11 @@ export default function PageLayout ({children}) {
         <NavButton id={'playground'}   to='/playground'>HTML-Playground</NavButton>
         <NavButton id={'models'}       to='/models'>3D Models</NavButton>
         <div style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
-          <DropdownButton menuVariant={'dark'} drop={'end'} id={'dropdown-basic-button'} style={{marginLeft: '1vw'}} title='▼'>
-            <Dropdown.Item><NavButton id={'about'}   customClass={'menu-vertical'} to='/about'>About</NavButton></Dropdown.Item>
-            <Dropdown.Item><NavButton id={'contact'} customClass={'menu-vertical'} to='/contact'>Contact</NavButton></Dropdown.Item>
-            <Dropdown.Item><NavButton id={'privacy'} customClass={'menu-vertical'} to='/privacy'>Privacy-Policy</NavButton></Dropdown.Item>
-          </DropdownButton>
+          <NavDropdown>
+            <NavButton id={'about'}   customClass={'menu-vertical'} to='/about'>About</NavButton>
+            <NavButton id={'contact'} customClass={'menu-vertical'} to='/contact'>Contact</NavButton>
+            <NavButton id={'privacy'} customClass={'menu-vertical'} to='/privacy'>Privacy-Policy</NavButton>
+          </NavDropdown>
         </div>
       </div>
       <hr size={1} width={'100%'} style={{marginTop: '0vw', marginBottom: '0vw'}}/>

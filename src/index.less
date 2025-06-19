@@ -134,7 +134,7 @@ body {
 }
 
 .limited-width {
-  width: 65%;
+  width: var(--dynamic-width, clamp(50%, calc(90vw - 30vh), 90%));
 }
 
 .image-holder-wrapper {

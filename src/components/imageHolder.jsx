@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-export default function ImageHolder({ children, dfu, mL, wdth, orient, zoom = false, onLoadDimensions, wrapperRef, show }) {
+export default function ImageHolder({ children, dfu, cutoff, wdth, orient, zoom = false, onLoadDimensions, wrapperRef, show }) {
   const imageRef = useRef();
 
   const handleMouseMove = (event) => {
@@ -33,11 +33,12 @@ export default function ImageHolder({ children, dfu, mL, wdth, orient, zoom = fa
   return (
     <div ref={wrapperRef} className={`image-holder-wrapper${show ? ' show' : ''}`}>
       <div className={`image-holder-container ${zoom ? 'cursor-zoom' : ''}`} onMouseMove={handleMouseMove} onMouseLeave={resetZoom}>
-        <img className={`image-holder-image show-target ${orient}${zoom ? ' cursor-zoom-image' : ''}`}
-          ref={imageRef} style={{width: wdth, marginLeft: mL}} data-full-url={dfu} src={children} alt=""
+        <img className={`image-holder-image show-target ${orient}${zoom ? ' cursor-zoom-image' : ''}`} ref={imageRef} style={{width: wdth}} data-full-url={dfu} src={children} alt=""
           onLoad={(e) => {
             if (typeof onLoadDimensions === 'function') {
-              onLoadDimensions(e.target.naturalWidth, e.target.naturalHeight);
+              const natW = e.target.naturalWidth;
+              const natH = e.target.naturalHeight;
+              onLoadDimensions(natW, natH, cutoff);
             }
           }}
         />

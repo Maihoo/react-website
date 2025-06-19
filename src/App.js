@@ -223,7 +223,7 @@ function App() {
 
       <ImageRow>
         <ImageHolder zoom orient='hiddenLef' dfu={FSHaiopei2}>{Haiopei2}</ImageHolder>
-        <ImageHolder zoom orient='hiddenRig' dfu={FSAnne}>{Anne}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSAnne} cutoff='30%'>{Anne}</ImageHolder>
       </ImageRow>
 
       <ImageRow>
@@ -262,7 +262,7 @@ function App() {
 
       <ImageRow>
         <ImageHolder zoom orient='hiddenLef' dfu={FSJLineart}>{JLineart}</ImageHolder>
-        <ImageHolder zoom orient='hiddenTop' dfu={FSLiS}>{LiS}</ImageHolder>
+        <ImageHolder zoom orient='hiddenTop' dfu={FSLiS} cutoff='40%'>{LiS}</ImageHolder>
         <ImageHolder zoom orient='hiddenRig' dfu={FSPraise}>{Praise}</ImageHolder>
       </ImageRow>
 

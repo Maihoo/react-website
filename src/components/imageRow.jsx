@@ -5,10 +5,12 @@ export default function ImageRow({ children }) {
   const wrapperRefs = useRef([]);
   const [visibleSet, setVisibleSet] = useState({});
 
-  const handleLoadDimensions = (index, width, height) => {
+  const handleLoadDimensions = (index, width, height, cutoff = '0') => {
+    const parsed = typeof cutoff === 'string' && cutoff.trim().endsWith('%') ? parseFloat(cutoff) / 100 : 0;
+    const visibleWidth = width * (1 - parsed);
     setSizes(prev => {
       if (prev[index]) return prev;
-      return { ...prev, [index]: { width, height } };
+      return { ...prev, [index]: { width: visibleWidth, height } };
     });
   };
 
@@ -20,13 +22,47 @@ export default function ImageRow({ children }) {
   }, [count]);
 
   useEffect(() => {
+    const aspectRatio = window.innerWidth / window.innerHeight;
+    const minWidth = 20;
+    const maxWidth = 90;
+    const minAR = 1;
+    const maxAR = 2.5;
+    const clampedAR = Math.min(Math.max(aspectRatio, minAR), maxAR);
+    const width = maxWidth - ((clampedAR - minAR) / (maxAR - minAR)) * (maxWidth - minWidth);
+    const widthPercent = width.toFixed(2) + '%';
+
+    // Set CSS variable globally
+    document.documentElement.style.setProperty('--dynamic-width', widthPercent);
+
+    // Setup resize listener to update it dynamically
+    function updateWidthPercent() {
+      const aspectRatio = window.innerWidth / window.innerHeight;
+      const clampedAR = Math.min(Math.max(aspectRatio, minAR), maxAR);
+      const width = maxWidth - ((clampedAR - minAR) / (maxAR - minAR)) * (maxWidth - minWidth);
+      const widthPercent = width.toFixed(2) + '%';
+      document.documentElement.style.setProperty('--dynamic-width', widthPercent);
+    }
+
+    window.addEventListener('resize', updateWidthPercent);
+    return () => window.removeEventListener('resize', updateWidthPercent);
+  }, []);
+
+  const [resizeTick, setResizeTick] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => setResizeTick(prev => prev + 1);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         setVisibleSet((prev) => {
           const updated = { ...prev };
           entries.forEach(entry => {
             const index = parseInt(entry.target.dataset.index, 10);
-            updated[index] = entry.isIntersecting; // ✅ set true or false
+            updated[index] = entry.isIntersecting;
           });
           return updated;
         });
@@ -57,10 +93,10 @@ export default function ImageRow({ children }) {
 
   if (!allLoaded) {
     return (
-      <div className="image-row image-row-dynamic limited-width" style={{ display: 'flex', gap: '0.75rem' }}>
+      <div className="image-row image-row-dynamic limited-width">
         {React.Children.map(children, (child, index) =>
           React.cloneElement(child, {
-            onLoadDimensions: (w, h) => handleLoadDimensions(index, w, h),
+            onLoadDimensions: (w, h) => handleLoadDimensions(index, w, h, child.props.cutoff),
             ...getPropsForIndex(index),
           })
         )}
@@ -69,11 +105,12 @@ export default function ImageRow({ children }) {
   }
 
   const aspectRatios = Object.values(sizes).map(({ width, height }) => width / height);
-  const totalTargetWidth = window.innerWidth * 0.65;
+  const computedWidth = getComputedStyle(document.documentElement).getPropertyValue('--dynamic-width').trim();
+  const containerPixelWidth = (parseFloat(computedWidth) / 100) * window.innerWidth;
 
   const gapInPx = 0.75 * parseFloat(getComputedStyle(document.documentElement).fontSize || 16);
-  const totalGapWidth = gapInPx * (count - 1);
-  const availableWidth = totalTargetWidth - totalGapWidth;
+  const totalGapWidth = gapInPx * count;
+  const availableWidth = containerPixelWidth - totalGapWidth;
 
   const commonHeight = 200;
   const rawWidths = aspectRatios.map(ar => ar * commonHeight);
@@ -92,7 +129,7 @@ export default function ImageRow({ children }) {
   });
 
   return (
-    <div className="image-row image-row-dynamic limited-width" style={{ display: 'flex', gap: '0.75rem' }}>
+    <div className="image-row image-row-dynamic limited-width">
       {scaledChildren}
     </div>
   );

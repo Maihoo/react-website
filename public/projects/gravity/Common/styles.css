@@ -2,14 +2,14 @@
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
 
-body { 
+body {
   overflow: hidden;
-  margin: 0; 
+  margin: 0;
   background-color: black;
-  position:relative; 
-  margin-top:0px; 
+  position:relative;
+  margin-top:0px;
   overflow: hidden;
-  /*height:max-content; 
+  /*height:max-content;
   width:min-content;*/
   display: block;
 }

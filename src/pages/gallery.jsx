@@ -58,8 +58,7 @@ import ScrollAnimHolder from '../components/scrollAnimHolder';
 const GalleryPage = ({children}) => (
   <div id={'backgroundmain'} onScroll={myFunction} style={{position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', zIndex: '1', overflow: 'hidden'}}>
 
-    {//PASTE FROM HERE (remove FS)
-    }
+    {/* PASTE TO HERE (remove FS) */}
 
       <div className={'limited-width'}>
         <ScrollAnimHolder><h3>Gallery</h3></ScrollAnimHolder>
@@ -69,55 +68,55 @@ const GalleryPage = ({children}) => (
         <ScrollAnimHolder><h2>Oil Paintings</h2></ScrollAnimHolder>
       </div>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='24.9vw'   orient='hiddenLef' dfu={Bored}>{Bored}</ImageHolder>
-        <ImageHolder zoom maxHeight='24.9vw'   orient='hiddenMid' dfu={Haiopei}>{Haiopei}</ImageHolder>
-        <ImageHolder zoom maxHeight='24.9vw'   orient='hiddenRig' dfu={Annika}>{Annika}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSBored}>{Bored}</ImageHolder>
+        <ImageHolder zoom orient='hiddenTop' dfu={FSHaiopei}>{Haiopei}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSAnnika}>{Annika}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='25vw'   orient='hiddenLef' dfu={JTraining}>{F22}</ImageHolder>
-        <ImageHolder zoom maxHeight='25vw'   orient='hiddenRig' dfu={Manni}>{Manni}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSJTraining}>{F22}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSManni}>{Manni}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='44vw'   orient='hiddenLef' dfu={Bismarck}>{Bismarck}</ImageHolder>
-        <ImageHolder zoom maxHeight='44vw'   orient='hiddenRig' dfu={Julia}>{Julia}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSBismarck}>{Bismarck}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSJulia}>{Julia}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='29.2vw' orient='hiddenLef' dfu={Dust2}>{Dust2}</ImageHolder>
-        <ImageHolder zoom maxHeight='29.2vw' orient='hiddenRig' dfu={PinoPrinz}>{PinoPrinz}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSDust2}>{Dust2}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSPinoPrinz}>{PinoPrinz}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='30vw'   orient='hiddenLef' dfu={Mi}>{Mi}</ImageHolder>
-        <ImageHolder zoom maxHeight='30vw'   orient='hiddenRig' dfu={Paps}>{Paps}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSMi}>{Mi}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSPaps}>{Paps}</ImageHolder>
+      </ImageRow>
 
       <div className={'limited-width'}>
         <ScrollAnimHolder orient='hiddenLef2'> <h2 style={{paddingTop: '55px'}}>Drawings</h2> </ScrollAnimHolder>
       </div>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='45.5vw' orient='hiddenLef' dfu={Stine}>{Stine}</ImageHolder>
-        <ImageHolder zoom maxHeight='45.5vw' orient='hiddenRig' dfu={Timmermann}>{Timmermann}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSStine}>{Stine}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSTimmermann}>{Timmermann}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenLef' dfu={Haiopei2}>{Haiopei2}</ImageHolder>
-        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenRig' dfu={Anne} maxWidth='55%'>{Anne}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSHaiopei2}>{Haiopei2}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSAnne}>{Anne}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='49.5vw' orient='hiddenLef' dfu={Baby}>{Baby}</ImageHolder>
-        <ImageHolder zoom maxHeight='49.5vw' orient='hiddenRig' dfu={Fresen}>{Fresen}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSBaby}>{Baby}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSFresen}>{Fresen}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='23.7vw' orient='hiddenLef' dfu={Thore}>{Thore}</ImageHolder>
-        <ImageHolder zoom maxHeight='23.7vw' orient='hiddenRig' dfu={AK47}>{AK47}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSThore}>{Thore}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSAK47}>{AK47}</ImageHolder>
+      </ImageRow>
 
       <div className={'limited-width'}>
         <ScrollAnimHolder orient='hiddenLef2'>
@@ -125,11 +124,11 @@ const GalleryPage = ({children}) => (
         </ScrollAnimHolder>
       </div>
 
-      <div className={'image-row limited-width'}>
+      <ImageRow>
         <ScrollAnimHolder orient='hiddenLef2'>
           <video src={IntroVideo} width="100% " controls={"controls"} autoPlay loop muted/>
         </ScrollAnimHolder>
-      </div>
+      </ImageRow>
 
       <div className={'limited-width'}>
         <ScrollAnimHolder orient='hiddenLef2'>
@@ -137,43 +136,43 @@ const GalleryPage = ({children}) => (
         </ScrollAnimHolder>
       </div>
 
-      <div className={'image-row limited-width'}>
+      <ImageRow>
         <ScrollAnimHolder orient='hiddenLef2'>
           <video src={Video} width="100%" controls={"controls"} autoPlay loop/>
         </ScrollAnimHolder>
-      </div>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='24vw'   orient='hiddenLef' dfu={JLineart}>{JLineart}</ImageHolder>
-        <ImageHolder zoom maxHeight='24vw'   orient='hiddenTop' dfu={LiS} maxWidth='52.5%' mL='-10%'>{LiS}</ImageHolder>
-        <ImageHolder zoom maxHeight='24vw'   orient='hiddenRig' dfu={Praise}>{Praise}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSJLineart}>{JLineart}</ImageHolder>
+        <ImageHolder zoom orient='hiddenTop' dfu={FSLiS}>{LiS}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSPraise}>{Praise}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='27vw'   orient='hiddenLef' dfu={IQ}>{IQ}</ImageHolder>
-        <ImageHolder zoom maxHeight='27vw'   orient='hiddenRig' dfu={Nade}>{Nade}</ImageHolder>
-        <ImageHolder zoom maxHeight='27vw'   orient='hiddenLef' dfu={Soldier}>{Soldier}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSIQ}>{IQ}</ImageHolder>
+        <ImageHolder zoom orient='hiddenMid' dfu={FSNade}>{Nade}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSSoldier}>{Soldier}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='21.5vw'   orient='hiddenBot' dfu={KSP}>{KSP}</ImageHolder>
-        <ImageHolder zoom maxHeight='21.5vw'   orient='hiddenRig' dfu={Skull}>{Skull}</ImageHolder>
-        <ImageHolder zoom maxHeight='21.5vw'   orient='hiddenRig' dfu={Artstyle3}>{Artstyle3}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSKSP}>{KSP}</ImageHolder>
+        <ImageHolder zoom orient='hiddenBot' dfu={FSSkull}>{Skull}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSArtstyle3}>{Artstyle3}</ImageHolder>
+      </ImageRow>
 
       {/*
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenLef' dfu={Yuno}>{Yuno}</ImageHolder>
-        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenBot' dfu={Yuno2}>{Yuno2}</ImageHolder>
-        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenTop' dfu={Yuno3}>{Yuno3}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSYuno}>{Yuno}</ImageHolder>
+        <ImageHolder zoom orient='hiddenBot' dfu={FSYuno2}>{Yuno2}</ImageHolder>
+        <ImageHolder zoom orient='hiddenTop' dfu={FSYuno3}>{Yuno3}</ImageHolder>
+      </ImageRow>
       */}
 
       <div style={{height: '10vh'}}></div>
     </div>
 )
 
-function myFunction() {  
+function myFunction() {
   var scrolltotop = document.scrollingElement.scrollTop;
   var target = document.getElementById("main1");
   var xvalue = "center";

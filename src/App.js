@@ -115,6 +115,7 @@ import IntroImage from './res/intro.jpg';
 import FIntroImage from './res/fullsize/intro.jpg';
 
 import ImageHolder from './components/imageHolder';
+import ImageRow from './components/imageRow';
 import ScrollAnimHolder from './components/scrollAnimHolder';
 
 
@@ -185,55 +186,55 @@ function App() {
         <ScrollAnimHolder><h2>Oil Paintings</h2></ScrollAnimHolder>
       </div>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='24.9vw'   orient='hiddenLef' dfu={FSBored}>{Bored}</ImageHolder>
-        <ImageHolder zoom maxHeight='24.9vw'   orient='hiddenMid' dfu={FSHaiopei}>{Haiopei}</ImageHolder>
-        <ImageHolder zoom maxHeight='24.9vw'   orient='hiddenRig' dfu={FSAnnika}>{Annika}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSBored}>{Bored}</ImageHolder>
+        <ImageHolder zoom orient='hiddenTop' dfu={FSHaiopei}>{Haiopei}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSAnnika}>{Annika}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='25vw'   orient='hiddenLef' dfu={FSJTraining}>{F22}</ImageHolder>
-        <ImageHolder zoom maxHeight='25vw'   orient='hiddenRig' dfu={FSManni}>{Manni}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSJTraining}>{F22}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSManni}>{Manni}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='44vw'   orient='hiddenLef' dfu={FSBismarck}>{Bismarck}</ImageHolder>
-        <ImageHolder zoom maxHeight='44vw'   orient='hiddenRig' dfu={FSJulia}>{Julia}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSBismarck}>{Bismarck}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSJulia}>{Julia}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='29.2vw' orient='hiddenLef' dfu={FSDust2}>{Dust2}</ImageHolder>
-        <ImageHolder zoom maxHeight='29.2vw' orient='hiddenRig' dfu={FSPinoPrinz}>{PinoPrinz}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSDust2}>{Dust2}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSPinoPrinz}>{PinoPrinz}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='30vw'   orient='hiddenLef' dfu={FSMi}>{Mi}</ImageHolder>
-        <ImageHolder zoom maxHeight='30vw'   orient='hiddenRig' dfu={FSPaps}>{Paps}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSMi}>{Mi}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSPaps}>{Paps}</ImageHolder>
+      </ImageRow>
 
       <div className={'limited-width'}>
         <ScrollAnimHolder orient='hiddenLef2'> <h2 style={{paddingTop: '55px'}}>Drawings</h2> </ScrollAnimHolder>
       </div>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='45.5vw' orient='hiddenLef' dfu={FSStine}>{Stine}</ImageHolder>
-        <ImageHolder zoom maxHeight='45.5vw' orient='hiddenRig' dfu={FSTimmermann}>{Timmermann}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSStine}>{Stine}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSTimmermann}>{Timmermann}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenLef' dfu={FSHaiopei2}>{Haiopei2}</ImageHolder>
-        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenRig' dfu={FSAnne} maxWidth='55%'>{Anne}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSHaiopei2}>{Haiopei2}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSAnne}>{Anne}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='49.5vw' orient='hiddenLef' dfu={FSBaby}>{Baby}</ImageHolder>
-        <ImageHolder zoom maxHeight='49.5vw' orient='hiddenRig' dfu={FSFresen}>{Fresen}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSBaby}>{Baby}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSFresen}>{Fresen}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='23.7vw' orient='hiddenLef' dfu={FSThore}>{Thore}</ImageHolder>
-        <ImageHolder zoom maxHeight='23.7vw' orient='hiddenRig' dfu={FSAK47}>{AK47}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSThore}>{Thore}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSAK47}>{AK47}</ImageHolder>
+      </ImageRow>
 
       <div className={'limited-width'}>
         <ScrollAnimHolder orient='hiddenLef2'>
@@ -241,11 +242,11 @@ function App() {
         </ScrollAnimHolder>
       </div>
 
-      <div className={'image-row limited-width'}>
+      <ImageRow>
         <ScrollAnimHolder orient='hiddenLef2'>
           <video src={IntroVideo} width="100% " controls={"controls"} autoPlay loop muted/>
         </ScrollAnimHolder>
-      </div>
+      </ImageRow>
 
       <div className={'limited-width'}>
         <ScrollAnimHolder orient='hiddenLef2'>
@@ -253,36 +254,36 @@ function App() {
         </ScrollAnimHolder>
       </div>
 
-      <div className={'image-row limited-width'}>
+      <ImageRow>
         <ScrollAnimHolder orient='hiddenLef2'>
           <video src={Video} width="100%" controls={"controls"} autoPlay loop/>
         </ScrollAnimHolder>
-      </div>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='24vw'   orient='hiddenLef' dfu={FSJLineart}>{JLineart}</ImageHolder>
-        <ImageHolder zoom maxHeight='24vw'   orient='hiddenTop' dfu={FSLiS} maxWidth='52.5%' mL='-10%'>{LiS}</ImageHolder>
-        <ImageHolder zoom maxHeight='24vw'   orient='hiddenRig' dfu={FSPraise}>{Praise}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSJLineart}>{JLineart}</ImageHolder>
+        <ImageHolder zoom orient='hiddenTop' dfu={FSLiS}>{LiS}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSPraise}>{Praise}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='27vw'   orient='hiddenLef' dfu={FSIQ}>{IQ}</ImageHolder>
-        <ImageHolder zoom maxHeight='27vw'   orient='hiddenRig' dfu={FSNade}>{Nade}</ImageHolder>
-        <ImageHolder zoom maxHeight='27vw'   orient='hiddenLef' dfu={FSSoldier}>{Soldier}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSIQ}>{IQ}</ImageHolder>
+        <ImageHolder zoom orient='hiddenMid' dfu={FSNade}>{Nade}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSSoldier}>{Soldier}</ImageHolder>
+      </ImageRow>
 
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='21.5vw'   orient='hiddenBot' dfu={FSKSP}>{KSP}</ImageHolder>
-        <ImageHolder zoom maxHeight='21.5vw'   orient='hiddenRig' dfu={FSSkull}>{Skull}</ImageHolder>
-        <ImageHolder zoom maxHeight='21.5vw'   orient='hiddenRig' dfu={FSArtstyle3}>{Artstyle3}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSKSP}>{KSP}</ImageHolder>
+        <ImageHolder zoom orient='hiddenBot' dfu={FSSkull}>{Skull}</ImageHolder>
+        <ImageHolder zoom orient='hiddenRig' dfu={FSArtstyle3}>{Artstyle3}</ImageHolder>
+      </ImageRow>
 
       {/*
-      <div className={'image-row limited-width'}>
-        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenLef' dfu={FSYuno}>{Yuno}</ImageHolder>
-        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenBot' dfu={FSYuno2}>{Yuno2}</ImageHolder>
-        <ImageHolder zoom maxHeight='21.5vw' orient='hiddenTop' dfu={FSYuno3}>{Yuno3}</ImageHolder>
-      </div>
+      <ImageRow>
+        <ImageHolder zoom orient='hiddenLef' dfu={FSYuno}>{Yuno}</ImageHolder>
+        <ImageHolder zoom orient='hiddenBot' dfu={FSYuno2}>{Yuno2}</ImageHolder>
+        <ImageHolder zoom orient='hiddenTop' dfu={FSYuno3}>{Yuno3}</ImageHolder>
+      </ImageRow>
       */}
 
       <div style={{height: '10vh'}}></div>

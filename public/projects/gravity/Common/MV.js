@@ -32,7 +32,7 @@ function vec2()
     switch ( result.length ) {
     case 0: result.push( 0.0 );
     case 1: result.push( 0.0 );
-    default: result.push( 0.0 ); 
+    default: result.push( 0.0 );
     }
 
     return result.splice( 0, 2 );

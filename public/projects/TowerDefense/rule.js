@@ -92,7 +92,7 @@ function moveShots(newTimeStamp) {
     var tower;
     var entity;
 
-    if(document.getElementById(shot.source) == null || document.getElementById(shot.target) == null ) { 
+    if(document.getElementById(shot.source) == null || document.getElementById(shot.target) == null ) {
       tower = null;
       entity = null;
     } else {
@@ -102,7 +102,7 @@ function moveShots(newTimeStamp) {
 
     switch (shot.type.charAt(0)) {
       case 'n':
-        if(tower == null || entity == null ) {  
+        if(tower == null || entity == null ) {
           const index = shots.indexOf(shot);
           if (index > -1) { shots.splice(index, 1); }
           shot.remove();
@@ -178,13 +178,13 @@ function moveShots(newTimeStamp) {
             var distance = (Math.sqrt((distX * distX) + (distY * distY)));
 
             var explosionRadius = 150;
-        
+
             if (distance < explosionRadius && entity.active == 'a') {
               entity.children[1].style.opacity = '1.0';
               entity.hp = '' + (parseInt(entity.hp) - parseInt(   shot.dmg * parseFloat(explosionRadius - distance) / explosionRadius   ));
               var corrected = parseInt(42.0*(parseFloat(entity.hp) / parseFloat(entity.maxhp)));
               if(corrected > 0 && corrected <= 42) { entity.children[1].src = 'res/UI/health/health_' + corrected + '.png'; }
-              else { 
+              else {
                 removeEntity(entity);
               }
             }
@@ -197,7 +197,7 @@ function moveShots(newTimeStamp) {
         break;
 
       case 'l':
-        if(tower == null || entity == null ) {  
+        if(tower == null || entity == null ) {
           const index = shots.indexOf(shot);
           if (index > -1) { shots.splice(index, 1); }
           shot.remove();
@@ -256,7 +256,7 @@ function endWave() {
   startWave.addEventListener('click', start);
   setVehicleNumbers(wave);
 
-  
+
   document.getElementById('modeText').textContent = 'BUILDING';
 }
 
@@ -288,7 +288,7 @@ function startShot(entity, tower, timestamp) {
 
   shots.push(shot);
   document.body.appendChild(shot);
-  
+
 }
 
 function towerMove(timestamp, previousTimestamp) {
@@ -305,7 +305,7 @@ function towerMove(timestamp, previousTimestamp) {
         var distX = marginToInt(tower.style.marginTop) - marginToInt(entity.style.marginTop);
         var distY = marginToInt(tower.style.marginLeft) - marginToInt(entity.style.marginLeft);
         var distance = (Math.sqrt((distX * distX) + (distY * distY)));
-        
+
         if (distance < parseInt(tower.radius) && entity.active == 'a') {
 
           if(timestamp - parseInt(tower.lastShot) > parseInt(tower.delay)) {
@@ -333,9 +333,9 @@ function towerMove(timestamp, previousTimestamp) {
               if (distX > 0 && distY < 0) { angle = angle * (-1); }
               if (distX < 0 && distY < 0) { angle = 180 - angle; }
               if (distX < 0 && distY > 0) { angle = angle * (-1); angle = 180 + angle; }
-  
+
               angle = parseInt(angle);
-    
+
               if (angle >= 349 || angle <=  11) { tower.className = 'img img-normal_up'             ; break loop2; }
               if (angle >=  12 && angle <=  33) { tower.className = 'img img-normal_upupright'      ; break loop2; }
               if (angle >=  34 && angle <=  56) { tower.className = 'img img-normal_upright'        ; break loop2; }
@@ -344,7 +344,7 @@ function towerMove(timestamp, previousTimestamp) {
               if (angle >= 101 && angle <= 122) { tower.className = 'img img-normal_rightrightdown' ; break loop2; }
               if (angle >= 123 && angle <= 145) { tower.className = 'img img-normal_rightdown'      ; break loop2; }
               if (angle >= 146 && angle <= 167) { tower.className = 'img img-normal_rightdowndown'  ; break loop2; }
-              if (angle >= 168 && angle <= 190) { tower.className = 'img img-normal_down'           ; break loop2; } 
+              if (angle >= 168 && angle <= 190) { tower.className = 'img img-normal_down'           ; break loop2; }
               if (angle >= 191 && angle <= 212) { tower.className = 'img img-normal_downdownleft'   ; break loop2; }
               if (angle >= 213 && angle <= 235) { tower.className = 'img img-normal_downleft'       ; break loop2; }
               if (angle >= 236 && angle <= 257) { tower.className = 'img img-normal_downleftleft'   ; break loop2; }
@@ -352,8 +352,8 @@ function towerMove(timestamp, previousTimestamp) {
               if (angle >= 281 && angle <= 302) { tower.className = 'img img-normal_leftleftup'     ; break loop2; }
               if (angle >= 303 && angle <= 325) { tower.className = 'img img-normal_leftup'         ; break loop2; }
               if (angle >= 326 && angle <= 348) { tower.className = 'img img-normal_leftupup'       ; break loop2; }
-    
-              break loop2; 
+
+              break loop2;
             }
             if(tower.type.charAt(0) == 'm') {
               if(distX == 0) { distX = 1; }
@@ -363,15 +363,15 @@ function towerMove(timestamp, previousTimestamp) {
               if (distX > 0 && distY < 0) { angle = angle * (-1); }
               if (distX < 0 && distY < 0) { angle = 180 - angle; }
               if (distX < 0 && distY > 0) { angle = angle * (-1); angle = 180 + angle; }
-  
+
               angle = parseInt(angle);
-    
+
               if (angle >= 315 || angle <=   44) { tower.className = 'img img-mortar_up'    ; break loop2; }
               if (angle >=  45 && angle <=  134) { tower.className = 'img img-mortar_right' ; break loop2; }
               if (angle >= 135 && angle <=  224) { tower.className = 'img img-mortar_down'  ; break loop2; }
               if (angle >= 225 && angle <=  314) { tower.className = 'img img-mortar_left'  ; break loop2; }
-              
-              break loop2; 
+
+              break loop2;
             }
           }
         }
@@ -416,7 +416,7 @@ function entityMove(timestamp, previousTimestamp) {
           diffY = then[1] - now[1];
         }
 
-        if(intPP > path.length - 1) { 
+        if(intPP > path.length - 1) {
           entity.active = 'x';
           break;
         }
@@ -493,58 +493,58 @@ function entityMove(timestamp, previousTimestamp) {
       case 'd':
         if(entity.bodge.charAt(0) == '0') { entity.bodge = '' + i }
         var tempString = '';
-        if(entity.path.charAt(0) == '1') { 
-          tempString = '' + (-100 + parseInt(parseFloat((parseInt(entity.delta) - waveDistance * parseInt(entity.bodge)) * 64) / 1000.0)) + 'px'; 
+        if(entity.path.charAt(0) == '1') {
+          tempString = '' + (-100 + parseInt(parseFloat((parseInt(entity.delta) - waveDistance * parseInt(entity.bodge)) * 64) / 1000.0)) + 'px';
           entity.children[0].src    = 'res/Entities/' + entity.type + '/' + entity.type + '_down.png';
-        } else { 
-          tempString = '' + ( 970 - parseInt(parseFloat((parseInt(entity.delta) - waveDistance * parseInt(entity.bodge)) * 64) / 1000.0)) + 'px'; 
+        } else {
+          tempString = '' + ( 970 - parseInt(parseFloat((parseInt(entity.delta) - waveDistance * parseInt(entity.bodge)) * 64) / 1000.0)) + 'px';
           entity.children[0].src    = 'res/Entities/' + entity.type + '/' + entity.type + '_up.png';
         }
         entity.style.marginTop = tempString;
         entity.style.zIndex = '' + (2000 + parseInt(entity.style.marginTop.slice(0, -2)));
         var strt = path[0];
-        try{ 
-          var rslt = coordinatesOnField(strt[0], strt[1]); 
+        try{
+          var rslt = coordinatesOnField(strt[0], strt[1]);
           if (entity.path.charAt(0) == '1' && parseInt((entity.style.marginTop).slice(0, -2)) > rslt[0]) {
             entity.active = 'm';
             entity.delta  = '0';
             entity.originalPosX = tempString;
-            entity.children[0].src    = 'res/Entities/' + entity.type + '/' + entity.type + '_right.png'; 
-          } 
+            entity.children[0].src    = 'res/Entities/' + entity.type + '/' + entity.type + '_right.png';
+          }
           if (entity.path.charAt(0) == '2' && parseInt((entity.style.marginTop).slice(0, -2)) < rslt[0]) {
             entity.active = 'm';
             entity.delta  = '0';
             entity.originalPosX = tempString;
             entity.children[0].src    = 'res/Entities/' + entity.type + '/' + entity.type + '_right.png';
-          } 
+          }
         } catch(e) {}
-        
+
         break;
 
       case 'm':
         var tempString = '' + (380 + parseInt(parseFloat((parseInt(entity.delta)) * 64) / 1000.0)) + 'px';
         entity.style.marginLeft = tempString;
         var strt = path[0];
-        var rslt = coordinatesOnField(strt[0], strt[1]); 
+        var rslt = coordinatesOnField(strt[0], strt[1]);
         if (parseInt((entity.style.marginLeft).slice(0, -2)) > rslt[1]) { entity.active = 'a'; entity.originalPosY = tempString; }
-        
+
         break;
-      
+
       case 'x':
         if(parseInt(entity.style.marginLeft.slice(0,-2)) > 1400) {
           myHP = myHP - parseInt(entity.hp);
           document.getElementById('hpText').textContent = 'HP: ' + myHP;
           entity.hp     = '0';
           entity.active = 'y';
-          entity.children[0].src = 'res/Entities/' + entity.type + '/' + entity.type + '_up.png'; 
+          entity.children[0].src = 'res/Entities/' + entity.type + '/' + entity.type + '_up.png';
         }
-        entity.children[0].src = 'res/Entities/' + entity.type + '/' + entity.type + '_right.png'; 
+        entity.children[0].src = 'res/Entities/' + entity.type + '/' + entity.type + '_right.png';
         var tempString = '' + (1270 + parseInt(parseFloat((parseInt(entity.delta)) * 64) / 1000.0)) + 'px';
         entity.style.marginLeft = tempString;
         break;
-  
+
       case 'y':
-        entity.children[0].src = 'res/Entities/' + entity.type + '/' + entity.type + '_up.png'; 
+        entity.children[0].src = 'res/Entities/' + entity.type + '/' + entity.type + '_up.png';
         var tempString  = '' + (530 - parseInt(parseFloat((parseInt(entity.delta)) * 64) / 1000.0)) + 'px';
         entity.style.marginTop = tempString;
         entity.style.zIndex = '' + (2000 + parseInt(entity.style.marginTop.slice(0, -2)));
@@ -599,7 +599,7 @@ function setVehicleNumbers(wave) {
     case 5:
       bikeAmount   = 2;
       jeepAmount   = 5;
-      lorryAmount  = 5; 
+      lorryAmount  = 5;
       lavAmount    = 8;
       tankAmount   = 2;
       waveDistance = 500;
@@ -607,7 +607,7 @@ function setVehicleNumbers(wave) {
     case 6:
       bikeAmount   = 8;
       jeepAmount   = 0;
-      lorryAmount  = 5; 
+      lorryAmount  = 5;
       lavAmount    = 10;
       tankAmount   = 10;
       waveDistance = 400;
@@ -711,7 +711,7 @@ function fillShop() {
   createButton(1, 2, 'btn btn-shop', 'position:absolute; margin-top: 155px; margin-left: 240px', 'absolute', '0px', '0px', 'locked', 'shop');
 
   createButton(2, 0, 'btn btn-shop', 'position:absolute; margin-top: 232px; margin-left:  40px', 'absolute', '0px', '0px', 'locked', 'shop');
-  
+
   var laser = createButton(2, 1, 'btn btn-shop', 'position:absolute; margin-top:  232px; margin-left: 140px', 'absolute', '0px', '0px', 'locked', 'shop');
   laser.style.color = 'red';
   laser.addEventListener('click', function () { buildButtonClick(laser, 'laser'); });
@@ -809,9 +809,9 @@ function fillShop() {
   document.body.appendChild(sound);
   document.body.appendChild(soundImg);
 
-  sound.addEventListener('click', () => { 
-    soundOn = !soundOn; 
-    if(soundOn) { soundImg.src = 'res/UI/soundon.png' ; } 
+  sound.addEventListener('click', () => {
+    soundOn = !soundOn;
+    if(soundOn) { soundImg.src = 'res/UI/soundon.png' ; }
     else        { soundImg.src = 'res/UI/soundoff.png'; }
  });
 }
@@ -856,7 +856,7 @@ function pathToCoordsSub(input) {
 
 function showPath() {
   var temp1 = reversePath(path1);
-  
+
   temp1.push(start1);
   temp1.push([-2, -1]);
   temp1 = reversePath(temp1);
@@ -871,7 +871,7 @@ function showPath() {
   temp2.push([-2, 15]);
   drawPath(pathToCoords(temp2), false);
 
-  
+
   for(var i = 0; i < 13; i++) {
     for(var j = 0; j < 15; j++) {
       document.getElementById('p-' + i + '-' + j).textContent = '';
@@ -1000,14 +1000,14 @@ function generatePath(startCoordinates, endCoordinates, path) {
   searchList = [];
   recursion([startCoordinates], startCoordinates, endCoordinates, 'ludr', 'l', path);
   if ((path1.length == 0 && path) || ((path2.length == 0 && !path))) { return false; }
-  
+
   return true;
 }
 
 function check(input) {
 
   var result = reversePath(reversePath(input));
-  
+
   for(var i = 0; i < result.length - 1; i++) {
     var nodeI = result[i];
     var nodeIX = nodeI[0];
@@ -1016,10 +1016,10 @@ function check(input) {
     var nodeJX = nodeJ[0];
     var nodeJY = nodeJ[1];
 
-    if(!((nodeJX == nodeIX + 1) 
+    if(!((nodeJX == nodeIX + 1)
       || (nodeJX == nodeIX - 1)
       || (nodeJY == nodeIY + 1)
-      || (nodeJY == nodeIY - 1) )) 
+      || (nodeJY == nodeIY - 1) ))
     {
       var temp = reversePath(reversePath(result));
       var part1 = temp.splice(0, i);
@@ -1075,7 +1075,7 @@ function check(input) {
       for (var l = 0; l < part2.length; l++) { result.push(part2[l]); }
       for (var l = 0; l < part3.length; l++) { result.push(part3[l]); }
 
-     
+
     }
   }
   return result;
@@ -1085,7 +1085,7 @@ function optimize(input) {
 
   var result = reversePath(reversePath(input));
   //two of the same next to each other
-  
+
   for (var i = 0; i < result.length - 1; i++) {
     var nI = result[i];
     var nJ = result[i + 1];
@@ -1140,7 +1140,7 @@ function optimize(input) {
         return optimize(result);
         //return result;
       }
-      
+
       if (i != j && (nodeI[0] == nodeJ[0] && nodeI[1] == nodeJ[1])) {
         var temp = reversePath(reversePath(result));
         var part1 = temp.splice(0, i + 1);
@@ -1317,7 +1317,7 @@ function stepUp(sofar, startCoordinates, endCoordinates, pd, lastFail, path) {
   var contains = searchList.some(elem => {
     return (JSON.stringify(after) === JSON.stringify(elem[0]) && JSON.stringify(startCoordinates[1]) === JSON.stringify(elem[1]));
   });
-  if (after >= 0 && (document.getElementById('p-' + after + '-' + startCoordinates[1]).className.includes('void') 
+  if (after >= 0 && (document.getElementById('p-' + after + '-' + startCoordinates[1]).className.includes('void')
                   || document.getElementById('p-' + after + '-' + startCoordinates[1]).className.includes('spikes')) && !contains) {
     var res = recursion(sofar, [after, startCoordinates[1]], endCoordinates, pd + 'u', lastFail, path);
     if (res != null) {
@@ -1430,15 +1430,15 @@ function generateField() {
        || (j == 4 && i > 3)
        || (i == 9 && (j == 7 || j == 8 || j == 9))
        || (j == 10 && (Math.abs(i - 6) < 4 || i < 6))
-      ) { 
+      ) {
         var rdm = Math.random();
-               if (rdm < (1.0 / 6.0)) { place = createPlace(i, j, 'img img-stone1', 'position:absolute;', 'absolute', marLeft, marTop, 'largeimageholder'); } 
-        else { if (rdm < (2.0 / 6.0)) { place = createPlace(i, j, 'img img-stone2', 'position:absolute;', 'absolute', marLeft, marTop, 'largeimageholder'); } 
-        else { if (rdm < (3.0 / 6.0)) { place = createPlace(i, j, 'img img-stone3', 'position:absolute;', 'absolute', marLeft, marTop, 'largeimageholder'); } 
-        else { if (rdm < (4.0 / 6.0)) { place = createPlace(i, j, 'img img-stone4', 'position:absolute;', 'absolute', marLeft, marTop, 'largeimageholder'); } 
-        else { if (rdm < (5.0 / 6.0)) { place = createPlace(i, j, 'img img-stone5', 'position:absolute;', 'absolute', marLeft, marTop, 'largeimageholder'); } 
+               if (rdm < (1.0 / 6.0)) { place = createPlace(i, j, 'img img-stone1', 'position:absolute;', 'absolute', marLeft, marTop, 'largeimageholder'); }
+        else { if (rdm < (2.0 / 6.0)) { place = createPlace(i, j, 'img img-stone2', 'position:absolute;', 'absolute', marLeft, marTop, 'largeimageholder'); }
+        else { if (rdm < (3.0 / 6.0)) { place = createPlace(i, j, 'img img-stone3', 'position:absolute;', 'absolute', marLeft, marTop, 'largeimageholder'); }
+        else { if (rdm < (4.0 / 6.0)) { place = createPlace(i, j, 'img img-stone4', 'position:absolute;', 'absolute', marLeft, marTop, 'largeimageholder'); }
+        else { if (rdm < (5.0 / 6.0)) { place = createPlace(i, j, 'img img-stone5', 'position:absolute;', 'absolute', marLeft, marTop, 'largeimageholder'); }
         else {                          place = createPlace(i, j, 'img img-stone6', 'position:absolute;', 'absolute', marLeft, marTop, 'largeimageholder'); } } } } }
-      } 
+      }
       else { place = createPlace(i, j, 'img img-void', 'position:absolute; margin-top: 50px;', 'absolute', marLeft, marTop, 'largeimageholder'); }
 
       placeButton = createButton(i, j, 'btn btn-fld', 'position:absolute; margin-top: 64px;', 'absolute', marLeft + 18, marTop + 5, '', '');
@@ -1467,7 +1467,7 @@ function changeImage(plc, cN, isClicked) {
     place.remove();
 
     place.className = 'void';
-    place.dmg       = ''; 
+    place.dmg       = '';
     place.radius    = '';
     place.delay     = '';
     place.price     = '';
@@ -1513,7 +1513,7 @@ function changeImage(plc, cN, isClicked) {
     switch (building.charAt(0)) {
       case 'c':
         if(money - 10 < 0) { place.className = tempClassName; return; }
-        place.dmg = '0'; 
+        place.dmg = '0';
         place.radius = '0';
         place.delay = '1000000';
         place.bulletTime = '0';
@@ -1523,7 +1523,7 @@ function changeImage(plc, cN, isClicked) {
 
       case 's':
         if(money - 20 < 0) { place.className = tempClassName; return; }
-        place.dmg = '1'; 
+        place.dmg = '1';
         place.radius = '32';
         place.delay = '200';
         place.bulletTime = '0';
@@ -1533,7 +1533,7 @@ function changeImage(plc, cN, isClicked) {
 
       case 'n':
         if(money - 50 < 0) { place.className = tempClassName; return; }
-        place.dmg = '5'; 
+        place.dmg = '5';
         place.radius = '150';
         place.delay = '1000';
         place.bulletTime = '300';
@@ -1543,7 +1543,7 @@ function changeImage(plc, cN, isClicked) {
 
       case 'm':
         if(money - 70 < 0) { place.className = tempClassName; return; }
-        place.dmg = '15'; 
+        place.dmg = '15';
         place.radius = '250';
         place.delay = '3000';
         place.bulletTime = '1000';
@@ -1554,7 +1554,7 @@ function changeImage(plc, cN, isClicked) {
 
       case 'l':
         if(money - 400 < 0) { place.className = tempClassName; return; }
-        place.dmg = '1'; 
+        place.dmg = '1';
         place.radius = '125';
         place.delay = '10';
         place.bulletTime = '100';
@@ -1729,76 +1729,76 @@ function preloadImages() {
   var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_up.png";
   var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_upupright.png";
   var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_upright.png";
-  var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_uprightright.png";   
+  var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_uprightright.png";
   var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_right.png";
   var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_rightdown.png";
-  var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_rightdown.png";  
+  var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_rightdown.png";
   var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_rightdowndown.png";
   var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_down.png";
-  var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_downleftleft.png";  
+  var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_downleftleft.png";
   var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_downleft.png";
   var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_downdownleft.png";
-  var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_left.png";  
+  var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_left.png";
   var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_leftleftup.png";
   var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_leftup.png";
-  var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_leftupup.png";  
+  var image = new Image(); image.src = "res/Buildings/Towers/normal/fire/normal_leftupup.png";
 
   var image = new Image(); image.src = "res/Buildings/Towers/mortar/mortar_up.png";
   var image = new Image(); image.src = "res/Buildings/Towers/mortar/mortar_down.png";
-  var image = new Image(); image.src = "res/Buildings/Towers/mortar/mortar_left.png";  
+  var image = new Image(); image.src = "res/Buildings/Towers/mortar/mortar_left.png";
   var image = new Image(); image.src = "res/Buildings/Towers/mortar/mortar_right.png";
   var image = new Image(); image.src = "res/Buildings/Towers/mortar/fire/mortar_up.png";
-  var image = new Image(); image.src = "res/Buildings/Towers/mortar/fire/mortar_down.png"; 
+  var image = new Image(); image.src = "res/Buildings/Towers/mortar/fire/mortar_down.png";
   var image = new Image(); image.src = "res/Buildings/Towers/mortar/fire/mortar_left.png";
-  var image = new Image(); image.src = "res/Buildings/Towers/mortar/fire/mortar_right.png";  
+  var image = new Image(); image.src = "res/Buildings/Towers/mortar/fire/mortar_right.png";
 
   var image = new Image(); image.src = "res/UI/start.png";
   var image = new Image(); image.src = "res/UI/finish.png";
 
-  var image = new Image(); image.src = "res/Buildings/road1.png"; 
   var image = new Image(); image.src = "res/Buildings/road1.png";
-  var image = new Image(); image.src = "res/Buildings/road2.png";  
+  var image = new Image(); image.src = "res/Buildings/road1.png";
+  var image = new Image(); image.src = "res/Buildings/road2.png";
   var image = new Image(); image.src = "res/Buildings/road3.png";
 
   var image = new Image(); image.src = "res/UI/health/health_0.png";
-  var image = new Image(); image.src = "res/UI/health/health_1.png"; 
+  var image = new Image(); image.src = "res/UI/health/health_1.png";
   var image = new Image(); image.src = "res/UI/health/health_2.png";
-  var image = new Image(); image.src = "res/UI/health/health_3.png";  
+  var image = new Image(); image.src = "res/UI/health/health_3.png";
   var image = new Image(); image.src = "res/UI/health/health_4.png";
   var image = new Image(); image.src = "res/UI/health/health_5.png";
-  var image = new Image(); image.src = "res/UI/health/health_6.png";  
-  var image = new Image(); image.src = "res/UI/health/health_7.png";  
+  var image = new Image(); image.src = "res/UI/health/health_6.png";
+  var image = new Image(); image.src = "res/UI/health/health_7.png";
   var image = new Image(); image.src = "res/UI/health/health_8.png";
   var image = new Image(); image.src = "res/UI/health/health_9.png";
-  var image = new Image(); image.src = "res/UI/health/health_10.png";  
-  var image = new Image(); image.src = "res/UI/health/health_11.png";  
+  var image = new Image(); image.src = "res/UI/health/health_10.png";
+  var image = new Image(); image.src = "res/UI/health/health_11.png";
   var image = new Image(); image.src = "res/UI/health/health_12.png";
   var image = new Image(); image.src = "res/UI/health/health_13.png";
-  var image = new Image(); image.src = "res/UI/health/health_14.png";  
-  var image = new Image(); image.src = "res/UI/health/health_15.png";  
+  var image = new Image(); image.src = "res/UI/health/health_14.png";
+  var image = new Image(); image.src = "res/UI/health/health_15.png";
   var image = new Image(); image.src = "res/UI/health/health_16.png";
   var image = new Image(); image.src = "res/UI/health/health_17.png";
-  var image = new Image(); image.src = "res/UI/health/health_18.png";  
-  var image = new Image(); image.src = "res/UI/health/health_19.png";  
+  var image = new Image(); image.src = "res/UI/health/health_18.png";
+  var image = new Image(); image.src = "res/UI/health/health_19.png";
   var image = new Image(); image.src = "res/UI/health/health_20.png";
   var image = new Image(); image.src = "res/UI/health/health_21.png";
-  var image = new Image(); image.src = "res/UI/health/health_22.png";  
-  var image = new Image(); image.src = "res/UI/health/health_23.png";  
+  var image = new Image(); image.src = "res/UI/health/health_22.png";
+  var image = new Image(); image.src = "res/UI/health/health_23.png";
   var image = new Image(); image.src = "res/UI/health/health_24.png";
   var image = new Image(); image.src = "res/UI/health/health_25.png";
-  var image = new Image(); image.src = "res/UI/health/health_26.png";  
-  var image = new Image(); image.src = "res/UI/health/health_27.png";  
-  var image = new Image(); image.src = "res/UI/health/health_28.png";  
+  var image = new Image(); image.src = "res/UI/health/health_26.png";
+  var image = new Image(); image.src = "res/UI/health/health_27.png";
+  var image = new Image(); image.src = "res/UI/health/health_28.png";
   var image = new Image(); image.src = "res/UI/health/health_29.png";
   var image = new Image(); image.src = "res/UI/health/health_30.png";
   var image = new Image(); image.src = "res/UI/health/health_31.png";
-  var image = new Image(); image.src = "res/UI/health/health_32.png";  
-  var image = new Image(); image.src = "res/UI/health/health_33.png";  
+  var image = new Image(); image.src = "res/UI/health/health_32.png";
+  var image = new Image(); image.src = "res/UI/health/health_33.png";
   var image = new Image(); image.src = "res/UI/health/health_34.png";
   var image = new Image(); image.src = "res/UI/health/health_35.png";
   var image = new Image(); image.src = "res/UI/health/health_36.png";
-  var image = new Image(); image.src = "res/UI/health/health_37.png";  
-  var image = new Image(); image.src = "res/UI/health/health_38.png";  
+  var image = new Image(); image.src = "res/UI/health/health_37.png";
+  var image = new Image(); image.src = "res/UI/health/health_38.png";
   var image = new Image(); image.src = "res/UI/health/health_39.png";
   var image = new Image(); image.src = "res/UI/health/health_40.png";
   var image = new Image(); image.src = "res/UI/health/health_41.png";

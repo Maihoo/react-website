@@ -31,7 +31,7 @@ body {
 
 div[class*=box] {
   height: 220px;
-  width: 580px; 
+  width: 580px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,7 +60,7 @@ div[class*=box] {
   background-color: rgba(255, 255, 255, 0.0)
 }
 
-/* 
+/*
 ========================
       BUTTON SHOP
 ========================
@@ -88,7 +88,7 @@ div[class*=box] {
 }
 .btn-shop:hover::before {
   border-radius: 15px;
-  opacity: 1; 
+  opacity: 1;
 }
 .btn-shop::after {
   content: '';
@@ -103,10 +103,10 @@ div[class*=box] {
   background-color: rgba(255,255,255,0.0);
 }
 .btn-shop:hover::after {
-  opacity: 0; 
+  opacity: 0;
 }
 
-/* 
+/*
 ========================
       BUTTON SELECTED
 ========================
@@ -134,7 +134,7 @@ div[class*=box] {
 }
 .btn-selected:hover::before {
   border-radius: 15px;
-  opacity: 1; 
+  opacity: 1;
 }
 .btn-selected::after {
   content: '';
@@ -149,17 +149,17 @@ div[class*=box] {
   background-color: rgb(255, 255, 0, 0.5);
 }
 .btn-selected:hover::after {
-  opacity: 0; 
+  opacity: 0;
 }
 
-/* 
+/*
 ========================
       BUTTON START
 ========================
 */
 .btn-start {
   transition: all 0.3s;
-  position:absolute; 
+  position:absolute;
   height: 104px;
   width: 303px;
   margin-top:  805px;
@@ -186,7 +186,7 @@ div[class*=box] {
 }
 .btn-start:hover::before {
 
-  opacity: 1; 
+  opacity: 1;
 }
 .btn-start::after {
   content: '';
@@ -201,19 +201,19 @@ div[class*=box] {
   background-color: rgba(255, 255, 255, 0);
 }
 .btn-start:hover::after {
-  opacity: 0; 
+  opacity: 0;
 }
 
 /******/
 
-/* 
+/*
 ========================
       BUTTON MENU
 ========================
 */
 .btn-menu {
   transition: all 0.3s;
-  position:absolute; 
+  position:absolute;
   height: 82px;
   width: 82px;
   margin-top:  185px;
@@ -240,7 +240,7 @@ div[class*=box] {
 }
 .btn-menu:hover::before {
 
-  opacity: 1; 
+  opacity: 1;
 }
 .btn-menu::after {
   content: '';
@@ -255,7 +255,7 @@ div[class*=box] {
   background-color: rgba(255, 255, 255, 0.0);
 }
 .btn-menu:hover::after {
-  opacity: 0; 
+  opacity: 0;
 }
 
 
@@ -444,7 +444,7 @@ div[class*=box] {
 .img-health_41 { background-image: url('res/UI/health/health_41.png') !important; }
 .img-health_42 { background-image: url('res/UI/health/health_42.png') !important; }
 
-/* 
+/*
 ========================
       BUTTON FIELD
 ========================
@@ -472,7 +472,7 @@ div[class*=box] {
 }
 .btn-fld:hover::before {
 
-  opacity: 1; 
+  opacity: 1;
 }
 .btn-fld::after {
   content: '';
@@ -487,10 +487,10 @@ div[class*=box] {
   background-color: rgba(255,255,255,0.0);
 }
 .btn-fld:hover::after {
-  opacity: 0; 
+  opacity: 0;
 }
 
-/* 
+/*
 ========================
       BUTTON ACTIVATED
 ========================
@@ -516,8 +516,8 @@ div[class*=box] {
   transform: scale(1, 1);
 }
 .btn-act:hover::before {
-  opacity: 1; 
-  transform: scale(1, 1); 
+  opacity: 1;
+  transform: scale(1, 1);
 }
 .btn-act::after {
   content: '';
@@ -531,10 +531,10 @@ div[class*=box] {
   background-color: rgba(50,255,50,0.5);
 }
 .btn-act:hover::after {
-  opacity: 0; 
+  opacity: 0;
 }
 
-/* 
+/*
 ========================
       BUTTON LAST MOVE
 ========================
@@ -557,12 +557,12 @@ div[class*=box] {
   opacity: 0;
   transition: all 0.3s;
   background-color: rgba(255, 0, 0, 0.75);
-  
+
   transform: scale(1, 1);
 }
 .btn-last:hover::before {
-  opacity: 1; 
-  transform: scale(1, 1); 
+  opacity: 1;
+  transform: scale(1, 1);
 }
 .btn-last::after {
   content: '';
@@ -576,7 +576,7 @@ div[class*=box] {
   background-color: rgba(255, 115, 0, 0.384);
 }
 .btn-mov:hover::after {
-  opacity: 0; 
+  opacity: 0;
 }
 
 h1{
@@ -658,7 +658,7 @@ ul[class*=chat] {
     font-size: 1.5rem;
   }
 
-  
+
 
   .button {
     background-color: #4CAF50;
@@ -672,12 +672,12 @@ ul[class*=chat] {
     margin: 4px 2px;
     cursor: pointer;
   }
-  
+
   li {
     font-size: 1.125rem;
     padding: .75rem;
   }
-  
+
   li span {
     font-size: 3.375rem;
   }

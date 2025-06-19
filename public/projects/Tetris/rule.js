@@ -87,7 +87,6 @@ function tick() {
           lines++;
         }
       }
-      
 
       /*
       if(lve > 9) {
@@ -99,9 +98,8 @@ function tick() {
       } else {
         switch (key) {
           case value:
-            
             break;
-        
+
           default:
             break;
         }
@@ -353,7 +351,7 @@ function start() {
 
   /*
   var examples = document.getElementById('examples');
- 
+
   examples.appendChild(exO);
   examples.appendChild(exI);
   examples.appendChild(exS);

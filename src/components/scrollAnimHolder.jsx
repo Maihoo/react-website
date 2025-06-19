@@ -7,7 +7,7 @@ export default function ScrollAnimHolder({maxWidth, maxHeight, children, mL, pad
     rootMargin: "0px",
     threshold: 1
   });
- 
+
   return (
     <div style={{marginLeft: mL, width: maxWidth, height: maxHeight, display: 'flex', overflow: 'visible'}}>
       <div ref={hiddenRef2} style={{marginLeft: padding, overflow: 'visible'}}>

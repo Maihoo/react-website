@@ -12,7 +12,6 @@ const AboutPage = () => (
     <div style={{ width: '75%'}}>
       <h3>Contact me</h3>
       <div style={{display: 'flex', position: 'absolute', marginLeft: '200px', height: '500px', flexDirection: 'column-reverse', justifyContent: "center", marginTop: '260px',alignItems: "center"}}>
-
         <s1>My YouTube channel. Feel free to check it out!</s1>
         <s1>My Instagram profile. Probably the best way to contact me.</s1>
         <s1>My facebook profile. Who needs privacy?</s1>
@@ -28,8 +27,6 @@ const AboutPage = () => (
         <a className={"nextTo"} href={"https://www.deviantart.com/finnost"}                       style={{marginBottom: '50px'}} rel={"noreferrer"} target={"_blank"}><img className="linkIcon" src={Deviant}   alt="" /></a>
         <a className={"nextTo"} href={"mailto:finn.ole.stadtaus@gmail.com"}                       style={{marginBottom: '50px'}} rel={"noreferrer"} target={"_blank"}><img className="linkIcon" src={Mail}      alt="" /></a>
       </div>
-  
-
     </div>
   </div>
 )

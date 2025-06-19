@@ -28,7 +28,7 @@ function updateUAClock() {
     const minutes = parseInt(total / (1000 * 60));
     total -= minutes * (1000 * 60);
     const seconds = parseInt(total / (1000));
-    document.getElementById('ua-day-counter').innerHTML = days + ' Days - ' + (hours + 1) + ':' + minutes + ':' + seconds;
+    document.getElementById('ua-day-counter').innerHTML = days + ' Days - ' + (hours + 1) + ':' + String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
   }, 1000);
 }
 
@@ -77,9 +77,9 @@ export default function PageLayout ({children}) {
       </div>
       <ScrollToTopButton/>
       <div className={'fixed-sticker'}>
-        <ImageHolder style={{zIndex: '9999'}} maxWidth='6rem' maxHeight='6rem' dfu={Trollface}>{Trollface}</ImageHolder>
         <div style={{fontSize: 'medium'}} id='ua-day-counter'></div>
-        <div> of the "3-day" Special<br></br> Military Operation</div>
+        <div>of the "3-day" Special</div>
+        <div>Military Operation</div>
       </div>
     </footer>
   </>

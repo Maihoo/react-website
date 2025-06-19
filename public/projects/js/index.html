@@ -2,66 +2,66 @@
 <html>
 
 <head>
-	<title>Rendering mit WebGL</title>
-	<script type="x-shader/x-vertex" id="vertex-shader">#version 300 es
+  <title>Rendering mit WebGL</title>
+  <script type="x-shader/x-vertex" id="vertex-shader">#version 300 es
 
     precision mediump float;
- 
-    layout(location = 0) in vec3 aPos;
-    layout(location = 1) in vec3 aColor;    
-	layout(location = 2) in vec3 aNormal;
 
-	out vec3 A,B,C;
+    layout(location = 0) in vec3 aPos;
+    layout(location = 1) in vec3 aColor;
+  layout(location = 2) in vec3 aNormal;
+
+  out vec3 A,B,C;
     out vec3 color;
-	
-	uniform mat4 viewMatrix;
+
+  uniform mat4 viewMatrix;
     uniform mat4 projectionMatrix;
     uniform mat4 modelMatrix;
-	uniform vec4 lightPosition;
-    
-	//gefunden auf: http://www.opengl-tutorial.org/beginners-tutorials/tutorial-8-basic-shading/
-    void main() {
-			vec3 pos = (modelMatrix * vec4(aPos,1.0)).xyz;
-			vec3 light = lightPosition.xyz;
-			A = normalize(light - pos);
-			B = pos;
-			C = normalize((transpose(inverse(modelMatrix)) * vec4(aNormal,1.0)).xyz);
+  uniform vec4 lightPosition;
 
-			color = aColor;
-    	gl_Position =  projectionMatrix * viewMatrix * modelMatrix * vec4(aPos, 1.0);
+  //gefunden auf: http://www.opengl-tutorial.org/beginners-tutorials/tutorial-8-basic-shading/
+    void main() {
+      vec3 pos = (modelMatrix * vec4(aPos,1.0)).xyz;
+      vec3 light = lightPosition.xyz;
+      A = normalize(light - pos);
+      B = pos;
+      C = normalize((transpose(inverse(modelMatrix)) * vec4(aNormal,1.0)).xyz);
+
+      color = aColor;
+      gl_Position =  projectionMatrix * viewMatrix * modelMatrix * vec4(aPos, 1.0);
     }
     </script>
-	<script type="x-shader/x-fragment" id="fragment-shader">#version 300 es
+  <script type="x-shader/x-fragment" id="fragment-shader">#version 300 es
 
     precision mediump float;
 
     in vec3 color;
-		in vec3 A,B,C;
+    in vec3 A,B,C;
 
-		uniform vec4 lightAmbient;
-		uniform vec4 lightDiffuse;
-		uniform vec4 lightSpecular;
-		uniform float shininess;
+    uniform vec4 lightAmbient;
+    uniform vec4 lightDiffuse;
+    uniform vec4 lightSpecular;
+    uniform float shininess;
 
     out vec4 fragColor;
 
     void main() {
-			//calculate ambient
-			vec4 ambient = lightAmbient * vec4(color, 1.0);
+      //calculate ambient
+      vec4 ambient = lightAmbient * vec4(color, 1.0);
 
-			//calculate diffuse
-			float Kd = max(dot(A,C), 0.0);
-			vec4 diffuse = Kd * lightDiffuse * vec4(color, 1.0);
+      //calculate diffuse
+      float Kd = max(dot(A,C), 0.0);
+      vec4 diffuse = Kd * lightDiffuse * vec4(color, 1.0);
 
-			//calculate specular
-			vec3 H = normalize( A + B );
-			float D = pow( max(dot(C, H), 0.0), shininess);
-			vec4  specular = D * lightSpecular * vec4(color, 1.0);
-			if( dot(A, C) < 0.0 ) specular = vec4(0.0, 0.0, 0.0, 1.0);
+      //calculate specular
+      vec3 H = normalize( A + B );
+      float D = pow( max(dot(C, H), 0.0), shininess);
+      vec4  specular = D * lightSpecular * vec4(color, 1.0);
+      if( dot(A, C) < 0.0 ) specular = vec4(0.0, 0.0, 0.0, 1.0);
 
-			//calculate phong
-			vec4 phong = ambient + diffuse + specular;
-			fragColor = phong;
+      //calculate phong
+      vec4 phong = ambient + diffuse + specular;
+      fragColor = phong;
     }
     </script>
 
@@ -76,7 +76,7 @@
 </head>
 
 <body>
-	<body style="width: 1200; height:600px; color: white;" >
+  <body style="width: 1200; height:600px; color: white;">
     <div style="float: left;">
       <canvas id="rendering-surface" height="600" width="800"></canvas>
     </div>
@@ -92,7 +92,7 @@
         <label for="rotate-x">Rotate Around X-Axis<input type="range" name="rotate-x" id="rotate-x" min="-2" max="2" value="0" step="0.25"></label>
         <label for="rotate-y">Rotate Around Y-Axis<input type="range" name="rotate-y" id="rotate-y" min="-2" max="2" value="0" step="0.25"></label>
         <label for="rotate-z">Rotate Around Z-Axis<input type="range" name="rotate-z" id="rotate-z" min="-2" max="2" value="0" step="0.25"></label>
-      </div>	
+      </div>
     </div>
   </body>
 </body>

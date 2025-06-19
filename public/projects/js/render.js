@@ -42,12 +42,12 @@ function render(timestamp, previousTimestamp) {
 	var light = getLightPosition();											//AUFGABE 3) b)
 	var rotation = getRotation();											//AUFGABE 2) b)
 	
-	//get rotation input from sliders 
+	//get rotation input from sliders
 	rotationX += rotation[0] * timeDiff;			//include timeDiff for constant speed with varying framerate
 	rotationY += rotation[1] * timeDiff;
 	rotationZ += rotation[2] * timeDiff;
 	
-	//define camera position, pointed to position and up-vector 
+	//define camera position, pointed to position and up-vector
 	var cameraPos = vec3(0, 2, 5);											//AUFGABE 1) b)
 	var lookAtPos = vec3(0,0,0);											//
 	var upVector  = vec3(0,1,0);											//
@@ -142,7 +142,7 @@ function render(timestamp, previousTimestamp) {
 	//rotation
 		//(rotiert absichtlich nicht)
 	//translation
-	translationMat = translate(light[0]*3, light[1]*3, light[2]*3);					 
+	translationMat = translate(light[0]*3, light[1]*3, light[2]*3);					
 	modelMatrix = mult(modelMatrix, translationMat);
 	
 	
@@ -187,8 +187,8 @@ function createSphere(){
 	var positions = [];
 	
 	for(let i = 0; i < 1000; i++){						//this creates an array of 1000 points at random positions
-		positions.push(vec3(	Math.random() * 2 - 1, 
-								Math.random() * 2 - 1, 
+		positions.push(vec3(	Math.random() * 2 - 1,
+								Math.random() * 2 - 1,
 								Math.random() * 2 - 1));
 		positions[i] = normalize(positions[i]);			//this makes them all 1 unit long
 	}													//I know this is dirty as f*ck, but it creates an okay looking sphere, the task is technically done and the Sphere kind of looks like a sun :D
@@ -212,7 +212,7 @@ function createSphere(){
 	gl.bindBuffer(gl.ARRAY_BUFFER, vboColor);
 	gl.bufferData(gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW);	
 	gl.vertexAttribPointer(1, 3, gl.FLOAT, gl.FALSE, 0, 0);
-	gl.enableVertexAttribArray(1);	 
+	gl.enableVertexAttribArray(1);	
 	
 	var normals = [];
 	for (var i = 2; i < positions.length; i += 3) {
@@ -333,7 +333,7 @@ function createGeometry()
 	gl.bindBuffer(gl.ARRAY_BUFFER, vboColor);
 	gl.bufferData(gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW);	
 	gl.vertexAttribPointer(1, 3, gl.FLOAT, gl.FALSE, 0, 0);
-	gl.enableVertexAttribArray(1);	 
+	gl.enableVertexAttribArray(1);	
 	
 	var normals = [];
 	for (var i = 2; i < positions.length; i += 3) {
@@ -357,7 +357,7 @@ function createGeometry()
 
 function loadModel()
 {
-	//																		AUFGABE 2) a) (part 1) die gesamte Funktion loadModel() 
+	//																		AUFGABE 2) a) (part 1) die gesamte Funktion loadModel()
 	
 	var meshData = loadMeshData();
 	var positions = meshData.positions;
@@ -392,7 +392,7 @@ function loadModel()
 
 window.onload = function init() {
 	var canvas = document.getElementById('rendering-surface');	
-	gl = WebGLUtils.setupWebGL( canvas ); 
+	gl = WebGLUtils.setupWebGL( canvas );
 	
 	gl.viewport(0, 0, canvas.width, canvas.height);
 	gl.enable(gl.DEPTH_TEST);
